@@ -45,13 +45,13 @@ I've done Angularjs/Meteor/Backbone but this is what I'd like to do now:
 - SVG - I need to make cooler animated websites.
 - Canvas - Actually let's export one of these out of Adobe Animate.
 - Functional programming - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
-- RethinkDB - Makes real-time app easier to develop and scale.
-- pm2 - better than forever.
-- Docker - Future of containers.
-- Kubernetes - Easy to setup but powerful clustering for Dockers.
+- [RethinkDB](https://rethinkdb.com) - Makes real-time app easier to develop and scale.
+- [pm2](https://github.com/Unitech/pm2) - better than forever.
+- [Docker](https://www.docker.com/) - Future of containers.
+- [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
 - Microservices - A good practice but hard to pull off when building something great.
-- Debian based linux - Why Debian? Cause that's all I have experience with. I mean Ubuntu.
-- JWT, Passport ,bcrypt.js - Security is so complicated you can't do it for yourself. Let's just stick to best practices for now.
+- Debian based linux - Why Debian? Cause that's all I have experience with and love. I mean Ubuntu.
+- [JWT](https://jwt.io/), [Passport](passportjs.org) ,[bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js/) - Security is so complicated you can't do it for yourself. Let's just stick to best practices for now.
 
 
 ### Stuff I like or use as a web designer
@@ -59,13 +59,12 @@ I'm not a graphist or web designer but I've made more than 40 hours of animation
 - Adobe Animate - I used to call it Macromedia Flash 5.
 - Adobe Photoshop - Right now I only use it for editing other designers PSDs.
 - Adobe Illustrator - So hot for me right now, great SVG export.
-- Sketch - Using it just for web and mobile UI design with Zeplin.
+- Sketch - Using it just for web and mobile UI design with [Zeplin](https://zeplin.io/).
 - Adobe Experience Design - It's new and cool, not using it that much but I'm investigating.
 
 
 ### Daily tools I use all the time
 - MBA - Next time I'll get a Pro for an upgrade.
-- Slack - It changed how we communicated, but reduces my productivity. it's source of distraction in fact. I like Discord more.
-- Gitter - Have to use it honestly.
-- Discord - Loved it first time I launched it. Reminded me of playing WoW using TeamSpeak. Also can replace Slack for me.
+- [Slack](https://slack.com) - It changed how we communicated, but it's source of distraction in fact(too many notifications).
+- [Discord](https://discordapp.com) - Loved it first time I launched it. Reminded me of playing WoW using TeamSpeak. Also can replace Slack for me.
 - Microsoft OneNote - This is much better than Evernote. This piece of handy app is always open.
