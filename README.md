@@ -1,13 +1,13 @@
 > List of tools and techs I use as a designer and developer
 
-I develop both front and back-end or anything related to web, but any one of us have a tail to tell about our cool other skills. This is not a resume and doesn't list skills, but things I like to use or do from now on.
+I'm a fullstack web developer but any one of us have a tail to tell about our cool other skills and tools. This is not a resume and doesn't list skills, but things I like to use or do from now on.
 
 
 ### Tools as a developer
 - [Vim](https://github.com/vim/vim) - My true friend as I lay my hand and touch those keys with my fingers. This is what every coder should learn and use.
 - [Atom](https://atom.io) - Github open source editor. You can change and customize it the way you prefer just like a browser.
 - [GitKraken](https://www.gitkraken.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
-- [iTerm](https://www.iterm2.com) / [fishshell](https://fishshell.com) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
+- [iTerm](https://www.iterm2.com) / [FishShell](https://fishshell.com) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
 - [CLion](https://www.jetbrains.com/clion) - If I ever want to write C++ on mac.
 - [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
 - [Little Snitch](https://www.obdev.at/products/littlesnitch) - Sometimes I need to monitor I/O of an application I'm developing.
@@ -19,7 +19,7 @@ I develop both front and back-end or anything related to web, but any one of us 
 ### Front-End libraries and frameworks I like more than others at the moment
 I've done Angularjs/Meteor/Backbone but this is what I'd like to do now:
 - [Webpack](https://webpack.github.io/) - Split all those js files to small situational bundles, so client doesn't have to download them all at once.
-- Isomorphic Universal - Let's share js code between client and server + SEO friendly + faster to render
+- [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) - Let's share js code between client and server + SEO friendly + faster to render
 - [Immutable.js](https://facebook.github.io/immutable-js/) - Makes comparing all those nested arrays and objects faster.
 - [RxJS](https://github.com/Reactive-Extensions/RxJS) - Everything is a stream! or observer or whatever
 - [React](https://facebook.github.io/react/) - Not because it's fast, makes me write clean and easy to reason about code, both in front and back-end
@@ -41,25 +41,24 @@ I've done Angularjs/Meteor/Backbone but this is what I'd like to do now:
 
 
 ### Techs or products I like to use or research about as a web developer
-- ServiceWorker / WebWorker - Future of web apps in mobile and desktop, Seriously.
-- SVG - I need to make cooler animated websites.
-- Canvas - Actually let's export one of these out of Adobe Animate.
-- Functional programming - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
+- [ServiceWorkers](https://serviceworke.rs/) / [WebWorkers](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives) - Future of web apps in mobile and desktop, Seriously.
+- [SVG](https://css-tricks.com/using-svg) - I need to make cooler animated websites.
+- [Canvas](www.html5canvastutorials.com) - Actually let's export one of these out of Adobe Animate.
+- [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
 - [RethinkDB](https://rethinkdb.com) - Makes real-time app easier to develop and scale.
 - [pm2](https://github.com/Unitech/pm2) - better than forever.
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
-- Microservices - A good practice but hard to pull off when building something great.
-- Debian based linux - Why Debian? Cause that's all I have experience with and love. I mean Ubuntu.
+- [Microservices](https://en.wikipedia.org/wiki/Microservices) - A good practice but hard to pull off when building something great.
 - [JWT](https://jwt.io/), [Passport](passportjs.org) ,[bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js/) - Security is so complicated you can't do it for yourself. Let's just stick to best practices for now.
 
 
 ### Stuff I like or use as a web designer
 I'm not a graphist or web designer but I've made more than 40 hours of animation using Flash and Photoshop. I left that part of my beloved life behind and now I only use them for web porposes.
-- Adobe Animate - I used to call it Macromedia Flash 5.
-- Adobe Photoshop - Right now I only use it for editing other designers PSDs.
-- Adobe Illustrator - So hot for me right now, great SVG export.
-- Sketch - Using it just for web and mobile UI design with [Zeplin](https://zeplin.io/).
+- [Sketch](https://www.sketchapp.com) - Using it just for web and mobile UI design with [Zeplin](https://zeplin.io/).
+- [Adobe Animate](www.adobe.com/products/animate.html) - I used to call it Macromedia Flash 5.
+- [Adobe Illustrator](www.adobe.com/products/illustrator.html) - So hot for me right now, great SVG export.
+- [Adobe Photoshop](www.adobe.com/products/photoshop.html) - Right now I only use it for editing other designers PSDs.
 
 
 ### Daily tools I use all the time
