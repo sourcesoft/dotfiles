@@ -4,7 +4,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 
 
 ### Tools as a developer
-- [Vim](https://github.com/vim/vim) - My true friend as I lay my hand and touch those keys with my fingers. This is what every coder should learn and use.
+- [Vim](https://github.com/vim/vim) / [ack](beyondgrep.com)- My true friend as I lay my hand and touch those keys. This is what every coder should learn and use for faster and better typing and searching.
 - [Atom](https://atom.io) - Github open source editor. You can change and customize it the way you prefer just like a browser.
 - [GitKraken](https://www.gitkraken.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
 - [iTerm](https://www.iterm2.com) / [FishShell](https://fishshell.com) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
