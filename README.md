@@ -4,10 +4,10 @@ I develop both front and back-end or anything related to web, but any one of us 
 
 
 ### Tools as a developer
-- [Vim](https://github.com/vim/vim) - My true friend when I lay my hand and touch those keys with my fingers. This is what every coder should learn and use.
-- [Atom](https://atom.io) - Github open source editor. You can change and customise it the way you prefer just like a browser.
-- [Tower](https://www.git-tower.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
-- [iTerm](https://www.iterm2.com) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
+- [Vim](https://github.com/vim/vim) - My true friend as I lay my hand and touch those keys with my fingers. This is what every coder should learn and use.
+- [Atom](https://atom.io) - Github open source editor. You can change and customize it the way you prefer just like a browser.
+- [GitKraken](https://www.gitkraken.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
+- [iTerm](https://www.iterm2.com) / [fishshell](https://fishshell.com) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
 - [CLion](https://www.jetbrains.com/clion) - If I ever want to write C++ on mac.
 - [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
 - [Little Snitch](https://www.obdev.at/products/littlesnitch) - Sometimes I need to monitor I/O of an application I'm developing.
@@ -28,20 +28,20 @@ I've done Angularjs/Meteor/Backbone but this is what I'd like to do now:
 - [Redux](https://github.com/reactjs/redux) - When your app gets larger and larger, you can still predict weird stuff. That's all I can say about this piece of art.
 - [GraphQL](https://facebook.github.io/graphql) - Really hard to implement for small apps but faster.
 - [Lodash](https://lodash.com/) - Javascript syntax is weird. It doesn't even have a method for a array deep copy.
-- [CSS modules](https://github.com/css-modules/css-modules) - After all the Sass/Less/Stylus fights, I like it this way.
+- [CSS Modules](https://github.com/css-modules/css-modules) / [PostCSS](https://github.com/postcss/postcss) - After all the Sass/Less/Stylus fights, I like it this added on top.
 - [fetch](https://github.com/matthew-andrews/isomorphic-fetch) - I'm mentioning this cause it's getting a standard soon and there are many other libs doing the same.
-- [Browsersync](https://www.browsersync.io) - Makes development easier(well not easier than Redux dev tools)
+- [Browsersync](https://www.browsersync.io) - Makes development easier by syncing all monitors and devices together for test(well not easier than Redux dev tools)
 
 
 ### Back-End libraries and frameworks I use more than others
 - [Drupal](https://drupal.org) - I've built blog, portfolio, government web sites using Drupal. If I have to use PHP I use Drupal as a framework(since version 6).
 - [Node](https://nodejs.org) - Ofcourse.
 - [Express](expressjs.com/) - Sometimes I think about Koa...
-- [Laravel](https://laravel.com/) - Sometime all I need is a small php based application
+- [Laravel](https://laravel.com/) - If all I need is a small php based application
 
 
 ### Techs or products I like to use or research about as a web developer
-- Service Worker - Future of web apps in mobile, Seriously.
+- ServiceWorker / WebWorker - Future of web apps in mobile and desktop, Seriously.
 - SVG - I need to make cooler animated websites.
 - Canvas - Actually let's export one of these out of Adobe Animate.
 - Functional programming - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
@@ -60,11 +60,10 @@ I'm not a graphist or web designer but I've made more than 40 hours of animation
 - Adobe Photoshop - Right now I only use it for editing other designers PSDs.
 - Adobe Illustrator - So hot for me right now, great SVG export.
 - Sketch - Using it just for web and mobile UI design with [Zeplin](https://zeplin.io/).
-- Adobe Experience Design - It's new and cool, not using it that much but I'm investigating.
 
 
 ### Daily tools I use all the time
-- MBA - Next time I'll get a Pro for an upgrade.
-- [Slack](https://slack.com) - It changed how we communicated, but it's source of distraction in fact(too many notifications).
-- [Discord](https://discordapp.com) - Loved it first time I launched it. Reminded me of playing WoW using TeamSpeak. Also can replace Slack for me.
-- Microsoft OneNote - This is much better than Evernote. This piece of handy app is always open.
+- [MBA](www.apple.com/macbook-air) - Next time I'll get a Pro for an upgrade.
+- [Slack](https://slack.com) - It changed how we communicated as a team, but it's a source of distraction in fact.
+- [Discord](https://discordapp.com) - Loved it first time I launched it. Reminded me of playing WoW using TeamSpeak. Also replaces Slack for me.
+- [Microsoft OneNote](https://www.onenote.com) - This is much better than Evernote. This piece of handy app is always open.
