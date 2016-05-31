@@ -18,7 +18,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 
 ### Front-End libraries and frameworks I like more than others at the moment
 You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now:
-- [Webpack](https://webpack.github.io/) - Split all those js files to small situational bundles, so client doesn't have to download them all at once.
+- [Webpack](https://webpack.github.io/) - Split all those js files to small situational bundles, so client doesn't have to download them all at once. I also prefer npm scripts over gulp and grunt configs.
 - [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) - Let's share js code between client and server + SEO friendly + faster to render
 - [Immutable.js](https://facebook.github.io/immutable-js/) - Makes comparing all those nested arrays and objects faster.
 - [RxJS](https://github.com/Reactive-Extensions/RxJS) - Everything is a stream! or observer or whatever
