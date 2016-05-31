@@ -53,11 +53,11 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [Microservices](https://en.wikipedia.org/wiki/Microservices) - A good practice but hard to pull off when building something great.
 
 ### Boilerplates I love to learn from and play with
-- [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example) - Univeral without a database with some cool form techniques.
-- [react-starter-kit](https://github.com/kriasoft/react-starter-kit) - Browsersync and GraphQL with sqlite example(not real-time).
-- [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - Offline first, minimal with best practices like Immutable.js and Reselect.js
-- [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - Uses Koa.js instead of Express.js
-- [meatier](https://github.com/mattkrick/meatier) - Universal realtime RethinkDB using GraphQL with authentication and optimistic UI.
+- [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example) - Univeral/React/Redux/Express/realtime/redux-form/ducks.
+- [react-starter-kit](https://github.com/kriasoft/react-starter-kit) - Univeral/React/Redux/Express/GraphQL/Browsersync/sqlite/passport/jwt
+- [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Express/Offline first/Immutable.js/reselect/reudx-saga
+- [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - React/Redux/Unopinionated/Koa.js
+- [meatier](https://github.com/mattkrick/meatier) - Universal/React/Redux/Express/realtime/RethinkDB/GraphQL/JWT/redux-optimistic-ui/Optimistic UI/Immutable.js.
 - [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Great boilerplate to use as an skeleton of your page.
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
 
