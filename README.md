@@ -52,14 +52,18 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
 - [Microservices](https://en.wikipedia.org/wiki/Microservices) - A good practice but hard to pull off when building something great.
 
+
 ### Boilerplates I love to learn from and play with
-- [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example) - Univeral/React/Redux/Express/realtime/redux-form/ducks.
+- [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example) - Univeral/React/Redux/Express/realtime/redux-form/ducks-proposal.
 - [react-starter-kit](https://github.com/kriasoft/react-starter-kit) - Univeral/React/Redux/Express/GraphQL/Browsersync/sqlite/passport/jwt
+- [meatier](https://github.com/mattkrick/meatier) - Universal/React/Redux/Express/realtime/RethinkDB/GraphQL/JWT/redux-optimistic-ui/Immutable.js.
 - [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Express/Offline first/Immutable.js/reselect/reudx-saga
-- [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - React/Redux/Unopinionated/Koa.js
-- [meatier](https://github.com/mattkrick/meatier) - Universal/React/Redux/Express/realtime/RethinkDB/GraphQL/JWT/redux-optimistic-ui/Optimistic UI/Immutable.js.
-- [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Great boilerplate to use as an skeleton of your page.
+- [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - React/Redux/Koa/Unopinionated
+- [react-hot-boilerplate](https://github.com/gaearon/react-hot-boilerplate) - Simple and minimal React-only kickstart with webpack-dev-server and hot-loader.
+- [essential-react](https://github.com/pheuter/essential-react) - Simple and minimal React-only kickstart with router and express server and smart-dumb css-modules design principles.
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
+- [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Great boilerplate to use as an skeleton of your page.
+
 
 ### Stuff I like or use as a web designer
 - [Sketch](https://www.sketchapp.com) - Using it for web and mobile UI design with [Zeplin](https://zeplin.io/).
