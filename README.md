@@ -59,8 +59,9 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [meatier](https://github.com/mattkrick/meatier) - Universal/React/Redux/Express/realtime/RethinkDB/GraphQL/JWT/redux-optimistic-ui/Immutable.js.
 - [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Express/Offline first/Immutable.js/reselect/reudx-saga
 - [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - React/Redux/Koa/Unopinionated
-- [react-hot-boilerplate](https://github.com/gaearon/react-hot-boilerplate) - Simple-minimal-React-only kickstart with webpack-dev-server and hot-loader.
-- [essential-react](https://github.com/pheuter/essential-react) - Simple-minimal-React-only kickstart with router and express server using smart-dumb css-modules principles.
+- [react-slingshot](https://github.com/coryhouse/react-slingshot) - React/Redux Client-only kickstart
+- [essential-react](https://github.com/pheuter/essential-react) - React kickstart with express server using smart-dumb css-modules principles.
+- [react-hot-boilerplate](https://github.com/gaearon/react-hot-boilerplate) - React client-only kickstart with webpack-dev-server and hot-loader.
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
 - [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Great boilerplate to use as an skeleton of your page.
 
