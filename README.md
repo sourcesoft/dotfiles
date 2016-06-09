@@ -46,7 +46,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [SVG](https://css-tricks.com/using-svg) - I need to make cooler animated websites.
 - [Canvas](www.html5canvastutorials.com) - Actually let's export one of these out of Adobe Animate.
 - [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
-- [RethinkDB](https://rethinkdb.com) - Makes real-time app easier to develop and scale.
+- [RethinkDB](https://rethinkdb.com) - Makes real-time app easier to develop and scale in cluster.
 - [pm2](https://github.com/Unitech/pm2) - better than forever.
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
@@ -67,7 +67,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 
 
 ### Stuff I like or use as a web designer
-- [Sketch](https://www.sketchapp.com) - Using it for web and mobile UI design with [Zeplin](https://zeplin.io/).
+- [Sketch](https://www.sketchapp.com) - Using it for web and mobile UI design with [Zeplin](https://zeplin.io/) [Craft](https://www.invisionapp.com/craft).
 - [Adobe Animate](www.adobe.com/products/animate.html) - I used to call it Macromedia Flash 5 with HTML5 Canvas export.
 - [Adobe Illustrator](www.adobe.com/products/illustrator.html) - So hot for me right now, great SVG export.
 - [Adobe Photoshop](www.adobe.com/products/photoshop.html) - Right now I only use it for editing other designers PSDs.
