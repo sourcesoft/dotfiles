@@ -7,7 +7,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [Vim](https://github.com/vim/vim) / [ack](http://beyondgrep.com) / [ag](https://github.com/ggreer/the_silver_searcher)- My true friend as I lay my hand and touch those keys. This is what every coder should learn and use for faster and better typing and searching.
 - [Atom](https://atom.io) - Github open source editor. You can change and customize it the way you prefer just like a browser.
 - [GitKraken](https://www.gitkraken.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
-- [iTerm](https://www.iterm2.com) / [FishShell](https://fishshell.com) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
+- [iTerm](https://www.iterm2.com) / [zsh](https://github.com/robbyrussell/oh-my-zsh) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
 - [CLion](https://www.jetbrains.com/clion) - If I ever want to write C++ on mac.
 - [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
 - [Little Snitch](https://www.obdev.at/products/littlesnitch) - Sometimes I need to monitor I/O of an application I'm developing.
@@ -75,6 +75,5 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 
 ### Daily tools I use all the time
 - [Noizio](http://noiz.io/) - I don't know but this really helps me focus on my work.
-- [Slack](https://slack.com) - It changed how we communicated as a team, but it's a source of distraction in fact.
-- [Discord](https://discordapp.com) - Reminded me of playing WoW using TeamSpeak. Also replaces Slack for me.
+- [Dropbox](https://www.dropbox.com), [Craft](https://www.invisionapp.com/craft) - Sharing sketch assests in cloud + other helpful tools.
 - [Microsoft OneNote](https://www.onenote.com) - This is much better than Evernote. This piece of handy app is always open.
