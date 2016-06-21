@@ -42,7 +42,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 
 
 ### Techs or products I like to use or research about as a web developer
-- [ServiceWorkers](https://serviceworke.rs/) / [WebWorkers](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives) - Future of web apps in mobile and desktop, Seriously.
+- [ServiceWorkers](https://serviceworke.rs/) / [Progressive](https://developers.google.com/web/progressive-web-apps/) / [WebWorkers](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives) - Future of web apps in mobile and desktop, Seriously.
 - [SVG](https://css-tricks.com/using-svg) - I need to make cooler animated websites.
 - [Canvas](www.html5canvastutorials.com) - Actually let's export one of these out of Adobe Animate.
 - [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
