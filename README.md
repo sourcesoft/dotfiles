@@ -68,7 +68,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 
 
 ### Stuff I like or use as a web designer
-- [Sketch](https://www.sketchapp.com) - Using it for web and mobile UI design with [Zeplin](https://zeplin.io/) [Craft](https://www.invisionapp.com/craft).
+- [Sketch](https://www.sketchapp.com) - Using it for web and mobile UI design with [Zeplin](https://zeplin.io/) and [Craft](https://www.invisionapp.com/craft).
 - [Adobe Animate](www.adobe.com/products/animate.html) - I used to call it Macromedia Flash 5 with HTML5 Canvas export.
 - [Adobe Illustrator](www.adobe.com/products/illustrator.html) - So hot for me right now, great SVG export.
 - [Adobe Photoshop](www.adobe.com/products/photoshop.html) - Right now I only use it for editing other designers PSDs.
