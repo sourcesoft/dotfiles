@@ -29,7 +29,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [GraphQL](https://facebook.github.io/graphql) - Really hard to implement for small apps but faster.
 - [Lodash](https://lodash.com/) - Javascript API doesn't even have a method for an array deep copy.
 - [CSS Modules](https://github.com/css-modules/css-modules) / [PostCSS](https://github.com/postcss/postcss) - After all the Sass/Less/Stylus fights, I like it this added on top.
-- [fetch](https://github.com/matthew-andrews/isomorphic-fetch) - I'm mentioning this cause it's getting a standard soon and there are many other libs doing the same.
+- [fetch](https://github.com/matthew-andrews/isomorphic-fetch) / [Bluebird](https://github.com/petkaantonov/bluebird) - I'm mentioning this cause it's getting a standard soon and there are many other libs doing the same.
 - [Browsersync](https://www.browsersync.io) - Makes development easier by syncing all monitors and devices together for test.
 - [JWT](https://jwt.io/), [Passport](passportjs.org) ,[bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js/) - Security is so complicated you can't do it for yourself. Let's just stick to best practices for now.
 - [GSAP](http://greensock.com/gsap) - Animating better than vanilla.js or jQuery.
