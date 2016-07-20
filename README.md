@@ -58,7 +58,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example) - Univeral/React/Redux/Express/realtime/redux-form/ducks-proposal.
 - [react-starter-kit](https://github.com/kriasoft/react-starter-kit) - Univeral/React/Redux/Express/GraphQL/Browsersync/sqlite/passport/jwt
 - [meatier](https://github.com/mattkrick/meatier) - Universal/React/Redux/Express/realtime/RethinkDB/GraphQL/JWT/redux-optimistic-ui/Immutable.js.
-- [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Express/Offline first/Immutable.js/reselect/reudx-saga
+- [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Express/Offline first/Immutable.js/reselect/redux-saga
 - [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - React/Redux/Koa/Unopinionated
 - [react-slingshot](https://github.com/coryhouse/react-slingshot) - React/Redux Client-only kickstart
 - [essential-react](https://github.com/pheuter/essential-react) - React kickstart with express server using smart-dumb css-modules principles.
