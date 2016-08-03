@@ -59,7 +59,6 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [react-starter-kit](https://github.com/kriasoft/react-starter-kit) - Univeral/React/Redux/Express/GraphQL/Browsersync/sqlite/passport/jwt
 - [meatier](https://github.com/mattkrick/meatier) - Universal/React/Redux/Express/realtime/RethinkDB/GraphQL/JWT/redux-optimistic-ui/Immutable.js.
 - [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Express/Offline first/Immutable.js/reselect/redux-saga
-- [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - React/Redux/Koa/Unopinionated
 - [react-slingshot](https://github.com/coryhouse/react-slingshot) - React/Redux Client-only kickstart
 - [react-hot-boilerplate](https://github.com/gaearon/react-hot-boilerplate) - React client-only kickstart with webpack-dev-server and hot-loader.
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
