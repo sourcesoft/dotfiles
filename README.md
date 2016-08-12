@@ -24,7 +24,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [RxJS](https://github.com/Reactive-Extensions/RxJS) - Everything is a stream! or observer or whatever
 - [React](https://facebook.github.io/react/) - Not because it's fast, makes me write clean and easy to reason about code, both in front and back-end.
 - [React Native](https://facebook.github.io/react-native/) - Much better than apps I made with Ionic and this time truely native.
-- [Mocha](https://mochajs.org), [Chai](chaijs.com/) - I use these tools for BDD.
+- [Mocha](https://mochajs.org), [Chai](chaijs.com/), [enzyme](https://github.com/airbnb/enzyme) - I use these tools for BDD.
 - [Redux](https://github.com/reactjs/redux) - When your app gets larger and more complex, you can still predict weird stuff. That's all I can say about this piece of art.
 - [GraphQL](https://facebook.github.io/graphql) - Really hard to implement for small apps but faster.
 - [Lodash](https://lodash.com/) - Javascript API doesn't even have a method for an array deep copy.
