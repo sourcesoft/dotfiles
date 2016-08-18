@@ -10,6 +10,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [iTerm](https://www.iterm2.com) / [zsh](https://github.com/robbyrussell/oh-my-zsh) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
 - [CLion](https://www.jetbrains.com/clion) - If I ever want to write C++ on mac.
 - [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
+- [Paw](https://paw.cloud/) - Advanced REST client
 - [Little Snitch](https://www.obdev.at/products/littlesnitch) - Sometimes I need to monitor I/O of an application I'm developing.
 - [Charles](https://www.charlesproxy.com/) - Monitoring using all the tools even the ones I have no idea what they are.
 - [Fritzing](fritzing.org/) - Easily design electronic circuits for Arduino in no time.
