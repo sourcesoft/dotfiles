@@ -58,8 +58,6 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 ### Boilerplates I love to learn from and play with
 - [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Offline first/Immutable.js/Reselect/redux-saga
 - [react-starter-kit](https://github.com/kriasoft/react-starter-kit) - Univeral/React/Redux/Express/GraphQL/Browsersync/sqlite/passport/jwt
-- [meatier](https://github.com/mattkrick/meatier) - Universal/React/Redux/Express/realtime/RethinkDB/GraphQL/JWT/redux-optimistic-ui/Immutable.js.
-- [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example) - Universal/React/Redux/Express/redux-form
 - [create-react-app](https://github.com/facebookincubator/create-react-app) - Create React apps with no build configuration.
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
 - [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Great boilerplate to use as an skeleton of your page.
