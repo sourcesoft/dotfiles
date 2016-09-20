@@ -49,7 +49,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [Canvas](www.html5canvastutorials.com) - Actually let's export one of these out of Adobe Animate.
 - [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
 - [RethinkDB](https://rethinkdb.com) - Makes real-time app easier to develop and scale in cluster.
-- [pm2](https://github.com/Unitech/pm2) - better than forever.
+- [pm2](https://github.com/Unitech/pm2) / [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard) - Easier to monitor and debug your build
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
 - [Microservices](https://en.wikipedia.org/wiki/Microservices) - A good practice but hard to pull off when building something great.
