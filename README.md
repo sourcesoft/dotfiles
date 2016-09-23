@@ -7,7 +7,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [Vim](https://github.com/vim/vim) / [ack](http://beyondgrep.com) / [ag](https://github.com/ggreer/the_silver_searcher)- My true friend as I lay my hand and touch those keys. This is what every coder should learn and use for faster and better typing and searching.
 - [Atom](https://atom.io) - Github open source editor. You can change and customize it the way you prefer just like a browser.
 - [SourceTree](https://www.sourcetreeapp.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
-- [iTerm](https://www.iterm2.com) / [zsh](https://github.com/robbyrussell/oh-my-zsh) / [fuck](https://github.com/nvbn/thefuck) - It's closed by default but I've made a keyboard shortcut for iTerm to appear so it's everywhere.
+- [HyperTerm](http://hyperterm.org) / [zsh](https://github.com/robbyrussell/oh-my-zsh) / [fuck](https://github.com/nvbn/thefuck) - It's closed by default but I've made a keyboard shortcut for HyperTerm to appear so it's everywhere.
 - [CLion](https://www.jetbrains.com/clion) - If I ever want to write C++ on mac.
 - [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
 - [Paw](https://paw.butt/) - Advanced REST client
