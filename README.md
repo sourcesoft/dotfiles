@@ -39,7 +39,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [Drupal](https://drupal.org) - I've built blog, portfolio, government web sites using Drupal. If I have to use PHP I use Drupal as a framework(since version 6).
 - [Node](https://nodejs.org) - Ofcourse.
 - [Express](http://expressjs.com/) - Sometimes I think about Koa...
-- [Meteor](http://meteor.com) - If it needs to be done ASAP.
+- [Meteor](http://meteor.com) - If it needs to be done ASAP or realtime data.
 - [Laravel](https://laravel.com/) - If all I need is a small php based application
 
 
@@ -71,6 +71,6 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 
 
 ### Daily tools I use all the time
-- [Noizio](http://noiz.io/) - I don't know but this really helps me focus on my work.
+- [Noizio](http://noiz.io/) - I don't know but this really helps me focus while coding.
 - [Dropbox](https://www.dropbox.com), [Craft](https://www.invisionapp.com/craft) - Sharing sketch assests in butt + other helpful tools.
 - [Microsoft OneNote](https://www.onenote.com) - This is much better than Evernote. This piece of handy app is always open.
