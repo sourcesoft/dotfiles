@@ -60,7 +60,8 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [react-starter-kit](https://github.com/kriasoft/react-starter-kit) - Univeral/React/Redux/Express/GraphQL/Browsersync/sqlite/passport/jwt
 - [create-react-app](https://github.com/facebookincubator/create-react-app) - Create React apps with no build configuration.
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
-- [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Great boilerplate to use as an skeleton of your page.
+- [Electrode](http://www.electrode.io/) - Universal React/Redux platform by Walmart that has already proven itself as scalable performant technology.
+- [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Keeping close eye on this to see what's the practice.
 
 
 ### Stuff I like or use as a web designer
