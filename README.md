@@ -21,6 +21,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now:
 - [Webpack](https://webpack.github.io/) - Split all those js files to small bundles depending which react-router you're in, so client doesn't have to download them all at once. I also prefer npm scripts over gulp and grunt configs.
 - [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) - Let's share js code between client and server + SEO friendly + faster to render
+- [Relay](https://facebook.github.io/relay/), [Apollo](https://github.com/apollostack/apollo-client) - Don't spend time implementing rest/ajax calls, it happens in views automaticaly through GraphQL
 - [Immutable.js](https://facebook.github.io/immutable-js/) - Makes comparing all those nested arrays and objects faster.
 - [RxJS](https://github.com/Reactive-Extensions/RxJS) - Everything is a stream! or observer or whatever
 - [React](https://facebook.github.io/react/) - Not because it's fast, makes me write clean and easy to reason about code, both in front and back-end.
