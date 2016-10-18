@@ -36,6 +36,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [JWT](https://jwt.io/), [Passport](passportjs.org) ,[bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js/) - Security is so complicated you can't do it for yourself. Let's just stick to best practices for now.
 - [GSAP](http://greensock.com/gsap) - Animating better than vanilla.js or jQuery.
 
+
 ### Back-End libraries and frameworks I use more than others
 - [Drupal](https://drupal.org) - I've built blog, portfolio, government web sites using Drupal. If I have to use PHP I use Drupal as a framework(since version 6).
 - [Node](https://nodejs.org) - Ofcourse.
@@ -49,12 +50,10 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [SVG](https://css-tricks.com/using-svg) - I need to make cooler animated websites.
 - [Canvas](www.html5canvastutorials.com) - Actually let's export one of these out of Adobe Animate.
 - [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
-- [RethinkDB](https://rethinkdb.com) - Makes real-time app easier to develop and scale in cluster.
-- [pm2](https://github.com/Unitech/pm2) / [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard) - Easier to monitor and debug your build
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
 - [Microservices](https://en.wikipedia.org/wiki/Microservices) - A good practice but hard to pull off when building something great.
-
+- [RabbitMQ](https://www.rabbitmq.com/) - Open source messaging platform to connect all the pieces.
 
 ### Boilerplates I love to learn from and play with
 - [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Offline first/Immutable.js/Reselect/redux-saga
