@@ -52,6 +52,7 @@ You know I've done Angularjs/Meteor/Backbone but this is what I'd like to do now
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
 - [Microservices](https://en.wikipedia.org/wiki/Microservices) - A good practice but hard to pull off when building something great.
 - [RabbitMQ](https://www.rabbitmq.com/) - Open source messaging platform to connect all the pieces.
+- [llvm.org](http://llvm.org) - Modular and reusable compiler and toolchain technologies used to develop compiler front ends and back ends.
 
 
 ### Boilerplates I love to learn from and play with
