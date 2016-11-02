@@ -3,7 +3,7 @@
 " There's no need to reach escape key :)
 " https://github.com/tekezo/Karabiner-Elements
 "
-" Configuration is for NeoVim based on vimrc.js for JS development only
+" Configuration is for NeoVim based on vimrc.js for JS development mostly
 " https://github.com/zperrault/vimrc.js
 " https://github.com/ryanoasis/nerd-fonts
 
@@ -16,27 +16,76 @@
 " svermeulen/vim-easyclip
 " mhinz/vim-startify
 " ryanoasis/vim-devicons
+" ap/vim-css-color
+" morhetz/gruvbox
 
 
 " -------- Defaults
+set nocompatible " make vim usefull
+let mapleader="," " leader key
+set clipboard=unnamed " Use osx clipboard
+set wildmenu " better completion
 set tabstop=2
-set shiftwidth=2
-set expandtab
-set smarttab
+set autoindent " Copy indent from last line when starting new line
+"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_ " Show “invisible” characters
+set list
+set foldcolumn=1 " extra margin to the left
+set expandtab " expand tabs as spaces
+set smarttab " the way it should really be
+set softtabstop=2 " Tab key results in 2 spaces
 set splitbelow
 set splitright
-set visualbell
-set showcmd
-set scrolloff=5
+set visualbell " Use visual bell instead of audible bell
+set noerrorbells " Disable error bells
+set showcmd " show command while typing
+set showmode " show current mode
+set scrolloff=5 " extra space from edges while scrolling
 set autoread
-set ruler
-set title
-set number
-set relativenumber
-set nocursorline
+set report=0 " Show all changes
+set ruler " Show the cursor position
+set showtabline=2 " Always show tab bar
+set undofile " Persistent Undo
+set title " show file name in window
+set shortmess=atI " no intro message
+set mouse=a " enable mouse in all modes
+set number " line numbers
+set relativenumber " always show relatives
+set nocursorline " don't highlight current line
 set bs=2
-set laststatus=2
+set laststatus=2 " always show status bar
+set history=100 " Increase history from 20 default to 100
 set hidden
+set textwidth=80
+set colorcolumn=+1
+set esckeys " cursor keys in insert mode
+set backspace=indent,eol,start " backspace in insert mode
+set gdefault " Add the g flag to search/replace by default
+set lazyredraw " Don't redraw when we don't have to
+set nobackup " all backups off
+set nowb
+set noswapfile " no swap files
+
+" -------- Searching Defaults
+set hlsearch " hightlight results
+set incsearch " Highlight dynamically as pattern is typed
+set ignorecase
+set showmatch
+set smartcase
+" Clear search pressing esc
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+" AG and ACK
+nnoremap <C-f> :Ack 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" -------- Theme and look
+syntax enable
+set background=dark
+colorscheme gruvbox
+
+
 
 
 
@@ -51,36 +100,23 @@ let g:airline_powerline_fonts = 1
 let g:SexyScroller_EasingStyle = 5
 let g:SexyScroller_ScrollTime = 40
 let g:SexyScroller_CursorTime = 5
+let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
 
 
-
-" -------- Searching
-set hlsearch
-set incsearch
-set ignorecase
-set showmatch
-set smartcase
-" Clear search pressing esc
-nnoremap <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
-" AG and ACK
-nnoremap <C-f> :Ack 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 
 
 " -------- Better movement and navigation
+" Don't reset cursor to start of line when moving around
+set nostartofline
+" better than default
 nnoremap j gj
 nnoremap k gk
-" Mark sth with K instead of m, it's used for deleting without copy. see:vim-easyclip
-nnoremap K m
+" Mark with control-m instead of m, I need it for vim-easyclip
+nnoremap <C-m> m
+" jump up or down half screen
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
-" Move this line up or down
-noremap <a-j> ddp
-noremap <a-k> ddkP
 " Nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
@@ -90,6 +126,7 @@ nnoremap <C-i> :tabp<CR>
 nnoremap  <C-n> :tabnew<CR>
 inoremap <C-o> <ESC>gt
 inoremap <C-i> <ESC>gT
+" close tab
 nmap <C-u> :q<CR>
 " Jump to splits
 nnoremap <C-h> <C-w>h
@@ -102,18 +139,32 @@ nnoremap = <C-w><
 
 
 
-" -------- Theme and look
-"set background=dark
-"colorscheme solarized
-
-
 
 " -------- Misc
-" Save with control+s
+" refresh vim config with this file using alt-r
+noremap ® <Esc>:source %<cr>
+" delete right or left character with alt-l and alt-h without changing mode
+inoremap ¬ <Esc>lxi
+inoremap ˙ <Esc>xi
+nnoremap ¬ lxh
+nnoremap ˙ X
+" Move this line up or down for mac with alt-j and alt-k
+inoremap ∆ <Esc>ddpa
+inoremap ˚ <Esc>ddkPa
+nnoremap ∆ ddp
+nnoremap ˚ ddkP
+" add new lines below with alt-o, don't lose cursor position
+nnoremap ø m`o<ESC>``
+inoremap ø <ESC>m`o<Esc>``a
+" save with control+s
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
-" Add semicolons even in insert mode
-inoremap <C-m> <C-o>A;
+" save with alt-s as root
+nmap ß :w!!<CR>
+imap ß <Esc>:w!!<CR>a
+" Add semicolons even in insert mode with alt+;
+inoremap … <Esc>m`A;<Esc>``i
+nnoremap … m`A;<Esc>``
 " sessions
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 map <F3> :source ~/vim_session <cr>     " And load session with F3
@@ -121,4 +172,16 @@ map <F3> :source ~/vim_session <cr>     " And load session with F3
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+" Speed up transition from modes
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
+
+
+
 
