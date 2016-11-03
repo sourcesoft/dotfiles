@@ -1,11 +1,18 @@
-" ------- Global config
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Use Karabiner in OSX to map escape->right_command and control->caps_lock.
 " There's no need to reach escape key :)
 " https://github.com/tekezo/Karabiner-Elements
 "
-" Configuration is for NeoVim based on vimrc.js for JS development mostly
+" Configuration is for NeoVim, vimrc.js, iterm2
+"
+" Read these to get the environment working:
 " https://github.com/zperrault/vimrc.js
 " https://github.com/ryanoasis/nerd-fonts
+" https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
+" https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
+" http://stackoverflow.com/questions/6778961
 
 " -------- Plugins in adition to vimrc.js:
 " tpope/vim-fugitive
@@ -20,19 +27,22 @@
 " morhetz/gruvbox
 
 
-" -------- Defaults
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Defaults ~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set nocompatible " make vim usefull
 let mapleader="," " leader key
 set clipboard=unnamed " Use osx clipboard
 set wildmenu " better completion
-set tabstop=2
-set autoindent " Copy indent from last line when starting new line
-"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_ " Show “invisible” characters
+set lcs=tab:▸\ ,trail:#,nbsp:_ " Show “invisible” characters
 set list
 set foldcolumn=1 " extra margin to the left
-set expandtab " expand tabs as spaces
-set smarttab " the way it should really be
+set autoindent " Copy indent from last line when starting new line
+set expandtab " use spaces instead of tabs
+set smarttab " beginning of the line jumps to right place
+set tabstop=2 " 2 spaces for each tab
 set softtabstop=2 " Tab key results in 2 spaces
+set shiftwidth=2 " size of indent, same as tabstop
 set splitbelow
 set splitright
 set visualbell " Use visual bell instead of audible bell
@@ -64,8 +74,7 @@ set lazyredraw " Don't redraw when we don't have to
 set nobackup " all backups off
 set nowb
 set noswapfile " no swap files
-
-" -------- Searching Defaults
+" --- Searching Defaults ---
 set hlsearch " hightlight results
 set incsearch " Highlight dynamically as pattern is typed
 set ignorecase
@@ -79,8 +88,7 @@ nnoremap <C-f> :Ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-" -------- Theme and look
+" --- Theme and look ---
 syntax enable
 set background=dark
 colorscheme gruvbox
@@ -89,44 +97,51 @@ colorscheme gruvbox
 
 
 
-" -------- Plugins configuration
-let g:airline_theme='sol'
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Plugins configuration ~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:neomake_css_enabled_makers = ['stylelint'] " stylelint
+let g:airline_theme='sol' " airline simple theme
 let g:airline#extensions#whitespace#enabled = 0
 let g:vimtex_motion_matchparen = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
-let g:SexyScroller_EasingStyle = 5
-let g:SexyScroller_ScrollTime = 40
-let g:SexyScroller_CursorTime = 5
+let g:SexyScroller_EasingStyle = 5 " linear no easing
+let g:SexyScroller_ScrollTime = 40 " enough to see
+let g:SexyScroller_CursorTime = 5 " better compared to previous
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " pipe cursor in insert mode
 
 
 
 
 
-" -------- Better movement and navigation
-" Don't reset cursor to start of line when moving around
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Movement & navigation ~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" don't reset cursor to start of line when moving around
 set nostartofline
 " better than default
 nnoremap j gj
 nnoremap k gk
-" Mark with control-m instead of m, I need it for vim-easyclip
+" mark with control-m instead of m, I need it for vim-easyclip
 nnoremap <C-m> m
 " jump up or down half screen
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
-" Nerdtree control+e
+" nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
-" Change tabs
+" change tabs
 nnoremap <C-o> :tabn<CR>
 nnoremap <C-i> :tabp<CR>
 nnoremap  <C-n> :tabnew<CR>
 inoremap <C-o> <ESC>gt
 inoremap <C-i> <ESC>gT
-" close tab
+" close tab or splits
 nmap <C-u> :q<CR>
 " Jump to splits
 nnoremap <C-h> <C-w>h
@@ -140,39 +155,56 @@ nnoremap = <C-w><
 
 
 
-" -------- Misc
-" refresh vim config with this file using alt-r
-noremap ® <Esc>:source %<cr>
-" delete right or left character with alt-l and alt-h without changing mode
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Editing ~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" --- alt-l, alt-h --- delete right or left character without changing mode
 inoremap ¬ <Esc>lxi
 inoremap ˙ <Esc>xi
 nnoremap ¬ lxh
 nnoremap ˙ X
-" Move this line up or down for mac with alt-j and alt-k
-inoremap ∆ <Esc>ddpa
-inoremap ˚ <Esc>ddkPa
+" --- alt-j, alt-k --- move this line up or down for mac
+inoremap ∆ <Esc>ddp
+inoremap ˚ <Esc>ddkP
 nnoremap ∆ ddp
 nnoremap ˚ ddkP
-" add new lines below with alt-o, don't lose cursor position
-nnoremap ø m`o<ESC>``
-inoremap ø <ESC>m`o<Esc>``a
-" save with control+s
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
-" save with alt-s as root
-nmap ß :w!!<CR>
-imap ß <Esc>:w!!<CR>a
-" Add semicolons even in insert mode with alt+;
+" --- alt-d --- add new lines top
+nnoremap ∂ m`O<ESC>``
+inoremap ∂ <ESC>m`O<Esc>``a
+" --- alt-f --- add new lines below, don't lose cursor position or change mode
+nnoremap ƒ m`o<ESC>``
+inoremap ƒ <ESC>m`o<Esc>``a
+" --- alt+; --- add semicolons even in insert mode
 inoremap … <Esc>m`A;<Esc>``i
 nnoremap … m`A;<Esc>``
-" sessions
+
+
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Buffers, sessions ~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" --- alt-r --- refresh vim config with this file using
+noremap ® <Esc>:source %<cr>
+" --- control+s --- save with
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>a
+" --- alt-s --- save as root
+nmap ß :w!!<CR>
+imap ß <Esc>:w!!<CR>a
+" --- F2, F3 --- save and restore sessions
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 map <F3> :source ~/vim_session <cr>     " And load session with F3
-" remove trailing spaces manualy if there's any
+" --- ,w --- remove trailing spaces manualy if there's any
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
-" Allow saving of files as sudo when I forgot to start vim using sudo.
+" allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
-" Speed up transition from modes
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" speed up transition from modes
 if ! has('gui_running')
   set ttimeoutlen=10
   augroup FastEscape
@@ -181,7 +213,4 @@ if ! has('gui_running')
     au InsertLeave * set timeoutlen=1000
   augroup END
 endif
-
-
-
 
