@@ -127,11 +127,13 @@ set nostartofline
 " better than default
 nnoremap j gj
 nnoremap k gk
-" mark with control-m instead of m, I need it for vim-easyclip
-nnoremap <C-m> m
+" mark with control-g instead of m, I need it for vim-easyclip
+nnoremap <C-g> m
 " jump up or down half screen
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
+inoremap <C-j> <Esc><C-d>
+inoremap <C-k> <Esc><C-u>
 " nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
@@ -139,18 +141,18 @@ inoremap <C-e> <ESC>:NERDTreeFind<CR>
 nnoremap <C-o> :tabn<CR>
 nnoremap <C-i> :tabp<CR>
 nnoremap  <C-n> :tabnew<CR>
-inoremap <C-o> <ESC>gt
-inoremap <C-i> <ESC>gT
+inoremap <C-o> <ESC>:tabn<CR>
+inoremap <C-i> <ESC>:tabp<CR>
 " close tab or splits
 nmap <C-u> :q<CR>
 " Jump to splits
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+inoremap <C-h> <Esc><C-w>h
+inoremap <C-l> <Esc><C-w>l
 " Resizing splits
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
-nnoremap - <C-w>>
-nnoremap = <C-w><
+nnoremap = <C-w>>
+nnoremap - <C-w><
 
 
 
@@ -158,6 +160,11 @@ nnoremap = <C-w><
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" --- >, < --- presing > and < once is enough for both modes
+nnoremap > >>
+nnoremap < <<
+vnoremap > >gv
+vnoremap < <gv
 " --- alt-l, alt-h --- delete right or left character without changing mode
 inoremap ¬ <Esc>lxi
 inoremap ˙ <Esc>xi
