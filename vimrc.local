@@ -5,7 +5,7 @@
 " There's no need to reach escape key :)
 " https://github.com/tekezo/Karabiner-Elements
 "
-" Configuration is for NeoVim, vimrc.js, iterm2
+" Configuration is based on NeoVim, vimrc.js, iterm2, OSX
 "
 " Read these to get the environment working:
 " https://github.com/zperrault/vimrc.js
@@ -15,17 +15,22 @@
 " http://stackoverflow.com/questions/6778961
 
 " -------- Plugins in adition to vimrc.js:
-" tpope/vim-fugitive
-" vim-airline/vim-airline
-" vim-airline/vim-airline-themes
-" joeytwiddle/sexy_scroller.vim
-" mileszs/ack.vim
-" svermeulen/vim-easyclip
-" mhinz/vim-startify
-" ryanoasis/vim-devicons
-" ap/vim-css-color
-" morhetz/gruvbox
-
+" Plug 'tpope/vim-fugitive' ----- awesome git
+" Plug 'joeytwiddle/sexy_scroller.vim' ----- animate scroll
+" Plug 'jistr/vim-nerdtree-tabs' ----- nerdtree in all tabs
+" Plug 'ctrlpvim/ctrlp.vim' ----- fuzzy search
+" Plug 'mileszs/ack.vim' ----- ack built in
+" Plug 'svermeulen/vim-easyclip' ----- d without copying
+" Plug 'mhinz/vim-startify' ----- shows latest buffers
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'ryanoasis/vim-devicons' ----- file icons
+" Plug 'ap/vim-css-color' ----- css colors
+" Plug 'morhetz/gruvbox' ----- cool theme
+" Plug 'gcmt/taboo.vim' ----- smaller tabs
+" Plug 'Shougo/neosnippet.vim' ----- engine
+" Plug 'Shougo/neosnippet-snippets' ----- snippets #1
+" Plug 'honza/vim-snippets' ----- snippets #2
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Defaults ~~~~~~~~~~~~~~~~
@@ -96,7 +101,6 @@ colorscheme gruvbox
 
 
 
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,9 +116,9 @@ let g:SexyScroller_EasingStyle = 5 " linear no easing
 let g:SexyScroller_ScrollTime = 40 " enough to see
 let g:SexyScroller_CursorTime = 5 " better compared to previous
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " pipe cursor in insert mode
-
-
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
+let g:deoplete#enable_at_startup = 1 " start deoplete
+let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
 
 
 
@@ -184,6 +188,10 @@ inoremap ƒ <ESC>m`o<Esc>``a
 " --- alt+; --- add semicolons even in insert mode
 inoremap … <Esc>m`A;<Esc>``i
 nnoremap … m`A;<Esc>``
+" --- alt+; --- selecting and navigating through snippets
+imap <C-v>     <Plug>(neosnippet_expand_or_jump)
+smap <C-v>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-v>     <Plug>(neosnippet_expand_target)
 
 
 
@@ -191,8 +199,8 @@ nnoremap … m`A;<Esc>``
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Buffers, sessions ~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" --- alt-r --- refresh vim config with this file using
-noremap ® <Esc>:source %<cr>
+" --- alt-r --- refresh vim
+noremap ® <Esc>:source ~/.vimrc.js/vimrc<cr>
 " --- control+s --- save with
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
