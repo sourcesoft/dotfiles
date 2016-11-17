@@ -136,9 +136,10 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
 " ~~~~~ Movement & navigation ~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " jump to definition file in new tab or preview window
-nnoremap <C-[> :TernDefTab<CR>
-inoremap <C-[> <ESC>:TernDefTab<CR>
-nnoremap <C-]> :TernDefPreview<CR>
+nnoremap £ :TernDefTab<CR>
+inoremap £ <ESC>:TernDefTab<CR>
+nnoremap ¢ :TernDefPreview<CR>
+
 " don't reset cursor to start of line when moving around
 set nostartofline
 " better than default
