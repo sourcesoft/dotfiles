@@ -31,6 +31,8 @@
 " Plug 'Shougo/neosnippet.vim' ----- engine
 " Plug 'Shougo/neosnippet-snippets' ----- snippets #1
 " Plug 'honza/vim-snippets' ----- snippets #2
+" Plug 'ternjs/tern_for_vim'
+" Plug 'alvan/vim-closetag' " close html tags
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Defaults ~~~~~~~~~~~~~~~~
@@ -53,7 +55,7 @@ set splitright
 set visualbell " Use visual bell instead of audible bell
 set noerrorbells " Disable error bells
 set showcmd " show command while typing
-set showmode " show current mode
+set noshowmode " show current mode
 set scrolloff=5 " extra space from edges while scrolling
 set autoread
 set report=0 " Show all changes
@@ -79,6 +81,7 @@ set lazyredraw " Don't redraw when we don't have to
 set nobackup " all backups off
 set nowb
 set noswapfile " no swap files
+set updatetime=750 " more frequent updates
 " --- Searching Defaults ---
 set hlsearch " hightlight results
 set incsearch " Highlight dynamically as pattern is typed
@@ -118,14 +121,24 @@ let g:SexyScroller_CursorTime = 5 " better compared to previous
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
 let g:deoplete#enable_at_startup = 1 " start deoplete
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
-
+let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
+let g:deoplete#file#enable_buffer_path = 1 " includes from the current buffer
+let g:tern#command = ["tern"] " fix for deoplete-ternjs and tern_for_vim
+let g:tern#arguments = ["--persistent"] 
+let g:tern_request_timeout = 3 " longer timeout for tern lookup
+let g:tern_show_signature_in_pum = 1 " completion for function arguments
+let g:tern_show_argument_hints='on_hold' " update arguments after updatetime
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
 
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Movement & navigation ~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" jump to definition file in new tab or preview window
+nnoremap <C-[> :TernDefTab<CR>
+inoremap <C-[> <ESC>:TernDefTab<CR>
+nnoremap <C-]> :TernDefPreview<CR>
 " don't reset cursor to start of line when moving around
 set nostartofline
 " better than default
@@ -141,6 +154,7 @@ inoremap <C-k> <Esc><C-u>
 " nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
+inoremap <C-]> <ESC>:TernDefPreview<CR>
 " change tabs
 nnoremap <C-o> :tabn<CR>
 nnoremap <C-i> :tabp<CR>
