@@ -4,11 +4,10 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 
 
 ### Tools as a developer
-- [NeoVim](https://neovim.io) / [vimrc](https://github.com/sourcesoft/my-long-list/blob/master/vimrc.local) / [ag](https://github.com/ggreer/the_silver_searcher) - IMHO This is what every coder needs to learn and use for faster and better typing and searching.
+- [NeoVim](https://neovim.io) / [vimrc](https://github.com/sourcesoft/my-long-list/blob/master/vimrc.local) / [ag](https://github.com/ggreer/the_silver_searcher) - Can't live without ya'll, not even a day.
 - [iTerm2](https://www.iterm2.com/) / [zsh](https://github.com/robbyrussell/oh-my-zsh) / [tmux](https://tmux.github.io/) - Performant terminal and shell everywhere.
-- [Atom](https://atom.io) - Github open source editor I use sometimes beside NeoVim.
+- [Atom](https://atom.io) / [Nuclide](https://nuclide.io/) - Github open source editor I use for React Native development.
 - [SourceTree](https://www.sourcetreeapp.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
-- [CLion](https://www.jetbrains.com/clion) - If I ever want to write C++ on mac.
 - [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
 - [Paw](https://paw.butt/) - Advanced REST client for testing my backend
 - [Little Snitch](https://www.obdev.at/products/littlesnitch) - Sometimes I need to monitor I/O of an application I'm developing.
