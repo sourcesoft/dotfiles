@@ -1,6 +1,6 @@
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Use Karabiner in OSX to map escape->right_command and control->caps_lock.
 " There's no need to reach escape key :)
 " https://github.com/tekezo/Karabiner-Elements
@@ -34,9 +34,9 @@
 " Plug 'ternjs/tern_for_vim'
 " Plug 'alvan/vim-closetag' " close html tags
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Defaults ~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Defaults ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set nocompatible " make vim usefull
 let mapleader="," " leader key
 set clipboard=unnamed " Use osx clipboard
@@ -54,35 +54,43 @@ set splitbelow
 set splitright
 set visualbell " Use visual bell instead of audible bell
 set noerrorbells " Disable error bells
-set showcmd " show command while typing
 set noshowmode " show current mode
 set scrolloff=5 " extra space from edges while scrolling
 set autoread
 set report=0 " Show all changes
-set ruler " Show the cursor position
 set showtabline=2 " Always show tab bar
 set undofile " Persistent Undo
 set title " show file name in window
 set shortmess=atI " no intro message
 set mouse=a " enable mouse in all modes
-set number " line numbers
-set relativenumber " always show relatives
-set nocursorline " don't highlight current line
 set bs=2
 set laststatus=2 " always show status bar
 set history=100 " Increase history from 20 default to 100
 set hidden
 set textwidth=80
-set colorcolumn=+1
 set esckeys " cursor keys in insert mode
 set backspace=indent,eol,start " backspace in insert mode
-set gdefault " Add the g flag to search/replace by default
-set lazyredraw " Don't redraw when we don't have to
 set nobackup " all backups off
 set nowb
 set noswapfile " no swap files
-set updatetime=4000 " more frequent updates
-" --- Searching Defaults ---
+" --- Heavy lifting stuff, disable for better performance ---
+set updatetime=750 " more frequent updates
+set regexpengine=1 " use the old engine for better perf
+set lazyredraw " Don't redraw when we don't have to
+set relativenumber " relatives numbers -- disable if slow due to redraw of fonts
+set number " line numbers
+set nocursorline " don't highlight current line -- use iTerm for better perf
+"set colorcolumn=+1 " aditional column width -- disable for better perf
+"set showcmd " show command while typing -- disable if slow due to spam
+set ruler " Show the cursor position
+set synmaxcol=100 " fix some perf issues with large files
+
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Searching configuration ~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set gdefault " Add the g flag to search/replace by default
 set hlsearch " hightlight results
 set incsearch " Highlight dynamically as pattern is typed
 set ignorecase
@@ -90,7 +98,6 @@ set showmatch
 set smartcase
 " Clear search pressing esc
 nnoremap <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
 " AG and ACK
 nnoremap <C-f> :Ack 
 if executable('ag')
@@ -98,15 +105,14 @@ if executable('ag')
 endif
 " --- Theme and look ---
 syntax on
-"set background=dark
-"colorscheme gruvbox
+set background=dark
+colorscheme gruvbox
 
 
 
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Plugins configuration ~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:neomake_css_enabled_makers = ['stylelint'] " stylelint
 let g:airline_theme='sol' " airline simple theme
 let g:airline#extensions#whitespace#enabled = 0
@@ -132,9 +138,9 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Movement & navigation ~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Movement and navigation ~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " jump to definition file in new tab or preview window with alt-3 and alr-4
 nnoremap £ :TernDefTab<CR>
 inoremap £ <ESC>:TernDefTab<CR>
@@ -175,9 +181,9 @@ nnoremap - <C-w><
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Editing ~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- >, < --- presing > and < once is enough for both modes
 nnoremap > >>
 nnoremap < <<
@@ -210,9 +216,9 @@ xmap <C-v>     <Plug>(neosnippet_expand_target)
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Buffers, sessions ~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Buffers and sessions ~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- alt-r --- refresh vim
 noremap ® <Esc>:source ~/.vimrc.js/vimrc<cr>
 " --- control+s --- save with
