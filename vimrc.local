@@ -6,6 +6,7 @@
 " https://github.com/tekezo/Karabiner-Elements
 "
 " Configuration is based on NeoVim, vimrc.js, iterm2, OSX
+" I also use alt for mappings, this is suitable for Mac only
 "
 " Read these to get the environment working:
 " https://github.com/zperrault/vimrc.js
@@ -33,6 +34,9 @@
 " Plug 'honza/vim-snippets' ----- snippets #2
 " Plug 'ternjs/tern_for_vim'
 " Plug 'alvan/vim-closetag' " close html tags
+" Plug 'terryma/vim-multiple-cursors' " like sublime
+
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Defaults ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,6 +69,7 @@ set shortmess=atI " no intro message
 set mouse=a " enable mouse in all modes
 set bs=2
 set laststatus=2 " always show status bar
+set nostartofline " don't jump start of lines
 set history=100 " Increase history from 20 default to 100
 set hidden
 set textwidth=80
@@ -73,7 +78,7 @@ set backspace=indent,eol,start " backspace in insert mode
 set nobackup " all backups off
 set nowb
 set noswapfile " no swap files
-" --- Heavy lifting stuff, disable for better performance ---
+" ---------------- Heavy lifting stuff ---------------
 set updatetime=750 " more frequent updates
 set regexpengine=1 " use the old engine for better perf
 set lazyredraw " Don't redraw when we don't have to
@@ -84,11 +89,15 @@ set nocursorline " don't highlight current line -- use iTerm for better perf
 "set showcmd " show command while typing -- disable if slow due to spam
 set ruler " Show the cursor position
 set synmaxcol=100 " fix some perf issues with large files
+" ----------------- Theme and look -------------------
+syntax on
+set background=dark
+colorscheme gruvbox
 
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Searching configuration ~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Searching and selecting ~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set gdefault " Add the g flag to search/replace by default
 set hlsearch " hightlight results
@@ -96,17 +105,17 @@ set incsearch " Highlight dynamically as pattern is typed
 set ignorecase
 set showmatch
 set smartcase
-" Clear search pressing esc
+" --- esc --- Clear search pressing esc
 nnoremap <esc> :noh<return><esc>
-" AG and ACK
+" --- control+f --- AG and ACK
 nnoremap <C-f> :Ack 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-" --- Theme and look ---
-syntax on
-set background=dark
-colorscheme gruvbox
+" --- control+v --- selecting and navigating through snippets
+imap <C-v>     <Plug>(neosnippet_expand_or_jump)
+smap <C-v>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-v>     <Plug>(neosnippet_expand_target)
 
 
 
@@ -135,18 +144,24 @@ let g:tern_request_timeout = 3 " longer timeout for tern lookup
 let g:tern_show_signature_in_pum = 1 " completion for function arguments
 let g:tern_show_argument_hints='on_hold' " update arguments after updatetime
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
 
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Movement and navigation ~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" jump to definition file in new tab or preview window with alt-3 and alr-4
-nnoremap £ :TernDefTab<CR>
-inoremap £ <ESC>:TernDefTab<CR>
-nnoremap ¢ :TernDefPreview<CR>
-" don't reset cursor to start of line when moving around
-set nostartofline
+" jump to definition file in new tab or preview window with shift-2 and shift-1
+nnoremap @ :TernDefTab<CR>
+inoremap @ <ESC>:TernDefTab<CR>
+nnoremap ! :TernDefPreview<CR>
+" relocate tab right and left with alt-i and alt-o
+nnoremap ø :tabm +1<CR>
+nnoremap ˆ :tabm -1<CR>
+inoremap ø <ESC>:tabm +1<CR>
+inoremap ˆ <ESC>:tabm -1<CR>
 " better than default
 nnoremap j gj
 nnoremap k gk
@@ -164,7 +179,7 @@ inoremap <C-]> <ESC>:TernDefPreview<CR>
 " change tabs
 nnoremap <C-o> :tabn<CR>
 nnoremap <C-i> :tabp<CR>
-nnoremap  <C-n> :tabnew<CR>
+"nnoremap  <C-n> :tabnew<CR> " I'll use it for vim-multiple-cursors
 inoremap <C-o> <ESC>:tabn<CR>
 inoremap <C-i> <ESC>:tabp<CR>
 " close tab or splits
@@ -208,10 +223,6 @@ inoremap ƒ <ESC>m`o<Esc>``a
 " --- alt+; --- add semicolons even in insert mode
 inoremap … <Esc>m`A;<Esc>``i
 nnoremap … m`A;<Esc>``
-" --- alt+; --- selecting and navigating through snippets
-imap <C-v>     <Plug>(neosnippet_expand_or_jump)
-smap <C-v>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-v>     <Plug>(neosnippet_expand_target)
 
 
 
@@ -230,9 +241,9 @@ imap ß <Esc>:w!!<CR>a
 " --- alt-q --- save session and buffers and quit all
 nmap œ :mksession! ~/vim_session <cr>:w!<CR>:qall<CR>
 imap œ <Esc>:w!!<CR>a
-" --- alt-p, alt-o --- save and restore sessions
-map π :mksession! ~/vim_session <cr>
-map ø :source ~/vim_session <cr>
+" --- alt-1, alt-2 --- save and restore sessions
+map ¡ :mksession! ~/vim_session <cr>
+map ™ :source ~/vim_session <cr>
 " --- ,w --- remove trailing spaces manualy if there's any
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
