@@ -85,7 +85,7 @@ set lazyredraw " Don't redraw when we don't have to
 set relativenumber " relatives numbers -- disable if slow due to redraw of fonts
 set number " line numbers
 set nocursorline " don't highlight current line -- use iTerm for better perf
-"set colorcolumn=+1 " aditional column width -- disable for better perf
+set colorcolumn=80 " aditional column width -- disable for better perf
 "set showcmd " show command while typing -- disable if slow due to spam
 set ruler " Show the cursor position
 set synmaxcol=100 " fix some perf issues with large files
@@ -144,9 +144,10 @@ let g:tern_request_timeout = 3 " longer timeout for tern lookup
 let g:tern_show_signature_in_pum = 1 " completion for function arguments
 let g:tern_show_argument_hints='on_hold' " update arguments after updatetime
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_use_default_mapping=0 " disable default vim-multiple-cursors mappings
+let g:multi_cursor_next_key='<C-a>' " multi select with control-d like sublime
+let g:multi_cursor_prev_key='<C-p>' " deselect last one
+let g:multi_cursor_quit_key='<Esc>' " clear selection
 
 
 
@@ -179,9 +180,10 @@ inoremap <C-]> <ESC>:TernDefPreview<CR>
 " change tabs
 nnoremap <C-o> :tabn<CR>
 nnoremap <C-i> :tabp<CR>
-"nnoremap  <C-n> :tabnew<CR> " I'll use it for vim-multiple-cursors
 inoremap <C-o> <ESC>:tabn<CR>
 inoremap <C-i> <ESC>:tabp<CR>
+" create a new file in current buffer directory
+nnoremap <C-n> :tabe %:h/
 " close tab or splits
 nmap <C-u> :q<CR>
 " Jump to splits
@@ -192,7 +194,6 @@ inoremap <C-l> <Esc><C-w>l
 " Resizing splits
 nnoremap = <C-w>>
 nnoremap - <C-w><
-
 
 
 
@@ -223,7 +224,6 @@ inoremap ƒ <ESC>m`o<Esc>``a
 " --- alt+; --- add semicolons even in insert mode
 inoremap … <Esc>m`A;<Esc>``i
 nnoremap … m`A;<Esc>``
-
 
 
 
