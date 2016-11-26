@@ -5,10 +5,11 @@
 " There's no need to reach escape key :)
 " https://github.com/tekezo/Karabiner-Elements
 "
-" Configuration is based on NeoVim, vimrc.js, iterm2, OSX
-" I use alt for some key mappings, so this is suitable for Mac+iTerm only
+" Configuration is based on NeoVim, vimrc.js, iterm2, OSX.
+" I use alt for some key mappings, so this is suitable for Mac+iTerm only,
+" however you can edit mappings for different platforms with small tweaks.
 "
-" Read these to get the environment working:
+" -------- Get the environment working:
 " https://github.com/zperrault/vimrc.js
 " https://github.com/ryanoasis/nerd-fonts
 " https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
@@ -38,6 +39,7 @@
 " --- ternjs/tern_for_vim  --- intelligent js
 " --- junegunn/vim-slash  --- improved searching
 " --- junegunn/goyo.vim  --- distraction free
+" --- tpope/vim-unimpaired  --- awesome mappings
 
 
 
@@ -136,7 +138,7 @@ let g:multi_cursor_next_key='<C-d>' " multi select with control-d like sublime
 let g:multi_cursor_prev_key='<C-p>' " deselect last one
 let g:multi_cursor_quit_key='<Esc>' " clear selection
 " let g:user_emmet_leader_key='<C-r>' " run emmet
-let g:user_emmet_mode='a'
+let g:user_emmet_mode='a' " enable emmet in all modes
 let g:goyo_width=120 " distraction free mode at 120 width
 
 
@@ -149,6 +151,8 @@ nnoremap <C-f> :Ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+" --- control-] --- toggle tags sidebar
+nmap <c-]> :TagbarToggle<CR>
 " --- control+v --- selecting and navigating through snippets
 imap <C-v>     <Plug>(neosnippet_expand_or_jump)
 smap <C-v>     <Plug>(neosnippet_expand_or_jump)
@@ -268,5 +272,3 @@ noremap ´ <Esc>:source ~/.vimrc.js/vimrc<cr>
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
-
-
