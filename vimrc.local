@@ -238,6 +238,8 @@ nnoremap … m`A;<Esc>``
 " --- alt+, --- add comma at the end of line even in insert mode
 inoremap ≤ <Esc>m`A,<Esc>``i
 nnoremap ≤ m`A,<Esc>``
+" --- space --- paste after this character in new line
+nnoremap <space> a<cr><esc>P
 
 
 
