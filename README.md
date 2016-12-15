@@ -34,7 +34,6 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [Drupal](https://drupal.org) - A PHP CMS more like a framework I've used since version 6.
 - [Express](http://expressjs.com/) / [hapi.js](https://github.com/hapijs/hapi) - Sometimes I think about Koa...
 - [Meteor](http://meteor.com) - If it needs to be done ASAP or be realtime.
-- [Laravel](https://laravel.com/) - If all I need is a php based application rather than a website
 
 
 ### Techs or products I like to use or research about as a web developer
@@ -43,7 +42,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
-- [Microservices](https://en.wikipedia.org/wiki/Microservices) / [stdlib](http://stdlib.com/) - A good practice but hard to pull off when building something great.
+- [Microservices](https://en.wikipedia.org/wiki/Microservices) / [stdlib](http://stdlib.com/) - Writing Go or Node services in scale made easy.
 - [RabbitMQ](https://www.rabbitmq.com/) - Open source messaging platform to connect all the pieces.
 - [LLVM](http://llvm.org) - Modular and reusable compiler and toolchain technologies used to develop compiler front ends and back ends.
 
