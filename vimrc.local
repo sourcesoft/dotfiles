@@ -40,6 +40,7 @@
 " --- junegunn/vim-slash  --- improved searching
 " --- junegunn/goyo.vim  --- distraction free
 " --- tpope/vim-unimpaired  --- awesome mappings
+" --- jelera/vim-javascript-syntax --- JavaScript syntax
 
 
 
@@ -92,9 +93,9 @@ set ignorecase
 set showmatch
 set smartcase
 " ---------------- Heavy lifting stuff ---------------
-set updatetime=750 " more frequent updates --- disable for better perf
+" set updatetime=750 " more frequent updates -- disable for better perf
 set regexpengine=1 " use the old engine for better perf
-" set lazyredraw " redraw -- disable for better perf
+set lazyredraw " redraw -- disable for better perf
 set relativenumber " relatives numbers -- disable for better perf
 set number " line numbers
 set nocursorline " don't highlight current line -- use iTerm for better perf
@@ -104,7 +105,7 @@ set synmaxcol=100 " fix some perf issues with large files
 " ----------------- Theme and look -------------------
 syntax on
 set background=dark
-colorscheme gruvbox
+colorscheme gruvbox " heavy lifting -- disable for better perf
 
 
 
@@ -140,6 +141,8 @@ let g:multi_cursor_quit_key='<Esc>' " clear selection
 " let g:user_emmet_leader_key='<C-r>' " run emmet
 let g:user_emmet_mode='a' " enable emmet in all modes
 let g:goyo_width=120 " distraction free mode at 120 width
+let g:indent_guides_enable_on_vim_startup = 1 " enable indent guide
+let g:indent_guides_guide_size = 1 " thin indent guides
 
 
 
@@ -274,4 +277,5 @@ noremap ´ <Esc>:source ~/.vimrc.js/vimrc<cr>
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
 
