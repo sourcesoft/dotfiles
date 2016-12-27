@@ -93,7 +93,7 @@ set ignorecase
 set showmatch
 set smartcase
 " ---------------- Heavy lifting stuff ---------------
-" set updatetime=750 " more frequent updates -- disable for better perf
+set updatetime=750 " more frequent updates -- disable for better perf
 set regexpengine=1 " use the old engine for better perf
 set lazyredraw " redraw -- disable for better perf
 set relativenumber " relatives numbers -- disable for better perf
@@ -124,6 +124,7 @@ let g:SexyScroller_EasingStyle = 5 " linear no easing
 let g:SexyScroller_ScrollTime = 40 " enough to see
 let g:SexyScroller_CursorTime = 5 " better compared to previous
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
+let g:ctrlp_map = '' " disable default ctrl-p mapping
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
 let g:deoplete#enable_at_startup = 1 " start deoplete
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
@@ -214,11 +215,11 @@ nnoremap - <C-w><
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" --- >, < --- presing > and < once is enough for both modes
-nnoremap > >><esc>
-nnoremap < <<<esc>
-vnoremap > >gv<esc>
-vnoremap < <gv<esc>
+" --- p --- paste with indent by default
+nnoremap p ]p
+" --- >, < --- don't lose selection after indenting
+vnoremap > >gv
+vnoremap < <gv
 " --- alt-l, alt-h --- delete right or left character without changing mode
 inoremap ¬ <Esc>lxi
 inoremap ˙ <Esc>xi
@@ -277,5 +278,3 @@ noremap ´ <Esc>:source ~/.vimrc.js/vimrc<cr>
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
-
-
