@@ -5,9 +5,8 @@
 " There's no need to reach escape key :)
 " https://github.com/tekezo/Karabiner-Elements
 "
-" Configuration is based on NeoVim, vimrc.js, iterm2, OSX.
+" Configuration is based on NeoVim, vimrc.js, tmux, iterm2, OSX.
 " I use alt for some key mappings, so this is suitable for Mac+iTerm only,
-" however you can edit mappings for different platforms with small tweaks.
 "
 " -------- Get the environment working:
 " https://github.com/zperrault/vimrc.js
@@ -15,6 +14,7 @@
 " https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
 " https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
 " http://stackoverflow.com/questions/6778961
+" http://stackoverflow.com/questions/39645253
 
 " -------- Plugins in adition to vimrc.js:
 " --- tpope/vim-fugitive  --- awesome git
@@ -41,7 +41,10 @@
 " --- junegunn/goyo.vim  --- distraction free
 " --- tpope/vim-unimpaired  --- awesome mappings
 " --- jelera/vim-javascript-syntax --- JavaScript syntax
-
+" --- fleischie/vim-styled-components --- styled-components highlight
+" --- will133/vim-dirdiff --- git diff for directories
+" --- benmills/vimux --- send commands to tmux
+" --- christoomey/vim-tmux-navigator --- navigate between tmux and vim
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,6 +147,7 @@ let g:user_emmet_mode='a' " enable emmet in all modes
 let g:goyo_width=120 " distraction free mode at 120 width
 let g:indent_guides_enable_on_vim_startup = 1 " enable indent guide
 let g:indent_guides_guide_size = 1 " thin indent guides
+let g:tmux_navigator_no_mappings = 1 " disable default tmuxnavigator mappings
 
 
 
@@ -177,14 +181,15 @@ nnoremap ç :TernDefPreview<CR>
 nnoremap <silent> <esc> :noh<CR>
 
 
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Movement and navigation ~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " relocate tab right and left with alt-i and alt-o
-nnoremap ø :tabm +1<CR>
-nnoremap ˆ :tabm -1<CR>
-inoremap ø <ESC>:tabm +1<CR>
-inoremap ˆ <ESC>:tabm -1<CR>
+nnoremap <a-l> :tabm +1<CR>
+nnoremap <a-h> :tabm -1<CR>
+inoremap <a-l> <ESC>:tabm +1<CR>
+inoremap <a-h> <ESC>:tabm -1<CR>
 " mark with control-g instead of m, I need it for vim-easyclip
 nnoremap <C-g> m
 " jump up or down half screen
@@ -210,6 +215,11 @@ inoremap <C-l> <Esc><C-w>l
 " Resizing splits
 nnoremap = <C-w>>
 nnoremap - <C-w><
+" tmux navigation
+nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
+nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 
 
 
@@ -222,27 +232,27 @@ nnoremap p ]p
 vnoremap > >gv
 vnoremap < <gv
 " --- alt-l, alt-h --- delete right or left character without changing mode
-inoremap ¬ <Esc>lxi
-inoremap ˙ <Esc>xi
-nnoremap ¬ lxh
-nnoremap ˙ X
-" --- alt-j, alt-k --- move this line up or down for mac
-inoremap ∆ <Esc>ddp
-inoremap ˚ <Esc>ddkP
-nnoremap ∆ ddp
-nnoremap ˚ ddkP
+" inoremap ¬ <Esc>lxi
+" inoremap ˙ <Esc>xi
+" nnoremap ¬ lxh
+" nnoremap ˙ X
+" " --- alt-j, alt-k --- move this line up or down for mac
+" inoremap ∆ <Esc>ddp
+" inoremap ˚ <Esc>ddkP
+" nnoremap ∆ ddp
+" nnoremap ˚ ddkP
 " --- alt-d --- add new lines top
-nnoremap ∂ m`O<ESC>``
-inoremap ∂ <ESC>m`O<Esc>``a
+nnoremap <a-d> m`O<ESC>``
+inoremap <a-d> <ESC>m`O<Esc>``a
 " --- alt-f --- add new lines below, don't lose cursor position or change mode
-nnoremap ƒ m`o<ESC>``
-inoremap ƒ <ESC>m`o<Esc>``a
+nnoremap <a-f> m`o<ESC>``
+inoremap <a-f> <ESC>m`o<Esc>``a
 " --- alt+; --- add semicolons at the end of line even in insert mode
-inoremap … <Esc>m`A;<Esc>``i
-nnoremap … m`A;<Esc>``
+inoremap <a-;> <Esc>m`A;<Esc>``i
+nnoremap <a-;> m`A;<Esc>``
 " --- alt+, --- add comma at the end of line even in insert mode
-inoremap ≤ <Esc>m`A,<Esc>``i
-nnoremap ≤ m`A,<Esc>``
+inoremap <a-,> <Esc>m`A,<Esc>``i
+nnoremap <a-,> m`A,<Esc>``
 " --- space --- paste after this character in new line
 nnoremap <space> a<cr><esc>P
 
@@ -257,16 +267,16 @@ nnoremap <C-m> :Goyo<cr>
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
 " --- alt+s --- save all buffers
-nmap ß :wa<CR>
-imap ß <Esc>:wa<CR>a
-" --- alt-q --- save all buffers and quit
-nmap œ :w!<CR>:qa<CR>
-imap œ <Esc>:waqa!<CR>
+nmap <a-s> :wa<CR>
+imap <a-s> <Esc>:wa<CR>a
+" --- alt-q --- save all buffers then quit
+nmap <a-q> :w!<CR>:qa<CR>
+imap <a-q> <Esc>:waqa!<CR>
 " --- alt-w --- save sessions and all buffers then quit
-nmap ∑ :mksession! ~/vim_session <cr>:w!<CR>:qa<CR>
-imap ∑ <esc>:mksession! ~/vim_session <cr>:waqa!<CR>
+nmap <a-w> :mksession! ~/vim_session <cr>:w!<CR>:qa<CR>
+imap <a-w> <esc>:mksession! ~/vim_session <cr>:waqa!<CR>
 " --- alt-r --- restore session
-map ® :source ~/vim_session <cr>
+map <a-r> :source ~/vim_session <cr>
 
 
 
@@ -274,7 +284,7 @@ map ® :source ~/vim_session <cr>
 " ~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- alt-e --- reload vim
-noremap ´ <Esc>:source ~/.vimrc.js/vimrc<cr>
+noremap <a-e> <Esc>:source ~/.vimrc.js/vimrc<cr>
 " --- ,w --- remove trailing spaces manualy if there's any
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
