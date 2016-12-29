@@ -1,6 +1,6 @@
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Use Karabiner in OSX to map escape->right_command and control->caps_lock.
 " There's no need to reach escape key :)
 " https://github.com/tekezo/Karabiner-Elements
@@ -8,15 +8,32 @@
 " Configuration is based on NeoVim, vimrc.js, tmux, iterm2, OSX.
 " I use alt for some key mappings, so this is suitable for Mac+iTerm only,
 "
-" -------- Get the environment working:
-" https://github.com/zperrault/vimrc.js
-" https://github.com/ryanoasis/nerd-fonts
-" https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
-" https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
-" http://stackoverflow.com/questions/6778961
-" http://stackoverflow.com/questions/39645253
-
-" -------- Plugins in adition to vimrc.js:
+" -------------
+" ------------- Get the environment and key bindings working:
+" -------------
+" --- https://github.com/zperrault/vimrc.js
+" --- https://github.com/ryanoasis/nerd-fonts
+" --- https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
+" --- https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
+" --- http://stackoverflow.com/questions/6778961
+" --- http://stackoverflow.com/questions/39645253
+" --- http://www.nthelp.com/ascii.htm
+" --- http://superuser.com/questions/259614
+"
+" -------------
+" ------------- Hex code mappings for iTerm:
+" -------------
+" --- cmd-o: 0x01 0x29 --- tmux next session
+" --- cmd-i: 0x01 0x28 --- tmux previous session
+" --- cmd-j: 0x2C 0x6A --- vim jump page down
+" --- cmd-k: 0x2C 0x6B --- vim jump page up
+" --- cmd-m: 0x07      --- vim mark
+" --- cmd-p: 0x2C 0x70 --- vim run tmux command
+" --- cmd-r: 0x2C 0x72 --- vim run last tmux command
+"
+" -------------
+" ------------- Plugins in adition to vimrc.js:
+" -------------
 " --- tpope/vim-fugitive  --- awesome git
 " --- joeytwiddle/sexy_scroller.vim  --- animate scroll
 " --- jistr/vim-nerdtree-tabs  --- nerdtree in all tabs
@@ -47,9 +64,9 @@
 " --- christoomey/vim-tmux-navigator --- navigate between tmux and vim
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Defaults settings ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Defaults settings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set nocompatible " make vim usefull
 let mapleader="," " leader key
 set clipboard=unnamed " Use osx clipboard
@@ -88,14 +105,18 @@ set nowb
 set noswapfile " no swap files
 set nostartofline " don't jump start of lines
 set ruler " Show the cursor position
-" --------------------- Searching --------------------
+" -------------
+" ------------- Searching
+" -------------
 set gdefault " Add the g flag to search/replace by default
 set hlsearch " hightlight results
 set incsearch " Highlight dynamically as pattern is typed
 set ignorecase
 set showmatch
 set smartcase
-" ---------------- Heavy lifting stuff ---------------
+" -------------
+" ------------- Heavy lifting stuff
+" -------------
 set updatetime=750 " more frequent updates -- disable for better perf
 set regexpengine=1 " use the old engine for better perf
 set lazyredraw " redraw -- disable for better perf
@@ -105,16 +126,18 @@ set nocursorline " don't highlight current line -- use iTerm for better perf
 set colorcolumn=80 " aditional column width -- disable for better perf
 "set showcmd " show command while typing -- disable if slow due to spam
 set synmaxcol=100 " fix some perf issues with large files
-" ----------------- Theme and look -------------------
+" -------------
+" ------------- Theme and look
+" -------------
 syntax on
 set background=dark
 colorscheme gruvbox " heavy lifting -- disable for better perf
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:neomake_css_enabled_makers = ['stylelint'] " stylelint
 let g:airline_theme='sol' " airline simple theme
 let g:airline#extensions#whitespace#enabled = 0
@@ -151,96 +174,103 @@ let g:tmux_navigator_no_mappings = 1 " disable default tmuxnavigator mappings
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- control+f --- AG and ACK
-nnoremap <C-f> :Ack 
+nnoremap <C-f> :Ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 " --- control-] --- toggle tags sidebar
 nmap <c-]> :TagbarToggle<CR>
 " --- control+v --- selecting and navigating through snippets
-imap <C-v>     <Plug>(neosnippet_expand_or_jump)
-smap <C-v>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-v>     <Plug>(neosnippet_expand_target)
-" --- control-a --- search files in CURRENT BUFFER directory using 'fzf'
-nnoremap <C-a> :cd %:h<cr>:FZF<cr>
+imap <C-v> <Plug>(neosnippet_expand_or_jump)
+smap <C-v> <Plug>(neosnippet_expand_or_jump)
+xmap <C-v> <Plug>(neosnippet_expand_target)
+" --- control-space --- search files in CURRENT BUFFER directory using 'fzf'
+nnoremap <NUL> :cd %:h<cr>:FZF<cr>
 " --- control-t --- search all files in PROJECT directory using 'ctrlp'
 nnoremap <C-t> :CtrlPMixed<cr>
-" --- control-p --- run a command in current directory
+" --- control-p --- run a command in current directory using Vim
 nnoremap <C-p> :cd %:h<cr>:! 
+" --- leader-p --- run a command using tmux
+" --- iTerm hexcodes: '0x2C 0x70' --- Command-P
+nnoremap <leader>p :call VimuxRunCommand("")<left><left>
+" --- leader-r --- run the last command again using tmux
+" --- iTerm hexcodes: '0x2C 0x72' --- Command-R
+nnoremap <leader>r :call VimuxRunLastCommand()<cr>
 " --- control-n --- create a new file in current buffer directory
 nnoremap <C-n> :tabe %:h/
 " --- alt-c, alt-v --- jump to definition file in new preview or tab window
-nnoremap √ :TernDefTab<CR>
-inoremap √ <ESC>:TernDefTab<CR>
-nnoremap ç :TernDefPreview<CR>
+nnoremap <a-v> :TernDefTab<CR>
+inoremap <a-v> <ESC>:TernDefTab<CR>
+nnoremap <a-c> :TernDefPreview<CR>
 " --- esc --- search clear on pressing escape by default
 nnoremap <silent> <esc> :noh<CR>
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Movement and navigation ~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" relocate tab right and left with alt-i and alt-o
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Movement and navigation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" --- alt-l, alt-h --- relocate tab right and left with alt-i and alt-o
 nnoremap <a-l> :tabm +1<CR>
 nnoremap <a-h> :tabm -1<CR>
 inoremap <a-l> <ESC>:tabm +1<CR>
 inoremap <a-h> <ESC>:tabm -1<CR>
-" mark with control-g instead of m, I need it for vim-easyclip
+" --- control-g --- mark with control-g instead of m, for vim-easyclip
+" --- iTerm hexcodes: '0x07' --- Command-M
 nnoremap <C-g> m
-" jump up or down half screen
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
-inoremap <C-j> <Esc><C-d>
-inoremap <C-k> <Esc><C-u>
-" nerdtree control+e
+" --- leader-j, leader-k --- jump up or down half screen
+" --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
+" --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
+nnoremap <leader>j <C-d>
+nnoremap <leader>k <C-u>
+inoremap <leader>j <Esc><C-d>
+inoremap <leader>k <Esc><C-u>
+" --- control-e --- nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
-" change tabs
+" --- control-i, control-o --- change tabs
 nnoremap <C-o> :tabn<CR>
 nnoremap <C-i> :tabp<CR>
 inoremap <C-o> <ESC>:tabn<CR>
 inoremap <C-i> <ESC>:tabp<CR>
-" close tab or splits
+" --- control-u --- close tab or pane
 nmap <C-u> :q<CR>
-" Jump to splits
+" --- control-h, control-j, control-k, control-l --- Jump to panes
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 inoremap <C-h> <Esc><C-w>h
 inoremap <C-l> <Esc><C-w>l
-" Resizing splits
-nnoremap = <C-w>>
-nnoremap - <C-w><
-" tmux navigation
-nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
-nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
+inoremap <C-j> <Esc><C-w>j
+inoremap <C-k> <Esc><C-w>k
+" --- control-h, control-j, control-k, control-l --- tmux navigation
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+inoremap <silent> <C-k> <esc>:TmuxNavigateUp<cr>
+inoremap <silent> <C-j> <esc>:TmuxNavigateDown<cr>
+inoremap <silent> <C-l> <esc>:TmuxNavigateRight<cr>
+inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
+" --- =, - --- Resizing panes
+nnoremap = <C-w>>
+nnoremap - <C-w><
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- p --- paste with indent by default
 nnoremap p ]p
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
-" --- alt-l, alt-h --- delete right or left character without changing mode
-" inoremap ¬ <Esc>lxi
-" inoremap ˙ <Esc>xi
-" nnoremap ¬ lxh
-" nnoremap ˙ X
-" " --- alt-j, alt-k --- move this line up or down for mac
-" inoremap ∆ <Esc>ddp
-" inoremap ˚ <Esc>ddkP
-" nnoremap ∆ ddp
-" nnoremap ˚ ddkP
 " --- alt-d --- add new lines top
 nnoremap <a-d> m`O<ESC>``
 inoremap <a-d> <ESC>m`O<Esc>``a
@@ -258,9 +288,9 @@ nnoremap <space> a<cr><esc>P
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Buffers and sessions ~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Buffers and sessions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- control-m --- toggle distraction free mode
 nnoremap <C-m> :Goyo<cr>
 " --- control+s --- save this buffer
@@ -280,9 +310,9 @@ map <a-r> :source ~/vim_session <cr>
 
 
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- alt-e --- reload vim
 noremap <a-e> <Esc>:source ~/.vimrc.js/vimrc<cr>
 " --- ,w --- remove trailing spaces manualy if there's any
