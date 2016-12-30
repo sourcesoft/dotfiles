@@ -299,12 +299,12 @@ imap <c-s> <Esc>:w<CR>a
 " --- alt+s --- save all buffers
 nmap <a-s> :wa<CR>
 imap <a-s> <Esc>:wa<CR>a
-" --- alt-q --- save all buffers then quit
-nmap <a-q> :w!<CR>:qa<CR>
-imap <a-q> <Esc>:waqa!<CR>
-" --- alt-w --- save sessions and all buffers then quit
-nmap <a-w> :mksession! ~/vim_session <cr>:w!<CR>:qa<CR>
-imap <a-w> <esc>:mksession! ~/vim_session <cr>:waqa!<CR>
+" --- alt-w --- save all buffers and session
+nmap <a-w> :mksession! ~/vim_session <cr>:wa!<CR>
+imap <a-w> <esc>:mksession! ~/vim_session <cr>:wa!<CR>
+" --- alt-q --- quit all without saving
+nmap <a-q> :qa!<CR>
+imap <a-q> <Esc>:qa!<CR>
 " --- alt-r --- restore session
 map <a-r> :source ~/vim_session <cr>
 
