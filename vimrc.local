@@ -299,15 +299,16 @@ imap <c-s> <Esc>:w<CR>a
 " --- alt+s --- save all buffers
 nmap <a-s> :wa<CR>
 imap <a-s> <Esc>:wa<CR>a
-" --- alt-w --- save all buffers and then quit
-nmap <a-w> :mksession! ~/vim_session <cr>:qa!<CR>
-imap <a-w> <esc>:mksession! ~/vim_session <cr>:qa!<CR>
-" --- alt-q --- quit all without saving
-nmap <a-q> :qa!<CR>
-imap <a-q> <Esc>:qa!<CR>
-" --- alt-r --- restore session
+" --- alt-q --- save buffer, save session based on directory and quit
+nmap <a-q> :wqa<CR>
+imap <a-q> <Esc>:wqa<CR>
+" --- alt-w --- save special session and all buffers
+nmap <a-w> :mksession! ~/vim_session <cr>:wq!<CR>
+imap <a-w> <esc>:mksession! ~/vim_session <cr>:wq!<CR>
+" --- alt-r --- restore special session
 map <a-r> :source ~/vim_session <cr>
 " --- automatic --- save and restore session based on current directory
+" we need to use :qa to quit all buffers at once without explanation mark
 function! MakeSession()
 let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
 if (filewritable(b:sessiondir) != 2)
