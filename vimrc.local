@@ -62,6 +62,7 @@
 " --- will133/vim-dirdiff --- git diff for directories
 " --- benmills/vimux --- send commands to tmux
 " --- christoomey/vim-tmux-navigator --- navigate between tmux and vim
+" --- airblade/vim-rooter --- change root directory on the fly
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -300,17 +301,19 @@ imap <c-s> <Esc>:w<CR>a
 nmap <a-s> :wa<CR>
 imap <a-s> <Esc>:wa<CR>a
 " --- alt-q --- save buffer, save session based on directory and quit
-nmap <a-q> :wqa<CR>
-imap <a-q> <Esc>:wqa<CR>
+nmap <a-q> :wqa!<CR>
+imap <a-q> <Esc>:wqa!<CR>
 " --- alt-w --- save special session and all buffers
 nmap <a-w> :mksession! ~/vim_session <cr>:wq!<CR>
 imap <a-w> <esc>:mksession! ~/vim_session <cr>:wq!<CR>
 " --- alt-r --- restore special session
 map <a-r> :source ~/vim_session <cr>
-" --- automatic --- save and restore session based on current directory
-" we need to use :qa to quit all buffers at once without explanation mark
+" --- automatic --- save and restore session based on current directory.
+" we need to use :qa! to quit all buffers at once otherwise only the last one
+" is saved. Also we use FindRootDirectory() utility from airblade/vim-rooter
+" plugin so we always have the correct pwd, using native pwd is buggy sometimes.
 function! MakeSession()
-let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+let b:sessiondir = $HOME . "/.vim/sessions" . FindRootDirectory()
 if (filewritable(b:sessiondir) != 2)
   exe 'silent !mkdir -p ' b:sessiondir
   redraw!
