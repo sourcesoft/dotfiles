@@ -65,6 +65,7 @@
 " --- airblade/vim-rooter --- change root directory on the fly
 
 
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Defaults settings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -300,12 +301,12 @@ imap <c-s> <Esc>:w<CR>a
 " --- alt+s --- save all buffers
 nmap <a-s> :wa<CR>
 imap <a-s> <Esc>:wa<CR>a
-" --- alt-q --- save buffer, save session based on directory and quit
+" --- alt-q --- save all buffers, save session based on directory and quit
 nmap <a-q> :wqa!<CR>
 imap <a-q> <Esc>:wqa!<CR>
 " --- alt-w --- save special session and all buffers
-nmap <a-w> :mksession! ~/vim_session <cr>:wq!<CR>
-imap <a-w> <esc>:mksession! ~/vim_session <cr>:wq!<CR>
+nmap <a-w> :mksession! ~/vim_session <cr>:wqa!<CR>
+imap <a-w> <esc>:mksession! ~/vim_session <cr>:wqa!<CR>
 " --- alt-r --- restore special session
 map <a-r> :source ~/vim_session <cr>
 " --- automatic --- save and restore session based on current directory.
@@ -332,6 +333,7 @@ endif
 endfunction
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call MakeSession()
+
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
