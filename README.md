@@ -37,14 +37,15 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 
 
 ### Techs or products I like to use or research about as a web developer
-- [ServiceWorkers](https://serviceworke.rs/) / [Progressive](https://developers.google.com/web/progressive-web-apps/) / [WebWorkers](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives) - Future of web apps in mobile and desktop, seriously.
-- [SVG](https://css-tricks.com/using-svg) / [Canvas](www.html5canvastutorials.com) / [GSAP](http://greensock.com/gsap) - I need to make cooler animated websites, sometimes using Adobe Animate or Illustrator.
-- [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
+- [Go](golang.org) - Low level concurrent programming with clean syntax made easy.
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
 - [Microservices](https://en.wikipedia.org/wiki/Microservices) / [stdlib](http://stdlib.com/) - Writing Go or Node services in scale made easy.
-- [RabbitMQ](https://www.rabbitmq.com/) - Open source messaging platform to connect all the pieces.
+- [RabbitMQ](https://www.rabbitmq.com/) / [NSQ](https://github.com/nsqio/nsq) - Messaging platform connecting all the pieces.
 - [LLVM](http://llvm.org) - Modular and reusable compiler and toolchain technologies used to develop compiler front ends and back ends.
+- [ServiceWorkers](https://serviceworke.rs/) / [Progressive](https://developers.google.com/web/progressive-web-apps/) / [WebWorkers](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives) - Future of web apps in mobile and desktop, seriously.
+- [SVG](https://css-tricks.com/using-svg) / [Canvas](www.html5canvastutorials.com) / [GSAP](http://greensock.com/gsap) - I need to make cooler animated websites, sometimes using Adobe Animate or Illustrator.
+- [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
 
 
 ### Boilerplates I love to learn from and play with
