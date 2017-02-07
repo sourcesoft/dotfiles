@@ -37,7 +37,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 
 
 ### Techs or products I like to use or research about as a web developer
-- [Go](golang.org) - Low level concurrent programming with clean syntax made easy.
+- [Go](golang.org) - Concurrent programming with clean syntax made easy and smashing performance.
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
 - [Microservices](https://en.wikipedia.org/wiki/Microservices) / [stdlib](http://stdlib.com/) - Writing Go or Node services in scale made easy.
