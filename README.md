@@ -1,6 +1,6 @@
 > List of tools and techs I use as a designer and developer
 
-I'm a fullstack web developer but any one of us have a tail to tell about our cool other skills and tools. This is not a resume and doesn't list skills, but things I like to use or do from now on.
+I'm a fullstack web developer but any one of us have a tail to tell about our cool other skills and tools. This is not a resume and doesn't list skills, but things I use or like to, daily.
 
 
 ### Tools as a developer
@@ -31,9 +31,10 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 
 
 ### Back-End libraries and frameworks I use more than others
+- [Go](https://golang.org) - Awesome performance + perfect libraries and community around it
 - [Drupal](https://drupal.org) - A PHP CMS more like a framework I've used since version 6.
-- [Express](http://expressjs.com/) / [hapi.js](https://github.com/hapijs/hapi) - Sometimes I think about Koa...
-- [Meteor](http://meteor.com) - If it needs to be done ASAP or be realtime.
+- [Express](http://expressjs.com/) - Standard and well tested
+- [Meteor](http://meteor.com) - If it needs to be done ASAP or realtime.
 
 
 ### Techs or products I like to use or research about as a web developer
