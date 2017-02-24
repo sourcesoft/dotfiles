@@ -12,7 +12,6 @@
 " ------------- Get the environment and key bindings working:
 " -------------
 " --- https://github.com/zperrault/vimrc.js
-" --- https://github.com/ryanoasis/nerd-fonts
 " --- https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
 " --- https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
 " --- http://stackoverflow.com/questions/6778961
@@ -39,7 +38,7 @@
 " --- jistr/vim-nerdtree-tabs  --- nerdtree in all tabs
 " --- ctrlpvim/ctrlp.vim  --- fuzzy search
 " --- mileszs/ack.vim  --- ack built in
-" --- svermeulen/vim-easyclip  --- d without copying
+" --- svermeulen/vim-easyclip  --- d without annoying copying
 " --- mhinz/vim-startify  --- shows latest buffers
 " --- alvan/vim-closetag  --- close html tags
 " --- terryma/vim-multiple-cursors  --- like sublime
@@ -49,7 +48,6 @@
 " --- ryanoasis/vim-devicons  --- file icons
 " --- ap/vim-css-color  --- css colors
 " --- morhetz/gruvbox  --- cool theme
-" --- gcmt/taboo.vim  --- smaller tabs
 " --- Shougo/neosnippet.vim  --- engine
 " --- Shougo/neosnippet-snippets  --- snippets #1
 " --- honza/vim-snippets  --- snippets #2
@@ -141,13 +139,23 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:neomake_css_enabled_makers = ['stylelint'] " stylelint
-let g:airline_theme='sol' " airline simple theme
-let g:airline#extensions#whitespace#enabled = 0
-let g:vimtex_motion_matchparen = 0
-let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep='' " no extra characters
+let g:airline_right_sep=''
+let g:airline_theme='powerlineish' " airline simple theme
+let g:airline_extensions = ['branch', 'tabline', 'ctrlp', 'hunks', 'tmuxline']
+let g:airline#extensions#tabline#enabled = 1 " enable tabline
+let g:airline#extensions#tabline#show_tab_nr = 0 " no tab number
+let g:airline#extensions#tabline#show_splits = 0 " disable split count
+let g:airline#extensions#tabline#fnamemod = ':p:t' " no directories in anem
+let g:airline#extensions#tabline#fnamecollapse = 1 " collapse directories
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " tab names
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]' " don't need this
+let g:airline_section_x = '' " no need for file-type
 let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_powerline_fonts = 1
+let g:airlinse#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tmuxline#enabled = 1 " tmux fix
+let g:vimtex_motion_matchparen = 0
+let g:airline_powerline_fonts = 0 " disable for better perf
 let g:SexyScroller_EasingStyle = 5 " linear no easing
 let g:SexyScroller_ScrollTime = 40 " enough to see
 let g:SexyScroller_CursorTime = 5 " better compared to previous
@@ -158,7 +166,7 @@ let g:deoplete#enable_at_startup = 1 " start deoplete
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
 let g:deoplete#file#enable_buffer_path = 1 " includes from the current buffer
 let g:tern#command = ["tern"] " fix for deoplete-ternjs and tern_for_vim
-let g:tern#arguments = ["--persistent"] 
+let g:tern#arguments = ["--persistent"]
 let g:tern_request_timeout = 3 " longer timeout for tern lookup
 let g:tern_show_signature_in_pum = 1 " completion for function arguments
 let g:tern_show_argument_hints='on_hold' " update arguments after updatetime
@@ -173,6 +181,7 @@ let g:goyo_width=120 " distraction free mode at 120 width
 let g:indent_guides_enable_on_vim_startup = 1 " enable indent guide
 let g:indent_guides_guide_size = 1 " thin indent guides
 let g:tmux_navigator_no_mappings = 1 " disable default tmuxnavigator mappings
+let g:tmux_navigator_disable_when_zoomed = 1 " disable zoom-out inside vim
 
 
 
@@ -184,8 +193,6 @@ nnoremap <C-f> :Ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-" --- control-] --- toggle tags sidebar
-nmap <c-]> :TagbarToggle<CR>
 " --- control+v --- selecting and navigating through snippets
 imap <C-v> <Plug>(neosnippet_expand_or_jump)
 smap <C-v> <Plug>(neosnippet_expand_or_jump)
@@ -269,7 +276,9 @@ nnoremap - <C-w><
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- p --- paste with indent by default
-nnoremap p ]p
+nnoremap p :set paste<cr>]p:set nopaste<cr>
+" --- space --- paste in new line used for CSS from browser, etc...
+nnoremap <space> $]pi<cr><esc>
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
@@ -285,8 +294,6 @@ nnoremap <a-;> m`A;<Esc>``
 " --- alt+, --- add comma at the end of line even in insert mode
 inoremap <a-,> <Esc>m`A,<Esc>``i
 nnoremap <a-,> m`A,<Esc>``
-" --- space --- paste after this character in new line
-nnoremap <space> a<cr><esc>P
 
 
 
@@ -344,5 +351,5 @@ noremap <a-e> <Esc>:source ~/.vimrc.js/vimrc<cr>
 " --- ,w --- remove trailing spaces manualy if there's any
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! :w !sudo tee %
 
