@@ -14,6 +14,7 @@
 " --- https://github.com/zperrault/vimrc.js
 " --- https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
 " --- https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
+" --- https://github.com/neovim/neovim/issues/2048
 " --- http://stackoverflow.com/questions/6778961
 " --- http://stackoverflow.com/questions/39645253
 " --- http://www.nthelp.com/ascii.htm
@@ -352,4 +353,7 @@ noremap <a-e> <Esc>:source ~/.vimrc.js/vimrc<cr>
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! :w !sudo tee %
-
+" fix c-h bug
+if has('nvim')
+  nmap <bs> :<c-u>TmuxNavigateLeft<cr>
+endif
