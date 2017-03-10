@@ -27,9 +27,11 @@
 " --- cmd-i: 0x01 0x28 --- tmux previous session
 " --- cmd-j: 0x2C 0x6A --- vim jump page down
 " --- cmd-k: 0x2C 0x6B --- vim jump page up
-" --- cmd-m: 0x07      --- vim mark
+" --- cmd-m: 0x2C 0x07 --- vim quickfix previous
+" --- cmd-n: 0x2C 0x08 --- vim quickfix next
 " --- cmd-p: 0x2C 0x70 --- vim run tmux command
 " --- cmd-r: 0x2C 0x72 --- vim run last tmux command
+" --- cmd-f: 0x2C 0x66 --- vim toggle tagbar
 "
 " -------------
 " ------------- Plugins in adition to vimrc.js:
@@ -62,6 +64,11 @@
 " --- benmills/vimux --- send commands to tmux
 " --- christoomey/vim-tmux-navigator --- navigate between tmux and vim
 " --- airblade/vim-rooter --- change root directory on the fly
+" --- majutsushi/tagbar  --- tagbar sidebar
+" --- jlanzarotta/bufexplorer  --- list buffers
+" --- fatih/vim-go  --- Go plugin
+" --- zchee/deoplete-go  --- Go completion
+" --- tpope/vim-dispatch  --- asynchronous build and test dispatcher
 
 
 
@@ -182,15 +189,60 @@ let g:goyo_width=120 " distraction free mode at 120 width
 let g:indent_guides_enable_on_vim_startup = 1 " enable indent guide
 let g:indent_guides_guide_size = 1 " thin indent guides
 let g:tmux_navigator_no_mappings = 1 " disable default tmuxnavigator mappings
-let g:tmux_navigator_disable_when_zoomed = 1 " disable zoom-out inside vim
-
-
+let g:go_highlight_functions = 1 " Go syntax highlighting
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_fmt_command = "goimports" " automatically insert import paths
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "gofmt"
+let g:go_list_type = "quickfix"
+" tagbar config for Go
+let g:tagbar_type_go = {
+\ 'ctagstype' : 'go',
+\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+\ ],
+\ 'sro' : '.',
+\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+\ },
+\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+\ },
+\ 'ctagsbin'  : 'gotags',
+\ 'ctagsargs' : '-sort -silent'
+\ }
+" NERDTree General properties
+let NERDTreeDirArrows=1
+let NERDTreeMinimalUI=1
+let NERDTreeIgnore=['\.o$', '\.pyc$', '\.php\~$']
+let NERDTreeWinSize = 35
+" NERDTree Make sure that when NT root is changed, Vim's pwd is also updated
+let NERDTreeChDirMode = 2
+let NERDTreeShowLineNumbers = 1
+let NERDTreeAutoCenter = 1
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- control+f --- AG and ACK
-nnoremap <C-f> :Ack
+nnoremap <C-f> :Ack 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
@@ -210,14 +262,43 @@ nnoremap <leader>p :call VimuxRunCommand("")<left><left>
 " --- leader-r --- run the last command again using tmux
 " --- iTerm hexcodes: '0x2C 0x72' --- Command-R
 nnoremap <leader>r :call VimuxRunLastCommand()<cr>
+" --- esc --- search clear on pressing escape by default
+nnoremap <silent> <esc> :noh<CR>
 " --- control-n --- create a new file in current buffer directory
 nnoremap <C-n> :tabe %:h/
-" --- alt-c, alt-v --- jump to definition file in new preview or tab window
+" --- alt-c, alt-v --- JS: jump to definition file in new preview or tab window
 nnoremap <a-v> :TernDefTab<CR>
 inoremap <a-v> <ESC>:TernDefTab<CR>
 nnoremap <a-c> :TernDefPreview<CR>
-" --- esc --- search clear on pressing escape by default
-nnoremap <silent> <esc> :noh<CR>
+" --- leader-i --- Go: show type
+au FileType go nmap <leader>i <Plug>(go-info)
+" --- leader-j --- Go: jump to def in new split
+au FileType go nmap <leader>j <Plug>(go-def-vertical)
+" --- leader-d --- Go: jump to godoc in new split
+au FileType go nmap <leader>d <Plug>(go-doc-vertical)
+" --- leader-r --- Go: run in new tab
+au FileType go nmap <leader>r <Plug>(go-run-tab)
+" --- leader-b --- Go: build
+au FileType go nmap <leader>b <Plug>(go-build)
+" --- leader-t --- Go: test
+au FileType go nmap <leader>t <Plug>(go-test)
+" --- leader-c --- Go: show coverage
+au FileType go nmap <leader>c <Plug>(go-coverage)
+" --- leader-e --- Go: check errors
+au FileType go nmap <leader>c <Plug>(go-coverage)
+" --- leader-f --- open tagbar
+" --- iTerm hexcodes: '0x2C 0x66' --- Command-F
+nnoremap <leader>f :TagbarToggle<CR>
+" --- leader-l --- quickly navigate to necessary buffer
+map <leader>l :BufExplorer<cr>
+imap <leader>l <esc>:BufExplorer<cr>
+vmap <leader>l <esc>:BufExplorer<cr>
+" --- leader-m --- previous in quickfix list
+" --- iTerm hexcodes: '0x2C 0x07' --- Command-M
+map <leader>m :cprevious<CR>
+" --- leader-n --- next in quickfix list
+" --- iTerm hexcodes: '0x2C 0x08' --- Command-N
+map <leader>n :cnext<CR>
 
 
 
@@ -230,15 +311,14 @@ nnoremap <a-h> :tabm -1<CR>
 inoremap <a-l> <ESC>:tabm +1<CR>
 inoremap <a-h> <ESC>:tabm -1<CR>
 " --- control-g --- mark with control-g instead of m, for vim-easyclip
-" --- iTerm hexcodes: '0x07' --- Command-M
 nnoremap <C-g> m
 " --- leader-j, leader-k --- jump up or down half screen
 " --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
 " --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
-nnoremap <leader>j <C-d>
-nnoremap <leader>k <C-u>
-inoremap <leader>j <Esc><C-d>
-inoremap <leader>k <Esc><C-u>
+nnoremap <leader>sj <C-d>
+nnoremap <leader>sk <C-u>
+inoremap <leader>sj <Esc><C-d>
+inoremap <leader>sk <Esc><C-u>
 " --- control-e --- nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
@@ -283,18 +363,31 @@ nnoremap <space> $]pi<cr><esc>
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
-" --- alt-d --- add new lines top
-nnoremap <a-d> m`O<ESC>``
-inoremap <a-d> <ESC>m`O<Esc>``a
-" --- alt-f --- add new lines below, don't lose cursor position or change mode
-nnoremap <a-f> m`o<ESC>``
-inoremap <a-f> <ESC>m`o<Esc>``a
+" --- shift-d --- add new lines top
+nnoremap <s-k> m`O<ESC>``
+" --- shift-f --- add new lines below, don't lose cursor position or change mode
+nnoremap <s-j> m`o<ESC>``
 " --- alt+; --- add semicolons at the end of line even in insert mode
 inoremap <a-;> <Esc>m`A;<Esc>``i
 nnoremap <a-;> m`A;<Esc>``
 " --- alt+, --- add comma at the end of line even in insert mode
 inoremap <a-,> <Esc>m`A,<Esc>``i
 nnoremap <a-,> m`A,<Esc>``
+" --- Git
+noremap <Leader>ga :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gp :Gpush<CR>
+noremap <Leader>gg :Gpull<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gr :Gremove<CR>
+" --- Go configs
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
 
 
 
