@@ -113,6 +113,7 @@ set nowb
 set noswapfile " no swap files
 set nostartofline " don't jump start of lines
 set ruler " Show the cursor position
+set autowrite " auto save before running and compiling Go
 " -------------
 " ------------- Searching
 " -------------
@@ -200,6 +201,8 @@ let g:go_fmt_command = "goimports" " automatically insert import paths
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "gofmt"
 let g:go_list_type = "quickfix"
+let g:go_jump_to_error = 0
+let g:go_doc_keywordprg_enabled = 0
 " tagbar config for Go
 let g:tagbar_type_go = {
 \ 'ctagstype' : 'go',
@@ -237,6 +240,10 @@ let NERDTreeWinSize = 35
 let NERDTreeChDirMode = 2
 let NERDTreeShowLineNumbers = 1
 let NERDTreeAutoCenter = 1
+" auto build to find errors on save
+autocmd BufWritePre *.go silent! :GoBuild
+
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -363,7 +370,8 @@ nnoremap <space> $]pi<cr><esc>
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
-" --- shift-d --- add new lines top
+" --- shift-k --- add new lines top
+map <S-k> <Nop>
 nnoremap <s-k> m`O<ESC>``
 " --- shift-f --- add new lines below, don't lose cursor position or change mode
 nnoremap <s-j> m`o<ESC>``
