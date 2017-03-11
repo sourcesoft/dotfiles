@@ -193,8 +193,8 @@ let g:tmux_navigator_no_mappings = 1 " disable default tmuxnavigator mappings
 let g:go_highlight_functions = 1 " Go syntax highlighting
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
+let g:go_highlight_types = 0
+let g:go_highlight_operators = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 let g:go_fmt_command = "goimports" " automatically insert import paths
@@ -203,6 +203,9 @@ let g:go_fmt_command = "gofmt"
 let g:go_list_type = "quickfix"
 let g:go_jump_to_error = 0
 let g:go_doc_keywordprg_enabled = 0
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
+let g:go_snippet_engine = "neosnippet"
 " tagbar config for Go
 let g:tagbar_type_go = {
 \ 'ctagstype' : 'go',
@@ -241,7 +244,7 @@ let NERDTreeChDirMode = 2
 let NERDTreeShowLineNumbers = 1
 let NERDTreeAutoCenter = 1
 " auto build to find errors on save
-autocmd BufWritePre *.go silent! :GoBuild
+autocmd BufWritePre *.go silent! :GoBuild!
 
 
 
@@ -286,20 +289,19 @@ au FileType go nmap <leader>d <Plug>(go-doc-vertical)
 " --- leader-r --- Go: run in new tab
 au FileType go nmap <leader>r <Plug>(go-run-tab)
 " --- leader-b --- Go: build
-au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>b :GoBuild!<CR>
 " --- leader-t --- Go: test
 au FileType go nmap <leader>t <Plug>(go-test)
 " --- leader-c --- Go: show coverage
 au FileType go nmap <leader>c <Plug>(go-coverage)
 " --- leader-e --- Go: check errors
-au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>c :GoErrCheck<cr>
 " --- leader-f --- open tagbar
 " --- iTerm hexcodes: '0x2C 0x66' --- Command-F
 nnoremap <leader>f :TagbarToggle<CR>
 " --- leader-l --- quickly navigate to necessary buffer
-map <leader>l :BufExplorer<cr>
-imap <leader>l <esc>:BufExplorer<cr>
-vmap <leader>l <esc>:BufExplorer<cr>
+map <C-m> :BufExplorer<cr>
+vmap <C-m> <esc>:BufExplorer<cr>
 " --- leader-m --- previous in quickfix list
 " --- iTerm hexcodes: '0x2C 0x07' --- Command-M
 map <leader>m :cprevious<CR>
@@ -317,8 +319,8 @@ nnoremap <a-l> :tabm +1<CR>
 nnoremap <a-h> :tabm -1<CR>
 inoremap <a-l> <ESC>:tabm +1<CR>
 inoremap <a-h> <ESC>:tabm -1<CR>
-" --- control-g --- mark with control-g instead of m, for vim-easyclip
-nnoremap <C-g> m
+" --- space --- mark with space instead of m, for vim-easyclip
+nnoremap <space> m
 " --- leader-j, leader-k --- jump up or down half screen
 " --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
 " --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
@@ -365,13 +367,10 @@ nnoremap - <C-w><
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- p --- paste with indent by default
 nnoremap p :set paste<cr>]p:set nopaste<cr>
-" --- space --- paste in new line used for CSS from browser, etc...
-nnoremap <space> $]pi<cr><esc>
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
 " --- shift-k --- add new lines top
-map <S-k> <Nop>
 nnoremap <s-k> m`O<ESC>``
 " --- shift-f --- add new lines below, don't lose cursor position or change mode
 nnoremap <s-j> m`o<ESC>``
@@ -403,7 +402,7 @@ syntax on
 " ~~~~~ Buffers and sessions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- control-m --- toggle distraction free mode
-nnoremap <C-m> :Goyo<cr>
+nnoremap <Leader>q :Goyo<cr>
 " --- control+s --- save this buffer
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
