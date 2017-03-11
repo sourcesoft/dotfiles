@@ -4,7 +4,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 
 
 ### Tools as a developer
-- [NeoVim](https://neovim.io) / [vimrc](https://github.com/sourcesoft/my-long-list/blob/master/vimrc.local) / [ag](https://github.com/ggreer/the_silver_searcher) - Can't live without ya'll, not even a day.
+- [NeoVim](https://neovim.io) / [vimrc](https://github.com/sourcesoft/my-long-list/blob/master/.vimrc) / [ag](https://github.com/ggreer/the_silver_searcher) - Can't live without ya'll, not even a day.
 - [iTerm2](https://www.iterm2.com/) / [zsh](https://github.com/robbyrussell/oh-my-zsh) / [tmux](https://tmux.github.io/) - Performant terminal and shell everywhere.
 - [Atom](https://atom.io) / [Nuclide](https://nuclide.io/) - Github open source editor I use for React Native development.
 - [SourceTree](https://www.sourcetreeapp.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
