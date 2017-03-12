@@ -34,6 +34,8 @@
 " --- cmd-r: 0x2C 0x72 --- vim run last tmux command
 " --- cmd-f: 0x2C 0x66 --- vim toggle tagbar
 " --- cmd-;: 0x2C 0x3B --- list buffers
+" --- cmd-a: 0x2C 0x61 --- search current buffer subdirectory
+" --- ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
 "
 " -------------
 " ------------- Plugins in adition to vimrc.js:
@@ -72,6 +74,7 @@
 " --- zchee/deoplete-go  --- Go completion
 " --- tpope/vim-dispatch  --- asynchronous build and test dispatcher
 " --- milkypostman/vim-togglelist --- toggle quicklist with one command
+" --- rizzatti/dash.vim --- offline doc
 
 
 
@@ -267,8 +270,9 @@ endif
 imap <C-v> <Plug>(neosnippet_expand_or_jump)
 smap <C-v> <Plug>(neosnippet_expand_or_jump)
 xmap <C-v> <Plug>(neosnippet_expand_target)
-" --- control-space --- search files in CURRENT BUFFER directory using 'fzf'
-nnoremap <NUL> :cd %:h<cr>:FZF<cr>
+" --- leader-a --- search files in CURRENT BUFFER directory using 'fzf'
+" --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
+nnoremap <leader>a :cd %:h<cr>:FZF<cr>
 " --- control-t --- search all files in PROJECT directory using 'ctrlp'
 nnoremap <C-t> :CtrlPMixed<cr>
 " --- control-p --- run a command in current directory using Vim
@@ -319,6 +323,9 @@ map <leader>n :cnext<CR>
 " --- leader-q --- toggle quickfix list
 " --- iTerm hexcodes: '0x2C 0x71' --- Command-B
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
+" --- leader-q --- toggle quickfix list
+" --- iTerm hexcodes: '0x2C 0x76' --- Control-Space
+map <leader>v :Dash<CR>
 
 
 
