@@ -27,11 +27,13 @@
 " --- cmd-i: 0x01 0x28 --- tmux previous session
 " --- cmd-j: 0x2C 0x6A --- vim jump page down
 " --- cmd-k: 0x2C 0x6B --- vim jump page up
-" --- cmd-m: 0x2C 0x07 --- vim quickfix previous
-" --- cmd-n: 0x2C 0x08 --- vim quickfix next
+" --- cmd-m: 0x2C 0x6D --- vim quickfix previous
+" --- cmd-n: 0x2C 0x6E --- vim quickfix next
+" --- cmd-n: 0x2C 0x71 --- vim quickfix toggle
 " --- cmd-p: 0x2C 0x70 --- vim run tmux command
 " --- cmd-r: 0x2C 0x72 --- vim run last tmux command
 " --- cmd-f: 0x2C 0x66 --- vim toggle tagbar
+" --- cmd-;: 0x2C 0x3B --- list buffers
 "
 " -------------
 " ------------- Plugins in adition to vimrc.js:
@@ -69,6 +71,7 @@
 " --- fatih/vim-go  --- Go plugin
 " --- zchee/deoplete-go  --- Go completion
 " --- tpope/vim-dispatch  --- asynchronous build and test dispatcher
+" --- milkypostman/vim-togglelist --- toggle quicklist with one command
 
 
 
@@ -113,7 +116,7 @@ set nowb
 set noswapfile " no swap files
 set nostartofline " don't jump start of lines
 set ruler " Show the cursor position
-set autowrite " auto save before running and compiling Go
+set switchbuf+=usetab,newtab " quickfix opens buffer in existing tabs
 " -------------
 " ------------- Searching
 " -------------
@@ -190,6 +193,8 @@ let g:goyo_width=120 " distraction free mode at 120 width
 let g:indent_guides_enable_on_vim_startup = 1 " enable indent guide
 let g:indent_guides_guide_size = 1 " thin indent guides
 let g:tmux_navigator_no_mappings = 1 " disable default tmuxnavigator mappings
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck'] " fix syntastic and vim-go perf
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_highlight_functions = 1 " Go syntax highlighting
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -203,9 +208,11 @@ let g:go_fmt_command = "gofmt"
 let g:go_list_type = "quickfix"
 let g:go_jump_to_error = 0
 let g:go_doc_keywordprg_enabled = 0
-let g:go_auto_type_info = 0
-let g:go_auto_sameids = 0
+let g:go_auto_type_info = 1
+let g:go_fmt_autosave = 1
+let g:go_auto_sameids = 1
 let g:go_snippet_engine = "neosnippet"
+let g:go_list_height = 10
 " tagbar config for Go
 let g:tagbar_type_go = {
 \ 'ctagstype' : 'go',
@@ -299,15 +306,19 @@ au FileType go nmap <leader>c :GoErrCheck<cr>
 " --- leader-f --- open tagbar
 " --- iTerm hexcodes: '0x2C 0x66' --- Command-F
 nnoremap <leader>f :TagbarToggle<CR>
-" --- leader-l --- quickly navigate to necessary buffer
-map <C-m> :BufExplorer<cr>
-vmap <C-m> <esc>:BufExplorer<cr>
+" --- leader-; --- quickly navigate to necessary buffer
+" --- iTerm hexcodes: '0x2C 0x3B' --- Command-;
+map <leader>; :BufExplorer<cr>
+vmap <leader>; <esc>:BufExplorer<cr>
 " --- leader-m --- previous in quickfix list
-" --- iTerm hexcodes: '0x2C 0x07' --- Command-M
+" --- iTerm hexcodes: '0x2C 0x6D' --- Command-M
 map <leader>m :cprevious<CR>
 " --- leader-n --- next in quickfix list
-" --- iTerm hexcodes: '0x2C 0x08' --- Command-N
+" --- iTerm hexcodes: '0x2C 0x6E' --- Command-N
 map <leader>n :cnext<CR>
+" --- leader-q --- toggle quickfix list
+" --- iTerm hexcodes: '0x2C 0x71' --- Command-B
+nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 
 
 
@@ -389,12 +400,6 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
-" --- Go configs
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
 
 
 
@@ -402,7 +407,7 @@ syntax on
 " ~~~~~ Buffers and sessions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- control-m --- toggle distraction free mode
-nnoremap <Leader>q :Goyo<cr>
+nnoremap <Leader>z :Goyo<cr>
 " --- control+s --- save this buffer
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
