@@ -67,6 +67,7 @@
 " --- will133/vim-dirdiff --- git diff for directories
 " --- benmills/vimux --- send commands to tmux
 " --- christoomey/vim-tmux-navigator --- navigate between tmux and vim
+" --- edkolev/tmuxline.vim --- tmux status for vim
 " --- airblade/vim-rooter --- change root directory on the fly
 " --- majutsushi/tagbar  --- tagbar sidebar
 " --- jlanzarotta/bufexplorer  --- list buffers
@@ -75,6 +76,7 @@
 " --- tpope/vim-dispatch  --- asynchronous build and test dispatcher
 " --- milkypostman/vim-togglelist --- toggle quicklist with one command
 " --- rizzatti/dash.vim --- offline doc
+" --- AndrewRadev/splitjoin.vim --- split and join struct literals
 
 
 
@@ -153,11 +155,12 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:tmuxline_powerline_separators = 0
 let g:neomake_css_enabled_makers = ['stylelint'] " stylelint
 let g:airline_left_sep='' " no extra characters
 let g:airline_right_sep=''
 let g:airline_theme='powerlineish' " airline simple theme
-let g:airline_extensions = ['branch', 'tabline', 'ctrlp', 'hunks', 'tmuxline']
+let g:airline_extensions = ['branch', 'tabline', 'ctrlp', 'hunks']
 let g:airline#extensions#tabline#enabled = 1 " enable tabline
 let g:airline#extensions#tabline#show_tab_nr = 0 " no tab number
 let g:airline#extensions#tabline#show_splits = 0 " disable split count
@@ -211,7 +214,7 @@ let g:go_fmt_command = "gofmt"
 let g:go_list_type = "quickfix"
 let g:go_jump_to_error = 0
 let g:go_doc_keywordprg_enabled = 0
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 let g:go_fmt_autosave = 1
 let g:go_auto_sameids = 1
 let g:go_snippet_engine = "neosnippet"
@@ -255,6 +258,16 @@ let NERDTreeShowLineNumbers = 1
 let NERDTreeAutoCenter = 1
 " auto build to find errors on save
 autocmd BufWritePre *.go silent! :GoBuild!
+" tmuxline look and feel
+let g:tmuxline_preset = {
+\'a'    : '  #S  ',
+\'b'    : '',
+\'c'    : '#W',
+\'win'  : ' #I-#W ',
+\'cwin' : ' #I-#W ',
+\'x'    : '#(whoami)',
+\'y'    : '#[fg=green]#(rainbarf --nobattery --width 25 --rgb --no-bright)#[default]',
+\'z'    : '#H'}
 
 
 
@@ -310,6 +323,7 @@ au FileType go nmap <leader>c :GoErrCheck<cr>
 " --- leader-f --- open tagbar
 " --- iTerm hexcodes: '0x2C 0x66' --- Command-F
 nnoremap <leader>f :TagbarToggle<CR>
+au FileType go nnoremap <leader>f :GoDeclsDir<CR>
 " --- leader-; --- quickly navigate to necessary buffer
 " --- iTerm hexcodes: '0x2C 0x3B' --- Command-;
 map <leader>; :BufExplorer<cr>
@@ -433,26 +447,28 @@ map <a-r> :source ~/vim_session <cr>
 " we need to use :qa! to quit all buffers at once otherwise only the last one
 " is saved. Also we use FindRootDirectory() utility from airblade/vim-rooter
 " plugin so we always have the correct pwd, using native pwd is buggy sometimes.
-function! MakeSession()
-let b:sessiondir = $HOME . "/.vim/sessions" . FindRootDirectory()
-if (filewritable(b:sessiondir) != 2)
-  exe 'silent !mkdir -p ' b:sessiondir
-  redraw!
-endif
-let b:filename = b:sessiondir . '/session.vim'
-exe "mksession! " . b:filename
+fu! SaveSess()
+		execute 'mksession! ' . getcwd() . '/.session.vim'
 endfunction
-function! LoadSession()
-let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-let b:sessionfile = b:sessiondir . "/session.vim"
-if (filereadable(b:sessionfile))
-  exe 'source ' b:sessionfile
-else
-  echo "No session loaded."
+fu! RestoreSess()
+if filereadable(getcwd() . '/.session.vim')
+		execute 'so ' . getcwd() . '/.session.vim'
+		if bufexists(1)
+				for l in range(1, bufnr('$'))
+						if bufwinnr(l) == -1
+								exec 'sbuffer ' . l
+						endif
+				endfor
+		endif
 endif
+syntax on
 endfunction
-au VimEnter * nested :call LoadSession()
-au VimLeave * :call MakeSession()
+" Save session on quitting Vim
+autocmd VimLeave * NERDTreeClose
+autocmd VimLeave * call SaveSess()
+" Restore session on starting Vim
+autocmd VimEnter * nested call RestoreSess()
+autocmd VimEnter * NERDTree
 
 
 
