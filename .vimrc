@@ -262,7 +262,7 @@ autocmd BufWritePre *.go silent! :GoBuild!
 let g:tmuxline_preset = {
 \'a'    : '  #S  ',
 \'b'    : '',
-\'c'    : '#W',
+\'c'    : '',
 \'win'  : ' #I-#W ',
 \'cwin' : ' #I-#W ',
 \'x'    : '#(whoami)',
@@ -286,8 +286,8 @@ xmap <C-v> <Plug>(neosnippet_expand_target)
 " --- leader-a --- search files in CURRENT BUFFER directory using 'fzf'
 " --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
 nnoremap <leader>a :cd %:h<cr>:FZF<cr>
-" --- control-t --- search all files in PROJECT directory using 'ctrlp'
-nnoremap <C-t> :CtrlPMixed<cr>
+" --- control-t --- search all files in PROJECT directory using 'fzf'
+nnoremap <C-t> :FZF<cr>
 " --- control-p --- run a command in current directory using Vim
 nnoremap <C-p> :cd %:h<cr>:! 
 " --- leader-p --- run a command using tmux
