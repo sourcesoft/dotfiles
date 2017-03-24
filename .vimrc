@@ -77,6 +77,8 @@
 " --- milkypostman/vim-togglelist --- toggle quicklist with one command
 " --- rizzatti/dash.vim --- offline doc
 " --- AndrewRadev/splitjoin.vim --- split and join struct literals
+" --- w0rp/ale --- lint engine while typing better than neomake
+" --- sbdchd/neoformat --- format based on prettier
 
 
 
@@ -268,8 +270,16 @@ let g:tmuxline_preset = {
 \'x'    : '#(whoami)',
 \'y'    : '#[fg=green]#(rainbarf --nobattery --width 25 --rgb --no-bright)#[default]',
 \'z'    : '#H'}
-
-
+" specific linters while typing, disable linting for go
+let g:ale_linters = {
+\   'javascript': ['eslint', 'flow'],
+\   'go': [],
+\}
+" enable formatter for js and jsx file using prettier
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_jsx = ['prettier']
+" format using prettier while saving
+" autocmd BufWritePre *.js silent! Neoformat
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -330,10 +340,12 @@ map <leader>; :BufExplorer<cr>
 vmap <leader>; <esc>:BufExplorer<cr>
 " --- leader-m --- previous in quickfix list
 " --- iTerm hexcodes: '0x2C 0x6D' --- Command-M
-map <leader>m :cprevious<CR>
+au FileType go map <leader>m :cprevious<CR>
+au FileType javascript map <leader>m <Plug>(ale_previous_wrap)
 " --- leader-n --- next in quickfix list
 " --- iTerm hexcodes: '0x2C 0x6E' --- Command-N
-map <leader>n :cnext<CR>
+au FileType go map <leader>n :cnext<CR>
+au FileType javascript map <leader>n <Plug>(ale_next_wrap)
 " --- leader-q --- toggle quickfix list
 " --- iTerm hexcodes: '0x2C 0x71' --- Command-B
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
