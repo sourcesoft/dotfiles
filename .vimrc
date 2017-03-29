@@ -144,7 +144,7 @@ set number " line numbers
 set nocursorline " don't highlight current line -- use iTerm for better perf
 set colorcolumn=80 " aditional column width -- disable for better perf
 "set showcmd " show command while typing -- disable if slow due to spam
-set synmaxcol=100 " fix some perf issues with large files
+" set synmaxcol=100 " disable to fix some perf issues with large files
 " -------------
 " ------------- Theme and look
 " -------------
@@ -215,6 +215,7 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "gofmt"
 let g:go_list_type = "quickfix"
 let g:go_jump_to_error = 0
+let g:go_def_mapping_enabled = 0 " disable control-t
 let g:go_doc_keywordprg_enabled = 0
 let g:go_auto_type_info = 0
 let g:go_fmt_autosave = 1
@@ -279,7 +280,7 @@ let g:ale_linters = {
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_jsx = ['prettier']
 " format using prettier while saving
-" autocmd BufWritePre *.js silent! Neoformat
+autocmd BufWritePre *.js silent! Neoformat
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -318,6 +319,8 @@ nnoremap <a-c> :TernDefPreview<CR>
 au FileType go nmap <leader>i <Plug>(go-info)
 " --- leader-j --- Go: jump to def in new split
 au FileType go nmap <leader>j <Plug>(go-def-vertical)
+" --- leader-t --- Go: jump to def in new tab
+au FileType go nmap <leader>jj <Plug>(go-def-tab)
 " --- leader-d --- Go: jump to godoc in new split
 au FileType go nmap <leader>d <Plug>(go-doc-vertical)
 " --- leader-r --- Go: run in new tab
@@ -409,8 +412,6 @@ nnoremap - <C-w><
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" --- p --- paste with indent by default
-nnoremap p :set paste<cr>]p:set nopaste<cr>
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
