@@ -279,6 +279,8 @@ let g:ale_linters = {
 " enable formatter for js and jsx file using prettier
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_jsx = ['prettier']
+let g:neoformat_try_formatprg = 1
+autocmd FileType javascript set formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
 " format using prettier while saving
 autocmd BufWritePre *.js silent! Neoformat
 
