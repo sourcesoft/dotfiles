@@ -138,7 +138,7 @@ set smartcase
 " -------------
 set updatetime=750 " more frequent updates -- disable for better perf
 set regexpengine=1 " use the old engine for better perf
-set lazyredraw " redraw -- disable for better perf
+" set lazyredraw " redraw -- disable for better perf
 set relativenumber " relatives numbers -- disable for better perf
 set number " line numbers
 set nocursorline " don't highlight current line -- use iTerm for better perf
