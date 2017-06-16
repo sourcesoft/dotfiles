@@ -41,7 +41,7 @@
 " ------------- Plugins in adition to vimrc.js:
 " -------------
 " --- tpope/vim-fugitive  --- awesome git
-" --- joeytwiddle/sexy_scroller.vim  --- animate scroll
+" --- yuttie/comfortable-motion.vim --- animate scroll
 " --- jistr/vim-nerdtree-tabs  --- nerdtree in all tabs
 " --- ctrlpvim/ctrlp.vim  --- fuzzy search
 " --- mileszs/ack.vim  --- ack built in
@@ -176,9 +176,7 @@ let g:airlinse#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tmuxline#enabled = 1 " tmux fix
 let g:vimtex_motion_matchparen = 0
 let g:airline_powerline_fonts = 0 " disable for better perf
-let g:SexyScroller_EasingStyle = 5 " linear no easing
-let g:SexyScroller_ScrollTime = 40 " enough to see
-let g:SexyScroller_CursorTime = 5 " better compared to previous
+let g:comfortable_motion_no_default_key_mappings = 1 " disable default mapping
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
 let g:ctrlp_map = '' " disable default ctrl-p mapping
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
@@ -373,8 +371,8 @@ nnoremap <space> m
 " --- leader-j, leader-k --- jump up or down half screen
 " --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
 " --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
-nnoremap <leader>sj <C-d>
-nnoremap <leader>sk <C-u>
+nnoremap <leader>sj :call comfortable_motion#flick(100)<CR>
+nnoremap <leader>sk :call comfortable_motion#flick(-100)<CR>
 inoremap <leader>sj <Esc><C-d>
 inoremap <leader>sk <Esc><C-u>
 " --- control-e --- nerdtree control+e
