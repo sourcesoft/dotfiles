@@ -1,13 +1,17 @@
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Use Karabiner in OSX to map escape->right_command and control->caps_lock.
-" There's no need to reach escape key :)
-" https://github.com/tekezo/Karabiner-Elements
-"
 " Configuration is based on NeoVim, vimrc.js, tmux, iterm2, OSX.
-" I use alt for some key mappings, so this is suitable for Mac+iTerm only,
+" I use alt for some key mappings, so this is suitable for Mac+iTerm only.
 "
+" -------------
+" ------------- Mappings: escape->right_command and control->caps_lock
+" -------------
+" --- OSX: Use Karabiner to map .
+" https://github.com/tekezo/Karabiner-Elements
+" --- Ubuntu: Use xcape (https://github.com/alols/xcape) using to following command:
+" xcape -e 'Alt_R=Escape;ISO_Level3_Shift=Escape'
+" 
 " -------------
 " ------------- Get the environment and key bindings working:
 " -------------
