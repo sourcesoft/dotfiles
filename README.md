@@ -1,4 +1,4 @@
-> List of tools and techs I use as a designer and developer
+> List of tools and techs I use as a developer
 
 I'm a fullstack web developer but any one of us have a tail to tell about our cool other skills and tools. This is not a resume and doesn't list skills, but things I use or like to, daily.
 
@@ -21,7 +21,6 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) - Let's share js code between client and server + SEO friendly + faster to render
 - [GraphQL](https://facebook.github.io/graphql), [Relay](https://facebook.github.io/relay/), [Apollo](https://github.com/apollostack/apollo-client) - Don't spend time implementing REST/ajax calls, it happens in views automaticaly through GraphQL
 - [Immutable.js](https://facebook.github.io/immutable-js/) / [seemless-immutable](https://github.com/rtfeldman/seamless-immutable) - Makes comparing all those nested arrays and objects faster.
-- [RxJS](https://github.com/Reactive-Extensions/RxJS) / [Redux-observable](https://github.com/redux-observable/redux-observable) - Everything is a stream! or observer or whatever
 - [React](https://facebook.github.io/react/) - Not because it's fast, makes me write clean and easy to reason about code, both in front and back-end.
 - [React Native](https://facebook.github.io/react-native/) - Much better than apps I made with Ionic and this time truely native.
 - [Jest](https://facebook.github.io/jest/), [enzyme](https://github.com/airbnb/enzyme) - Testing at its best.
@@ -45,7 +44,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [RabbitMQ](https://www.rabbitmq.com/) / [NSQ](https://github.com/nsqio/nsq) - Messaging platform connecting all the pieces.
 - [LLVM](http://llvm.org) - Modular and reusable compiler and toolchain technologies used to develop compiler front ends and back ends.
 - [ServiceWorkers](https://serviceworke.rs/) / [Progressive](https://developers.google.com/web/progressive-web-apps/) / [WebWorkers](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives) - Future of web apps in mobile and desktop, seriously.
-- [SVG](https://css-tricks.com/using-svg) / [Canvas](www.html5canvastutorials.com) / [GSAP](http://greensock.com/gsap) - I need to make cooler animated websites, sometimes using Adobe Animate or Illustrator.
+- [SVG](https://css-tricks.com/using-svg) / [Canvas](www.html5canvastutorials.com) / [GSAP](http://greensock.com/gsap) - I need to make cooler animated websites.
 - [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
 
 
@@ -56,16 +55,3 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [ignite](https://github.com/infinitered/ignite) - Battle tested stack React Native with redux/sagas/i18n and CLI generators
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
 - [html5-boilerplate](https://github.com/h5bp/html5-boilerplate) - Keeping close eye on this to see what's the practice.
-
-
-### Stuff I like or use as a web designer
-- [Sketch](https://www.sketchapp.com) - Using it for web and mobile UI design with [Zeplin](https://zeplin.io/)
-- [Adobe Animate](www.adobe.com/products/animate.html) - I used to call it Macromedia Flash 5 with HTML5 Canvas export.
-- [Adobe Illustrator](www.adobe.com/products/illustrator.html) - So hot for me right now, great SVG export.
-- [Adobe Photoshop](www.adobe.com/products/photoshop.html) - Right now I only use it for editing other designers PSDs.
-
-
-### Daily tools I use all the time
-- [Noizio](http://noiz.io/) - I don't know but this really helps me focus while coding.
-- [Dropbox](https://www.dropbox.com), [Craft](https://www.invisionapp.com/craft) - Sharing sketch assests in butt + other helpful tools.
-- [Microsoft OneNote](https://www.onenote.com) - This is much better than Evernote. This piece of handy app is always open.
