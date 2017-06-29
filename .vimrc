@@ -1,21 +1,40 @@
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Configuration is based on NeoVim, vimrc.js, tmux, iterm2, OSX.
-" I use alt for some key mappings, so this is suitable for Mac+iTerm only.
+" My own (Neo)Vim configuration, works best to develop JS and GO.
+" Configuration is based on Tmux, iTerm2, OSX.
+" I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
+"
+" -------------
+" ------------- Installation
+" -------------
+" --- Install required binaries:
+" - Use NeoVim or Vim
+" - Install Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
+" - Install Rainbarf (https://github.com/creaktive/rainbarf)
+" - Install Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
+" - Install iTerm (if OSX)
+" - Install GO (https://golang.org/doc/install)
+" - Use The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
+" - Install Dash.app (https://kapeli.com/dash)
+" - Install free 'Inconsolata' font
+" --- Backup your old configuration and replace this file with ~/.vimrc
+" --- Install vim-plug: https://github.com/junegunn/vim-plug
+" --- Install plugins: 'vim +PlugInstall +qall' or 'nvim +PlugInstall +qall'
+" --- Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
+" --- Learn key bindings by reading this file
 "
 " -------------
 " ------------- Mappings: escape->right_command and control->caps_lock
 " -------------
-" --- OSX: Use Karabiner to map .
-" https://github.com/tekezo/Karabiner-Elements
-" --- Ubuntu: Use xcape (https://github.com/alols/xcape) using to following command:
-" xcape -e 'Alt_R=Escape;ISO_Level3_Shift=Escape'
-" 
+" --- OSX: Use Karabiner to map
+" - Visit: https://github.com/tekezo/Karabiner-Elements
+" --- Ubuntu: Use xcape (https://github.com/alols/xcape)
+" - Use the following command: xcape -e 'Alt_R=Escape;ISO_Level3_Shift=Escape'
+"
 " -------------
 " ------------- Get the environment and key bindings working:
 " -------------
-" --- https://github.com/zperrault/vimrc.js
 " --- https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
 " --- https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
 " --- https://github.com/neovim/neovim/issues/2048
@@ -41,49 +60,148 @@
 " --- cmd-a: 0x2C 0x61 --- search current buffer subdirectory
 " --- ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
 "
-" -------------
-" ------------- Plugins in adition to vimrc.js:
-" -------------
-" --- tpope/vim-fugitive  --- awesome git
-" --- yuttie/comfortable-motion.vim --- animate scroll
-" --- jistr/vim-nerdtree-tabs  --- nerdtree in all tabs
-" --- ctrlpvim/ctrlp.vim  --- fuzzy search
-" --- mileszs/ack.vim  --- ack built in
-" --- svermeulen/vim-easyclip  --- d without annoying copying
-" --- mhinz/vim-startify  --- shows latest buffers
-" --- alvan/vim-closetag  --- close html tags
-" --- terryma/vim-multiple-cursors  --- like sublime
-" --- mattn/emmet-vim  --- faster html coding
-" --- vim-airline/vim-airline --- light and fast status bar
-" --- vim-airline/vim-airline-themes --- airline theme pack
-" --- ryanoasis/vim-devicons  --- file icons
-" --- ap/vim-css-color  --- css colors
-" --- morhetz/gruvbox  --- cool theme
-" --- Shougo/neosnippet.vim  --- engine
-" --- Shougo/neosnippet-snippets  --- snippets #1
-" --- honza/vim-snippets  --- snippets #2
-" --- ternjs/tern_for_vim  --- intelligent js
-" --- junegunn/vim-slash  --- improved searching
-" --- junegunn/goyo.vim  --- distraction free
-" --- tpope/vim-unimpaired  --- awesome mappings
-" --- jelera/vim-javascript-syntax --- JavaScript syntax
-" --- fleischie/vim-styled-components --- styled-components highlight
-" --- will133/vim-dirdiff --- git diff for directories
-" --- benmills/vimux --- send commands to tmux
-" --- christoomey/vim-tmux-navigator --- navigate between tmux and vim
-" --- edkolev/tmuxline.vim --- tmux status for vim
-" --- airblade/vim-rooter --- change root directory on the fly
-" --- majutsushi/tagbar  --- tagbar sidebar
-" --- jlanzarotta/bufexplorer  --- list buffers
-" --- fatih/vim-go  --- Go plugin
-" --- zchee/deoplete-go  --- Go completion
-" --- tpope/vim-dispatch  --- asynchronous build and test dispatcher
-" --- milkypostman/vim-togglelist --- toggle quicklist with one command
-" --- rizzatti/dash.vim --- offline doc
-" --- AndrewRadev/splitjoin.vim --- split and join struct literals
-" --- w0rp/ale --- lint engine while typing better than neomake
-" --- sbdchd/neoformat --- format based on prettier
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set nocompatible
+" === Plugins ===
+call plug#begin()
+" == General editor plugins ==
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-repeat'
+Plug 'jiangmiao/auto-pairs'
+Plug 'airblade/vim-gitgutter'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'itchyny/lightline.vim'
+" == Autocomplete plugins ==
+Plug 'ervandew/supertab'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'steelsojka/deoplete-flow'
+else
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+endif
+" == JavaScript syntax highlighting ==
+" Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
+Plug 'othree/es.next.syntax.vim'
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
+" == SCSS and CSS syntax highlighting ==
+if v:version < 704
+  Plug 'JulesWang/css.vim'
+endif
+Plug 'cakebaker/scss-syntax.vim'
+" == JavaScript tools integration ==
+if has('nvim')
+  " Plug 'neomake/neomake'
+else
+  " Plug 'scrooloose/syntastic'
+  Plug 'flowtype/vim-flow'
+endif
+Plug 'tpope/vim-fugitive' " --- awesome git
+Plug 'yuttie/comfortable-motion.vim' " --- animate scroll
+" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
+Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
+Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
+Plug 'mileszs/ack.vim' " --- ack built in
+Plug 'svermeulen/vim-easyclip' " --- d without copying
+Plug 'alvan/vim-closetag' " --- close html tags
+Plug 'terryma/vim-multiple-cursors' " --- like sublime
+Plug 'mattn/emmet-vim' " --- faster html coding
+Plug 'junegunn/vim-slash' " --- improved searching
+Plug 'tpope/vim-unimpaired' " --- awesome mappings
+Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
+Plug 'ternjs/tern_for_vim' " --- intelligent js
+Plug 'ap/vim-css-color' " --- css colors highlight
+" Plug 'fleischie/vim-styled-components' " --- styled-components highlight
+Plug 'will133/vim-dirdiff' " --- git diff for directories
+Plug 'benmills/vimux' " --- send commands to tmux
+Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
+Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
+Plug 'airblade/vim-rooter' " --- change root directory on the fly
+Plug 'majutsushi/tagbar' " --- tagbar sidebar
+Plug 'jlanzarotta/bufexplorer' " --- list buffers
+Plug 'fatih/vim-go' " --- Go plugin
+Plug 'zchee/deoplete-go' " --- Go completion
+Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
+Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
+Plug 'AndrewRadev/splitjoin.vim' " --- split and join struct literals
+Plug 'w0rp/ale' " --- lint engine while typing better than neomake
+Plug 'sbdchd/neoformat' " --- format based on prettier
+Plug 'hail2u/vim-css3-syntax'
+" ------------------------------------------------
+" Look and feel
+" ------------------------------------------------
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/goyo.vim' " --- distraction free mode
+Plug 'morhetz/gruvbox' " --- cool theme
+" ------------------------------------------------
+" Snippets using neosnippets with deoplete
+" ------------------------------------------------
+Plug 'Shougo/neosnippet.vim' " --- engine
+Plug 'Shougo/neosnippet-snippets' " --- snippets #1
+Plug 'honza/vim-snippets' " --- snippets #2
+Plug 'rizzatti/dash.vim' " --- offline doc
+
+call plug#end()
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ Config ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"
+syntax enable
+set number
+function! StrTrim(txt)
+  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+endfunction
+let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
+" === Plugin settings ===
+if has('nvim')
+  " == Shougo/deoplete.nvim ==
+  " == carlitux/deoplete-ternjs ==
+  let g:deoplete#enable_at_startup = 1
+  let g:SuperTabDefaultCompletionType = "<c-n>"
+  let g:deoplete#sources#flow#flow_bin = g:flow_path
+  let g:tern_request_timeout = 1
+  let g:tern_show_signature_in_pum = 1
+  set completeopt-=preview
+  " == neomake/neomake ==
+  let g:neomake_warning_sign = {
+  \ 'text': 'W',
+  \ 'texthl': 'WarningMsg',
+  \ }
+  let g:neomake_error_sign = {
+  \ 'text': 'E',
+  \ 'texthl': 'ErrorMsg',
+  \ }
+  let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+  let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
+  let g:neomake_javascript_flow_exe = g:flow_path
+  let g:neomake_jsx_flow_exe = g:flow_path
+  " autocmd! BufWritePost * Neomake
+else
+  " == scrooloose/syntastic ==
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_always_populate_loc_list = 0
+  let g:syntastic_auto_jump = 0
+  let g:syntastic_auto_loc_list = 0
+  let g:syntastic_check_on_open = 0
+  let g:syntastic_check_on_wq = 1
+  let g:syntastic_javascript_checkers = ['eslint']
+endif
+" == mxw/vim-jsx ==
+let g:jsx_ext_required = 0
+" == junegunn/fzf ==
+nnoremap <C-T> :FZF<CR>
+inoremap <C-T> <ESC>:FZF<CR>i
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -375,10 +493,10 @@ nnoremap <space> m
 " --- leader-j, leader-k --- jump up or down half screen
 " --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
 " --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
-nnoremap <leader>sj :call comfortable_motion#flick(100)<CR>
-nnoremap <leader>sk :call comfortable_motion#flick(-100)<CR>
-inoremap <leader>sj <Esc><C-d>
-inoremap <leader>sk <Esc><C-u>
+nnoremap <silent> <leader>sj :call comfortable_motion#flick(50)<CR>
+nnoremap <silent> <leader>sk :call comfortable_motion#flick(-50)<CR>
+inoremap <silent> <leader>sj <ESC>:call comfortable_motion#flick(50)<CR>
+inoremap <silent> <leader>sk <ESC>:call comfortable_motion#flick(50)<CR>
 " --- control-e --- nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
@@ -485,7 +603,7 @@ autocmd VimLeave * NERDTreeClose
 autocmd VimLeave * call SaveSess()
 " Restore session on starting Vim
 autocmd VimEnter * nested call RestoreSess()
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 
 
 
