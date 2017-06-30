@@ -59,7 +59,7 @@
 " --- cmd-;: 0x2C 0x3B --- list buffers
 " --- cmd-a: 0x2C 0x61 --- search current buffer subdirectory
 " --- ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
-"
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,8 +104,6 @@ else
   Plug 'flowtype/vim-flow'
 endif
 Plug 'tpope/vim-fugitive' " --- awesome git
-Plug 'yuttie/comfortable-motion.vim' " --- animate scroll
-" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
 Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
@@ -118,7 +116,7 @@ Plug 'tpope/vim-unimpaired' " --- awesome mappings
 Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
 Plug 'ternjs/tern_for_vim' " --- intelligent js
 Plug 'ap/vim-css-color' " --- css colors highlight
-" Plug 'fleischie/vim-styled-components' " --- styled-components highlight
+Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
 Plug 'will133/vim-dirdiff' " --- git diff for directories
 Plug 'benmills/vimux' " --- send commands to tmux
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
@@ -134,6 +132,8 @@ Plug 'AndrewRadev/splitjoin.vim' " --- split and join struct literals
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'sbdchd/neoformat' " --- format based on prettier
 Plug 'hail2u/vim-css3-syntax'
+" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
+" Plug 'fleischie/vim-styled-components' " --- styled-components highlight
 " ------------------------------------------------
 " Look and feel
 " ------------------------------------------------
@@ -148,13 +148,12 @@ Plug 'Shougo/neosnippet.vim' " --- engine
 Plug 'Shougo/neosnippet-snippets' " --- snippets #1
 Plug 'honza/vim-snippets' " --- snippets #2
 Plug 'rizzatti/dash.vim' " --- offline doc
-
 call plug#end()
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Config ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-"
 syntax enable
 set number
 function! StrTrim(txt)
@@ -275,7 +274,6 @@ set background=dark
 colorscheme gruvbox " heavy lifting -- disable for better perf
 
 
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -298,6 +296,9 @@ let g:airlinse#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tmuxline#enabled = 1 " tmux fix
 let g:vimtex_motion_matchparen = 0
 let g:airline_powerline_fonts = 0 " disable for better perf
+let g:SexyScroller_EasingStyle = 5 " linear no easing
+let g:SexyScroller_ScrollTime = 40 " enough to see
+let g:SexyScroller_CursorTime = 5 " better compared to previous
 let g:comfortable_motion_no_default_key_mappings = 1 " disable default mapping
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
 let g:ctrlp_map = '' " disable default ctrl-p mapping
@@ -404,6 +405,7 @@ autocmd FileType javascript set formatprg=prettier\ --stdin\ --parser\ flow\ --s
 " format using prettier while saving
 autocmd BufWritePre *.js silent! Neoformat
 
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -479,7 +481,6 @@ nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 map <leader>v :Dash<CR>
 
 
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Movement and navigation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -493,10 +494,10 @@ nnoremap <space> m
 " --- leader-j, leader-k --- jump up or down half screen
 " --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
 " --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
-nnoremap <silent> <leader>sj :call comfortable_motion#flick(50)<CR>
-nnoremap <silent> <leader>sk :call comfortable_motion#flick(-50)<CR>
-inoremap <silent> <leader>sj <ESC>:call comfortable_motion#flick(50)<CR>
-inoremap <silent> <leader>sk <ESC>:call comfortable_motion#flick(50)<CR>
+nnoremap <silent> <leader>sj <C-d>
+nnoremap <silent> <leader>sk <C-u>
+inoremap <silent> <leader>sj <Esc><C-d>
+inoremap <silent> <leader>sk <Esc><C-u>
 " --- control-e --- nerdtree control+e
 nnoremap <C-e> :NERDTreeFind<CR>
 inoremap <C-e> <ESC>:NERDTreeFind<CR>
@@ -530,7 +531,6 @@ nnoremap = <C-w>>
 nnoremap - <C-w><
 
 
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -556,7 +556,6 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
-
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -587,14 +586,14 @@ fu! SaveSess()
 endfunction
 fu! RestoreSess()
 if filereadable(getcwd() . '/.session.vim')
-		execute 'so ' . getcwd() . '/.session.vim'
-		if bufexists(1)
-				for l in range(1, bufnr('$'))
-						if bufwinnr(l) == -1
-								exec 'sbuffer ' . l
-						endif
-				endfor
-		endif
+  execute 'so ' . getcwd() . '/.session.vim'
+  if bufexists(1)
+    for l in range(1, bufnr('$'))
+      if bufwinnr(l) == -1
+        exec 'sbuffer ' . l
+      endif
+    endfor
+  endif
 endif
 syntax on
 endfunction
@@ -604,7 +603,6 @@ autocmd VimLeave * call SaveSess()
 " Restore session on starting Vim
 autocmd VimEnter * nested call RestoreSess()
 " autocmd VimEnter * NERDTree
-
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
