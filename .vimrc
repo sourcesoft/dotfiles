@@ -9,15 +9,19 @@
 " ------------- Installation
 " -------------
 " - Install required binaries:
-" --- Have (Neo)Vim and Git installed ofcourse
-" --- Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
-" --- Rainbarf (https://github.com/creaktive/rainbarf)
-" --- Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
-" --- If you're running OSX install iTerm and Dash.app (https://kapeli.com/dash)
-" --- GO (https://golang.org/doc/install)
-" --- The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
-" --- free 'Inconsolata' font
+" --- 1) Have (Neo)Vim and Git installed ofcourse
+" --- 2) Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
+" --- 3) Rainbarf (https://github.com/creaktive/rainbarf)
+" --- 4) Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
+" --- 5) If you're running OSX install iTerm and Dash.app (https://kapeli.com/dash)
+" --- 6) GO (https://golang.org/doc/install)
+" --- 7) The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
+" --- 8) Free 'Inconsolata' font
 " - Backup your old configuration ~/.vimrc and replace it with this file or create a symlink
+" --- 1) Backup the old one first: mv ~/.vimrc ~/.vimrc.bak
+" --- 2) Replace it: wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc
+" --- 3) NeoVim uses XDG configuration: ln -s ~/.vimrc ~/.config/nvim/init.vim
+" --- 4) Vim uses old .vimrc location so there's no need to create symlink
 " - Install vim-plug: https://github.com/junegunn/vim-plug
 " - Install plugins by running 'vim +PlugInstall +qall' or 'nvim +PlugInstall +qall' in terminal
 " - Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
@@ -52,7 +56,7 @@
 " - cmd-a: 0x2C 0x61 --- search current buffer subdirectory
 " - ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
 "
-" Troubleshooting to get neovim, iTerm and tmux all work together smoothly:
+" Troubleshooting to get NeoVim, iTerm and Tmux all work together smoothly:
 " - https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
 " - https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
 " - https://github.com/neovim/neovim/issues/2048
@@ -65,84 +69,89 @@
 " ~~~~~ Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set nocompatible
-" === Plugins ===
 call plug#begin()
-" == General editor plugins ==
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-repeat'
-Plug 'jiangmiao/auto-pairs'
-Plug 'airblade/vim-gitgutter'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'itchyny/lightline.vim'
-" == Autocomplete plugins ==
-Plug 'ervandew/supertab'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  Plug 'steelsojka/deoplete-flow'
-else
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-endif
-" == JavaScript syntax highlighting ==
-" Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
-Plug 'othree/es.next.syntax.vim'
-Plug 'mxw/vim-jsx'
-Plug 'othree/javascript-libraries-syntax.vim'
-" == SCSS and CSS syntax highlighting ==
-if v:version < 704
-  Plug 'JulesWang/css.vim'
-endif
-Plug 'cakebaker/scss-syntax.vim'
-" == JavaScript tools integration ==
-if has('nvim')
-  " Plug 'neomake/neomake'
-else
-  " Plug 'scrooloose/syntastic'
-  Plug 'flowtype/vim-flow'
-endif
-Plug 'tpope/vim-fugitive' " --- awesome git
-Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
-Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
-Plug 'mileszs/ack.vim' " --- ack built in
+" ------------------------------------------------
+" --- Utility
+" ------------------------------------------------
+Plug 'tpope/vim-surround' " --- handy quick parentheses, brackets, ...
+Plug 'tpope/vim-commentary' " --- comment code quickly
+Plug 'tpope/vim-repeat' " --- repeat everything
+Plug 'jiangmiao/auto-pairs' " --- pair and close everything automatically
 Plug 'svermeulen/vim-easyclip' " --- d without copying
 Plug 'alvan/vim-closetag' " --- close html tags
 Plug 'terryma/vim-multiple-cursors' " --- like sublime
 Plug 'mattn/emmet-vim' " --- faster html coding
+Plug 'benmills/vimux' " --- send commands to tmux
+Plug 'airblade/vim-rooter' " --- change root directory on the fly
+" ------------------------------------------------
+" --- Search & Navigate
+" ------------------------------------------------
+Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
+Plug 'mileszs/ack.vim' " --- ack built in
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
+Plug 'scrooloose/nerdtree' " --- file explorer
+" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
+Plug 'majutsushi/tagbar' " --- tagbar sidebar
 Plug 'junegunn/vim-slash' " --- improved searching
 Plug 'tpope/vim-unimpaired' " --- awesome mappings
-Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
-Plug 'ternjs/tern_for_vim' " --- intelligent js
-Plug 'ap/vim-css-color' " --- css colors highlight
 Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
-Plug 'will133/vim-dirdiff' " --- git diff for directories
-Plug 'benmills/vimux' " --- send commands to tmux
-Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
-Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
-Plug 'airblade/vim-rooter' " --- change root directory on the fly
-Plug 'majutsushi/tagbar' " --- tagbar sidebar
 Plug 'jlanzarotta/bufexplorer' " --- list buffers
-Plug 'fatih/vim-go' " --- Go plugin
-Plug 'zchee/deoplete-go' " --- Go completion
-Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
-Plug 'AndrewRadev/splitjoin.vim' " --- split and join struct literals
+Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
+" ------------------------------------------------
+" --- Syntax, Autocomplete & Linters
+" ------------------------------------------------
+Plug 'ervandew/supertab' " --- autocomplete with tabs
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'steelsojka/deoplete-flow'
+  " Plug 'neomake/neomake'
+else
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+  " Plug 'scrooloose/syntastic'
+  Plug 'flowtype/vim-flow' " --- use flow type checker
+endif
+" Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
+Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
+Plug 'mxw/vim-jsx' " --- JSX syntax
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'ternjs/tern_for_vim' " --- intelligent js
+Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'sbdchd/neoformat' " --- format based on prettier
-Plug 'hail2u/vim-css3-syntax'
-" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
+" ------------------------------------------------
+" --- GO
+" ------------------------------------------------
+Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
+Plug 'fatih/vim-go' " --- Go plugin
+Plug 'zchee/deoplete-go' " --- Go completion
+Plug 'AndrewRadev/splitjoin.vim' " --- split and join struct literals
+" ------------------------------------------------
+" --- CSS
+" ------------------------------------------------
+Plug 'cakebaker/scss-syntax.vim' " --- sass
+Plug 'hail2u/vim-css3-syntax' " --- css3
+Plug 'ap/vim-css-color' " --- css colors highlight
 " Plug 'fleischie/vim-styled-components' " --- styled-components highlight
 " ------------------------------------------------
-" Look and feel
+" --- Git & Diff
 " ------------------------------------------------
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive' " --- awesome git
+Plug 'airblade/vim-gitgutter'
+Plug 'will133/vim-dirdiff' " --- git diff for directories
+Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
+" ------------------------------------------------
+" --- Look and feel
+" ------------------------------------------------
+Plug 'vim-airline/vim-airline' " lightweight line
+Plug 'vim-airline/vim-airline-themes' " airline theme pack
 Plug 'junegunn/goyo.vim' " --- distraction free mode
 Plug 'morhetz/gruvbox' " --- cool theme
+Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
+Plug 'nathanaelkane/vim-indent-guides' " --- see indents clearly
 " ------------------------------------------------
-" Snippets using neosnippets with deoplete
+" --- Snippets using neosnippets with deoplete
 " ------------------------------------------------
 Plug 'Shougo/neosnippet.vim' " --- engine
 Plug 'Shougo/neosnippet-snippets' " --- snippets #1
@@ -561,7 +570,7 @@ noremap <Leader>gr :Gremove<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Buffers and sessions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" --- control-m --- toggle distraction free mode
+" --- ,-m --- toggle distraction free mode
 nnoremap <Leader>z :Goyo<cr>
 " --- control+s --- save this buffer
 nmap <c-s> :w<CR>
@@ -582,27 +591,30 @@ map <a-r> :source ~/vim_session <cr>
 " is saved. Also we use FindRootDirectory() utility from airblade/vim-rooter
 " plugin so we always have the correct pwd, using native pwd is buggy sometimes.
 fu! SaveSess()
-		execute 'mksession! ' . getcwd() . '/.session.vim'
+  execute 'mksession! ' . getcwd() . '/.session.vim'
 endfunction
 fu! RestoreSess()
-if filereadable(getcwd() . '/.session.vim')
-  execute 'so ' . getcwd() . '/.session.vim'
-  if bufexists(1)
-    for l in range(1, bufnr('$'))
-      if bufwinnr(l) == -1
-        exec 'sbuffer ' . l
-      endif
-    endfor
+  if filereadable(getcwd() . '/.session.vim')
+    execute 'so ' . getcwd() . '/.session.vim'
+    if bufexists(1)
+      for l in range(1, bufnr('$'))
+        if bufwinnr(l) == -1
+          exec 'sbuffer ' . l
+        endif
+      endfor
+    endif
   endif
-endif
-syntax on
+  syntax on
 endfunction
-" Save session on quitting Vim
-autocmd VimLeave * NERDTreeClose
-autocmd VimLeave * call SaveSess()
-" Restore session on starting Vim
-autocmd VimEnter * nested call RestoreSess()
-" autocmd VimEnter * NERDTree
+" --- We use automatic sessions for neovim only
+if has('nvim')
+  " Save session on quitting Vim
+  autocmd VimLeave * NERDTreeClose
+  autocmd VimLeave * call SaveSess()
+  " Restore session on starting Vim
+  autocmd VimEnter * nested call RestoreSess()
+  " autocmd VimEnter * NERDTree
+endif
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
