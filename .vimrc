@@ -90,7 +90,7 @@ Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
 Plug 'scrooloose/nerdtree' " --- file explorer
-" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
+Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
 Plug 'majutsushi/tagbar' " --- tagbar sidebar
 Plug 'junegunn/vim-slash' " --- improved searching
 Plug 'tpope/vim-unimpaired' " --- awesome mappings
@@ -169,17 +169,13 @@ function! StrTrim(txt)
   return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 endfunction
 let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
-" === Plugin settings ===
 if has('nvim')
-  " == Shougo/deoplete.nvim ==
-  " == carlitux/deoplete-ternjs ==
   let g:deoplete#enable_at_startup = 1
   let g:SuperTabDefaultCompletionType = "<c-n>"
   let g:deoplete#sources#flow#flow_bin = g:flow_path
   let g:tern_request_timeout = 1
   let g:tern_show_signature_in_pum = 1
   set completeopt-=preview
-  " == neomake/neomake ==
   let g:neomake_warning_sign = {
   \ 'text': 'W',
   \ 'texthl': 'WarningMsg',
@@ -194,7 +190,6 @@ if has('nvim')
   let g:neomake_jsx_flow_exe = g:flow_path
   " autocmd! BufWritePost * Neomake
 else
-  " == scrooloose/syntastic ==
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
@@ -205,9 +200,7 @@ else
   let g:syntastic_check_on_wq = 1
   let g:syntastic_javascript_checkers = ['eslint']
 endif
-" == mxw/vim-jsx ==
 let g:jsx_ext_required = 0
-" == junegunn/fzf ==
 nnoremap <C-T> :FZF<CR>
 inoremap <C-T> <ESC>:FZF<CR>i
 
@@ -389,6 +382,9 @@ let NERDTreeWinSize = 35
 let NERDTreeChDirMode = 2
 let NERDTreeShowLineNumbers = 1
 let NERDTreeAutoCenter = 1
+" NERDTreeTabs
+let nerdtree_tabs_focus_on_files = 1
+let nerdtree_tabs_autofind = 1
 " auto build to find errors on save
 autocmd BufWritePre *.go silent! :GoBuild!
 " tmuxline look and feel
@@ -508,8 +504,9 @@ nnoremap <silent> <leader>sk <C-u>
 inoremap <silent> <leader>sj <Esc><C-d>
 inoremap <silent> <leader>sk <Esc><C-u>
 " --- control-e --- nerdtree control+e
-nnoremap <C-e> :NERDTreeFind<CR>
-inoremap <C-e> <ESC>:NERDTreeFind<CR>
+nnoremap <C-e> :NERDTreeTabsFind<CR>
+inoremap <C-e> <ESC>:NERDTreeTabsFind<CR>
+noremap <Leader>e :NERDTreeTabsToggle<CR>
 " --- control-i, control-o --- change tabs
 nnoremap <C-o> :tabn<CR>
 nnoremap <C-i> :tabp<CR>
@@ -591,6 +588,7 @@ map <a-r> :source ~/vim_session <cr>
 " is saved. Also we use FindRootDirectory() utility from airblade/vim-rooter
 " plugin so we always have the correct pwd, using native pwd is buggy sometimes.
 fu! SaveSess()
+  NERDTreeTabsClose
   execute 'mksession! ' . getcwd() . '/.session.vim'
 endfunction
 fu! RestoreSess()
@@ -609,11 +607,9 @@ endfunction
 " --- We use automatic sessions for neovim only
 if has('nvim')
   " Save session on quitting Vim
-  autocmd VimLeave * NERDTreeClose
   autocmd VimLeave * call SaveSess()
   " Restore session on starting Vim
   autocmd VimEnter * nested call RestoreSess()
-  " autocmd VimEnter * NERDTree
 endif
 
 
