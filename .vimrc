@@ -44,8 +44,8 @@
 " Hex code mappings for iTerm:
 " - cmd-o: 0x01 0x29 --- tmux next session
 " - cmd-i: 0x01 0x28 --- tmux previous session
-" - cmd-j: 0x2C 0x6A --- vim jump page down
-" - cmd-k: 0x2C 0x6B --- vim jump page up
+" - cmd-j: 0x2C 0x73 0x6A --- vim jump page down
+" - cmd-k: 0x2C 0x73 0x6B --- vim jump page up
 " - cmd-m: 0x2C 0x6D --- vim quickfix previous
 " - cmd-n: 0x2C 0x6E --- vim quickfix next
 " - cmd-n: 0x2C 0x71 --- vim quickfix toggle
@@ -239,7 +239,7 @@ set laststatus=2 " always show status bar
 set history=100 " Increase history from 20 default to 100
 set hidden
 set textwidth=80
-set esckeys " cursor keys in insert mode
+" set esckeys " cursor keys in insert mode
 set backspace=indent,eol,start " backspace in insert mode
 set nobackup " all backups off
 set nowb
