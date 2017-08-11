@@ -403,12 +403,10 @@ let g:ale_linters = {
 \   'go': [],
 \}
 " enable formatter for js and jsx file using prettier
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_jsx = ['prettier']
-let g:neoformat_try_formatprg = 1
-autocmd FileType javascript set formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ es5
-" format using prettier while saving
-autocmd BufWritePre *.js silent! Neoformat
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
