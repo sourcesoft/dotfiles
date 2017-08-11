@@ -11,12 +11,13 @@
 " - Install required binaries:
 " --- 1) Have (Neo)Vim and Git installed ofcourse
 " --- 2) Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
-" --- 3) Rainbarf (https://github.com/creaktive/rainbarf)
-" --- 4) Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
-" --- 5) If you're running OSX install iTerm and Dash.app (https://kapeli.com/dash)
-" --- 6) GO (https://golang.org/doc/install)
-" --- 7) The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
-" --- 8) Free 'Inconsolata' font
+" --- 3) If using OSX: brew install reattach-to-user-namespace
+" --- 4) Rainbarf (https://github.com/creaktive/rainbarf)
+" --- 5) Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
+" --- 6) If you're running OSX install iTerm and Dash.app (https://kapeli.com/dash)
+" --- 7) GO (https://golang.org/doc/install)
+" --- 8) The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
+" --- 9) Free 'Inconsolata' font
 " - Backup your old configuration ~/.vimrc and replace it with this file or create a symlink
 " --- 1) Backup the old one first: mv ~/.vimrc ~/.vimrc.bak
 " --- 2) Replace it: wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc
@@ -217,6 +218,7 @@ set list
 set foldcolumn=1 " extra margin to the left
 set autoindent " Copy indent from last line when starting new line
 set expandtab " use spaces instead of tabs
+set mouse= " make cmd-c work
 set smarttab " beginning of the line jumps to right place
 set tabstop=2 " 2 spaces for each tab
 set softtabstop=2 " Tab key results in 2 spaces
