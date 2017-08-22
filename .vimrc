@@ -113,9 +113,9 @@ else
   " Plug 'scrooloose/syntastic'
   Plug 'flowtype/vim-flow' " --- use flow type checker
 endif
-" Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
+Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
 Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
-Plug 'mxw/vim-jsx' " --- JSX syntax
+Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'ternjs/tern_for_vim' " --- intelligent js
 Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
