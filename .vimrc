@@ -52,7 +52,7 @@
 " - cmd-n: 0x2C 0x71 --- vim quickfix toggle
 " - cmd-p: 0x2C 0x70 --- vim run tmux command
 " - cmd-r: 0x2C 0x72 --- vim run last tmux command
-" - cmd-f: 0x2C 0x66 --- vim toggle tagbar
+" - cmd-f: 0x2C 0x66 --- vim toggle fullscreen
 " - cmd-;: 0x2C 0x3B --- list buffers
 " - cmd-a: 0x2C 0x61 --- search current buffer subdirectory
 " - ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
@@ -440,10 +440,9 @@ nnoremap <leader>r :call VimuxRunLastCommand()<cr>
 nnoremap <silent> <esc> :noh<CR>
 " --- control-n --- create a new file in current buffer directory
 nnoremap <C-n> :tabe %:h/
-" --- alt-c, alt-v --- JS: jump to definition file in new preview or tab window
-nnoremap <a-v> :TernDefTab<CR>
-inoremap <a-v> <ESC>:TernDefTab<CR>
-nnoremap <a-c> :TernDefPreview<CR>
+" --- leader-j, leader-jj --- JS: jump to definition file in split or tab
+au FileType javascript nmap <leader>j <ESC>:TernDefSplit<CR>
+au FileType javascript nmap <leader>jj <ESC>:TernDefTab<CR>
 " --- leader-i --- Go: show type
 au FileType go nmap <leader>i <Plug>(go-info)
 " --- leader-j --- Go: jump to def in new split
@@ -462,9 +461,8 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 " --- leader-e --- Go: check errors
 au FileType go nmap <leader>c :GoErrCheck<cr>
-" --- leader-f --- open tagbar
-" --- iTerm hexcodes: '0x2C 0x66' --- Command-F
-nnoremap <leader>f :TagbarToggle<CR>
+" --- leader-z --- open tagbar
+nnoremap <leader>z :TagbarToggle<CR>
 au FileType go nnoremap <leader>f :GoDeclsDir<CR>
 " --- leader-; --- quickly navigate to necessary buffer
 " --- iTerm hexcodes: '0x2C 0x3B' --- Command-;
@@ -567,8 +565,9 @@ noremap <Leader>gr :Gremove<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Buffers and sessions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" --- ,-m --- toggle distraction free mode
-nnoremap <Leader>z :Goyo<cr>
+" --- ,-f --- toggle distraction free mode
+" --- iTerm hexcodes: '0x2C 0x66' --- Command-F
+nnoremap <Leader>f :Goyo<cr>
 " --- control+s --- save this buffer
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
