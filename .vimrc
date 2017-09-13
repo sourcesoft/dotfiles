@@ -90,6 +90,7 @@ Plug 'airblade/vim-rooter' " --- change root directory on the fly
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
+Plug 'junegunn/fzf.vim' " extra fzf features
 Plug 'scrooloose/nerdtree' " --- file explorer
 Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
 Plug 'majutsushi/tagbar' " --- tagbar sidebar
@@ -298,6 +299,7 @@ let g:airline_section_x = '' " no need for file-type
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airlinse#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tmuxline#enabled = 1 " tmux fix
+let g:airline#extensions#bufferline#enabled = 1 " show buffers
 let g:vimtex_motion_matchparen = 0
 let g:airline_powerline_fonts = 0 " disable for better perf
 let g:SexyScroller_EasingStyle = 5 " linear no easing
@@ -414,8 +416,8 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" --- control+f --- AG and ACK
-nnoremap <C-f> :Ack 
+" --- leader+ff --- AG and ACK
+nnoremap <leader>ff :Ack 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
@@ -426,6 +428,10 @@ xmap <C-v> <Plug>(neosnippet_expand_target)
 " --- leader-a --- search files in CURRENT BUFFER directory using 'fzf'
 " --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
 nnoremap <leader>a :cd %:h<cr>:FZF<cr>
+" --- control-f --- search with Ag
+nnoremap <C-f> :Ag<cr>
+" --- control-g --- search git commits
+nnoremap <C-g> :Commits<cr>
 " --- control-t --- search all files in PROJECT directory using 'fzf'
 nnoremap <C-t> :FZF<cr>
 " --- control-p --- run a command in current directory using Vim
