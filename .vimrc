@@ -87,12 +87,12 @@ Plug 'airblade/vim-rooter' " --- change root directory on the fly
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
+Plug 'scrooloose/nerdtree' " --- file explorer
+Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
 Plug 'junegunn/fzf.vim' " extra fzf features
-Plug 'scrooloose/nerdtree' " --- file explorer
-Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
 Plug 'majutsushi/tagbar' " --- tagbar sidebar
 Plug 'junegunn/vim-slash' " --- improved searching
 Plug 'tpope/vim-unimpaired' " --- awesome mappings
@@ -122,6 +122,7 @@ Plug 'ternjs/tern_for_vim' " --- intelligent js
 Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'sbdchd/neoformat' " --- format based on prettier
+Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 " ------------------------------------------------
 " --- GO
 " ------------------------------------------------
@@ -249,7 +250,7 @@ set nowb
 set noswapfile " no swap files
 set nostartofline " don't jump start of lines
 set ruler " Show the cursor position
-set switchbuf+=usetab,newtab " quickfix opens buffer in existing tabs
+set switchbuf=usetab,newtab " quickfix opens buffer in existing tabs
 " -------------
 " ------------- Searching
 " -------------
@@ -282,6 +283,8 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:bufExplorerShowRelativePath=1 " shows shorter path
+let g:bufExplorerSortBy='fullpath' " sort by path
 let g:tmuxline_powerline_separators = 0
 let g:neomake_css_enabled_makers = ['stylelint'] " stylelint
 let g:airline_left_sep='' " no extra characters
@@ -297,7 +300,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " tab names
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]' " don't need this
 let g:airline_section_x = '' " no need for file-type
 let g:airline#extensions#tabline#left_sep = ' '
-let g:airlinse#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tmuxline#enabled = 1 " tmux fix
 let g:airline#extensions#bufferline#enabled = 1 " show buffers
 let g:vimtex_motion_matchparen = 0
@@ -425,13 +428,12 @@ endif
 imap <C-v> <Plug>(neosnippet_expand_or_jump)
 smap <C-v> <Plug>(neosnippet_expand_or_jump)
 xmap <C-v> <Plug>(neosnippet_expand_target)
-" --- leader-a --- search files in CURRENT BUFFER directory using 'fzf'
-" --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
-nnoremap <leader>a :cd %:h<cr>:FZF<cr>
+" --- control-g --- search files in CURRENT BUFFER directory using 'fzf'
+nnoremap <C-g> :cd %:h<cr>:FZF<cr>
 " --- control-f --- search with Ag
 nnoremap <C-f> :Ag<cr>
-" --- control-g --- search git commits
-nnoremap <C-g> :Commits<cr>
+" --- gf --- search git commits
+nnoremap gf :Commits<cr>
 " --- control-t --- search all files in PROJECT directory using 'fzf'
 nnoremap <C-t> :FZF<cr>
 " --- control-p --- run a command in current directory using Vim
@@ -472,8 +474,8 @@ nnoremap <leader>z :TagbarToggle<CR>
 au FileType go nnoremap <leader>f :GoDeclsDir<CR>
 " --- leader-; --- quickly navigate to necessary buffer
 " --- iTerm hexcodes: '0x2C 0x3B' --- Command-;
-map <leader>; :BufExplorer<cr>
-vmap <leader>; <esc>:BufExplorer<cr>
+map <leader>; :call ToggleBuf()<cr>
+vmap <leader>; <esc>:call ToggleBuf()<cr>
 " --- leader-m --- previous in quickfix list
 " --- iTerm hexcodes: '0x2C 0x6D' --- Command-M
 au FileType go map <leader>m :cprevious<CR>
@@ -512,10 +514,18 @@ nnoremap <C-e> :NERDTreeTabsFind<CR>
 inoremap <C-e> <ESC>:NERDTreeTabsFind<CR>
 noremap <Leader>e :NERDTreeTabsToggle<CR>
 " --- control-i, control-o --- change tabs
-nnoremap <C-o> :tabn<CR>
-nnoremap <C-i> :tabp<CR>
-inoremap <C-o> <ESC>:tabn<CR>
-inoremap <C-i> <ESC>:tabp<CR>
+nnoremap go :tabn<CR>
+nnoremap gi :tabp<CR>
+" --- control-i, control-o --- next prev buffers
+nnoremap <C-o> :call NextBuffer()<cr>
+nnoremap <C-i> :call PrevBuffer()<CR>
+inoremap <C-o> <ESC>:call NextBuffer()<CR>
+inoremap <C-i> <ESC>:call PrevBuffer()<CR>
+" --- gp --- fuzzy serach buffers
+nnoremap gp :Buffers<CR>
+" --- <leader>-a --- easier buffer switch
+" --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
+nnoremap <leader>a <c-^>
 " --- control-u --- close tab or pane
 nmap <C-u> :q<CR>
 " --- control-h, control-j, control-k, control-l --- Jump to panes
@@ -631,3 +641,22 @@ cmap w!! :w !sudo tee %
 if has('nvim')
   nmap <bs> :<c-u>TmuxNavigateLeft<cr>
 endif
+" move outside nerdtree first then switch buffer or list buffers
+fu! NextBuffer()
+  if bufname("") == "NERD_tree_2"
+    wincmd p
+  endif
+  bn
+endfunction
+fu! PrevBuffer()
+  if bufname("") == "NERD_tree_2"
+    wincmd p
+  endif
+  bp
+endfunction
+fu! ToggleBuf()
+  if bufname("") == "NERD_tree_2"
+    wincmd p
+  endif
+  ToggleBufExplorer
+endfunction
