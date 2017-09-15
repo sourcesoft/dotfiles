@@ -502,7 +502,7 @@ inoremap <a-l> <ESC>:tabm +1<CR>
 inoremap <a-h> <ESC>:tabm -1<CR>
 " --- space --- mark with space instead of m, for vim-easyclip
 nnoremap <space> m
-" --- leader-j, leader-k --- jump up or down half screen
+" --- leader-sj, leader-sk --- jump up or down half screen
 " --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
 " --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
 nnoremap <silent> <leader>sj <C-d>
@@ -510,9 +510,9 @@ nnoremap <silent> <leader>sk <C-u>
 inoremap <silent> <leader>sj <Esc><C-d>
 inoremap <silent> <leader>sk <Esc><C-u>
 " --- control-e --- nerdtree control+e
-nnoremap <C-e> :NERDTreeTabsFind<CR>
-inoremap <C-e> <ESC>:NERDTreeTabsFind<CR>
-noremap <Leader>e :NERDTreeTabsToggle<CR>
+nnoremap <silent> <C-e> :call ToggleNerdFocus()<CR>
+inoremap <silent> <C-e> <ESC>:call ToggleNerdFocus()<CR>
+noremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
 " --- control-i, control-o --- change tabs
 nnoremap go :tabn<CR>
 nnoremap gi :tabp<CR>
@@ -659,4 +659,17 @@ fu! ToggleBuf()
     wincmd p
   endif
   ToggleBufExplorer
+endfunction
+" opens nerdtree if it's not open already, then switches between file and
+" nerdtree split
+fu! ToggleNerdFocus()
+  if bufwinnr("NERD_tree_2") == 1
+    if bufname("") == "NERD_tree_2"
+      wincmd p
+    else
+      NERDTreeTabsFind
+    endif
+  else
+    NERDTreeTabsToggle
+  endif
 endfunction
