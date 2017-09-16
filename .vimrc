@@ -118,8 +118,10 @@ Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
 Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
 Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'ternjs/tern_for_vim' " --- intelligent js
 Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
+" Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+Plug 'ternjs/tern_for_vim' " --- intelligent js
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'sbdchd/neoformat' " --- format based on prettier
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
@@ -513,7 +515,7 @@ inoremap <silent> <leader>sk <Esc><C-u>
 nnoremap <silent> <C-e> :call ToggleNerdFocus()<CR>
 inoremap <silent> <C-e> <ESC>:call ToggleNerdFocus()<CR>
 noremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
-" --- control-i, control-o --- change tabs
+" --- gi, go --- change tabs
 nnoremap go :tabn<CR>
 nnoremap gi :tabp<CR>
 " --- control-i, control-o --- next prev buffers
@@ -527,7 +529,9 @@ nnoremap gp :Buffers<CR>
 " --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
 nnoremap <leader>a <c-^>
 " --- control-u --- close tab or pane
-nmap <C-u> :q<CR>
+nmap <C-u> :bp<bar>sp<bar>bn<bar>bd<CR>
+" --- gu --- close tab or pane
+nmap gu :q<CR>
 " --- control-h, control-j, control-k, control-l --- Jump to panes
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -618,6 +622,7 @@ fu! RestoreSess()
     endif
   endif
   syntax on
+  execute 'bd ' . getcwd()
 endfunction
 " --- We use automatic sessions for neovim only
 if has('nvim')
@@ -672,4 +677,7 @@ fu! ToggleNerdFocus()
   else
     NERDTreeTabsToggle
   endif
+endfunction
+fu! CloseAllOtherBuffers()
+  %bd|e#
 endfunction
