@@ -55,6 +55,7 @@
 " - cmd-f: 0x2C 0x66 --- vim toggle fullscreen
 " - cmd-;: 0x2C 0x3B --- list buffers
 " - cmd-a: 0x2C 0x61 --- search current buffer subdirectory
+" - cmd-s: 0x2C 0x73 0x73 --- run ALEFix
 " - ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
 "
 " Troubleshooting to get NeoVim, iTerm and Tmux all work together smoothly:
@@ -84,6 +85,7 @@ Plug 'terryma/vim-multiple-cursors' " --- like sublime
 Plug 'mattn/emmet-vim' " --- faster html coding
 Plug 'benmills/vimux' " --- send commands to tmux
 Plug 'airblade/vim-rooter' " --- change root directory on the fly
+Plug 'suan/vim-instant-markdown' " --- live markdown edit
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
@@ -125,6 +127,7 @@ Plug 'ternjs/tern_for_vim' " --- intelligent js
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'sbdchd/neoformat' " --- format based on prettier
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
+Plug 'posva/vim-vue' " --- vuejs
 " ------------------------------------------------
 " --- GO
 " ------------------------------------------------
@@ -278,6 +281,7 @@ set colorcolumn=80 " aditional column width -- disable for better perf
 " ------------- Theme and look
 " -------------
 syntax on
+filetype plugin on
 set background=dark
 colorscheme gruvbox " heavy lifting -- disable for better perf
 
@@ -408,14 +412,15 @@ let g:tmuxline_preset = {
 \'z'    : '#H'}
 " specific linters while typing, disable linting for go
 let g:ale_linters = {
-\   'javascript': ['eslint', 'flow'],
+\   'javascript': ['standard', 'eslint', 'flow'],
 \   'go': [],
 \}
 " enable formatter for js and jsx file using prettier
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_fix_on_save = 0
+let g:ale_javascript_prettier_options = '--single-quote --no-semi es5'
+" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -558,6 +563,8 @@ nnoremap - <C-w><
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" --- command-s --- run ALEFix
+nmap <leader>ss :ALEFix<cr>
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
