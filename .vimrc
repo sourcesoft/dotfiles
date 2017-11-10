@@ -419,8 +419,12 @@ let g:ale_linters = {
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fix_on_save = 0
-let g:ale_javascript_prettier_options = '--single-quote --no-semi es5'
-" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+command FIXDisable let ale_fix_on_save=0
+command FIXEnable let ale_fix_on_save=1
+command FIXOptionSemi let ale_javascript_prettier_options='--single-quote --trailing-comma es5'
+command FIXOptionNosemi let ale_javascript_prettier_options='--single-quote --no-semi es5'
+command FIXOptionNosemiTrailing let ale_javascript_prettier_options='--single-quote --no-semi --trailing-comma es5'
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
