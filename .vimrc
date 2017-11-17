@@ -299,6 +299,7 @@ let g:airline_theme='powerlineish' " airline simple theme
 let g:airline_extensions = ['branch', 'tabline', 'ctrlp', 'hunks']
 let g:airline#extensions#tabline#enabled = 1 " enable tabline
 let g:airline#extensions#tabline#show_tab_nr = 0 " no tab number
+let g:airline#extensions#tabline#buffer_nr_show = 1 " show buffer number
 let g:airline#extensions#tabline#show_splits = 0 " disable split count
 let g:airline#extensions#tabline#fnamemod = ':p:t' " no directories in anem
 let g:airline#extensions#tabline#fnamecollapse = 1 " collapse directories
@@ -411,8 +412,9 @@ let g:tmuxline_preset = {
 \'y'    : '#[fg=green]#(rainbarf --nobattery --width 25 --rgb --no-bright)#[default]',
 \'z'    : '#H'}
 " specific linters while typing, disable linting for go
+" options including standard, eslint, flow
 let g:ale_linters = {
-\   'javascript': ['standard', 'eslint', 'flow'],
+\   'javascript': ['eslint'],
 \   'go': [],
 \}
 " enable formatter for js and jsx file using prettier
@@ -506,6 +508,16 @@ map <leader>v :Dash<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Movement and navigation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" --- leader,# --- switch to buffnumber
+nnoremap <expr> <Leader>1 Key_leader_bufnum(1)
+nnoremap <expr> <Leader>2 Key_leader_bufnum(2)
+nnoremap <expr> <Leader>3 Key_leader_bufnum(3)
+nnoremap <expr> <Leader>4 Key_leader_bufnum(4)
+nnoremap <expr> <Leader>5 Key_leader_bufnum(5)
+nnoremap <expr> <Leader>6 Key_leader_bufnum(6)
+nnoremap <expr> <Leader>7 Key_leader_bufnum(7)
+nnoremap <expr> <Leader>8 Key_leader_bufnum(8)
+nnoremap <expr> <Leader>9 Key_leader_bufnum(9)
 " --- alt-l, alt-h --- relocate tab right and left with alt-i and alt-o
 nnoremap <a-l> :tabm +1<CR>
 nnoremap <a-h> :tabm -1<CR>
@@ -692,3 +704,53 @@ endfunction
 fu! CloseAllOtherBuffers()
   %bd|e#
 endfunction
+" quickly switch between buffers by their number
+func! Key_leader_bufnum(num)
+  let l:buffers = Buflisted()
+  let l:input = a:num . ""
+
+  while 1
+
+    let l:cnt = 0
+    let l:i=0
+    " count matches
+    while l:i<len(l:buffers)
+      let l:bn = l:buffers[l:i] . ""
+      if l:input==l:bn[0:len(l:input)-1]
+        let l:cnt+=1
+      endif
+      let l:i+=1
+    endwhile
+
+    " no matches
+    if l:cnt==0 && len(l:input)>0
+      echo "no buffer [" . l:input . "]"
+      return ''
+    elseif l:cnt==1
+      return ":b " . l:input . "\<CR>"
+    endif
+
+    echo ":b " . l:input
+
+    let l:n = getchar()
+
+    if l:n==char2nr("\<BS>") ||  l:n==char2nr("\<C-h>")
+      " delete one word
+      if len(l:input)>=2
+        let l:input = l:input[0:len(l:input)-2]
+      else
+        let l:input = ""
+      endif
+    elseif l:n==char2nr("\<CR>") || (l:n<char2nr('0') || l:n>char2nr('9'))
+      return ":b " . l:input . "\<CR>"
+    else
+      let l:input = l:input . nr2char(l:n)
+    endif
+
+    let g:n = l:n
+
+  endwhile
+endfunc
+func! Buflisted()
+  return filter(range(1, bufnr('$')), 'buflisted(v:val)')
+endfunc
