@@ -128,6 +128,7 @@ Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'sbdchd/neoformat' " --- format based on prettier
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'posva/vim-vue' " --- vuejs
+Plug 'XadillaX/json-formatter.vim' " --- format json using jjson package
 " ------------------------------------------------
 " --- GO
 " ------------------------------------------------
@@ -420,8 +421,11 @@ let g:ale_linters = {
 " enable formatter for js and jsx file using prettier
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['markdown'] = ['prettier']
+" let g:ale_fixers['json'] = ['prettier']
 let g:ale_fix_on_save = 0
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_javascript_prettier_use_local_config = 1
 command FIXDisable let ale_fix_on_save=0
 command FIXEnable let ale_fix_on_save=1
 command FIXOptionSemi let ale_javascript_prettier_options='--single-quote --trailing-comma es5'
