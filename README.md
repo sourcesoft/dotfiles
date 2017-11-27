@@ -1,12 +1,8 @@
-> List of tools and techs I use as a developer
-
-I'm a fullstack web developer but any one of us have a tail to tell about our cool other skills and tools. This is not a resume and doesn't list skills, but things I use or like to, daily.
-
+> List of current tools and techs I use as a developer
 
 ### Tools as a developer
 - [NeoVim](https://neovim.io) / [vimrc](https://github.com/sourcesoft/my-long-list/blob/master/.vimrc) / [ag](https://github.com/ggreer/the_silver_searcher) - Can't live without ya'll, not even a day.
 - [iTerm2](https://www.iterm2.com/) / [zsh](https://github.com/robbyrussell/oh-my-zsh) / [tmux](https://tmux.github.io/) - Performant terminal and shell everywhere.
-- [Atom](https://atom.io) / [Nuclide](https://nuclide.io/) - Github open source editor I use for React Native development.
 - [SourceTree](https://www.sourcetreeapp.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
 - [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
 - [Paw](https://paw.butt/) - Advanced REST client for testing my backend
@@ -16,7 +12,7 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [OsmondCocoa](www.osmondpcb.com/) - Sometimes I need to build a ready to print for some home-made circuits.
 
 
-### Front-End libraries and frameworks I like more than others at the moment
+### Front-End libraries (js)
 - [Webpack 2](https://webpack.github.io/) / [Browsersync](https://www.browsersync.io) - Split all those js files to small bundles depending which react-router you're in, so client doesn't have to download them all at once in addition to HMR.
 - [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) - Let's share js code between client and server + SEO friendly + faster to render
 - [GraphQL](https://facebook.github.io/graphql), [Relay](https://facebook.github.io/relay/), [Apollo](https://github.com/apollostack/apollo-client) - Don't spend time implementing REST/ajax calls, it happens in views automaticaly through GraphQL
@@ -29,14 +25,14 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [JWT](https://jwt.io/), [Passport](passportjs.org) ,[bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js/) - Security is so complicated you can't do it for yourself. Let's just stick to best practices for now.
 
 
-### Back-End libraries and frameworks I use more than others
+### Back-End libraries
 - [Go](https://golang.org) - Awesome performance + perfect libraries and community around it
 - [Drupal](https://drupal.org) - A PHP CMS more like a framework I've used since version 6.
 - [Express](http://expressjs.com/) - Standard and well tested
 - [Meteor](http://meteor.com) - If it needs to be done ASAP or realtime.
 
 
-### Techs or products I like to use or research about as a web developer
+### Techs
 - [Go](golang.org) - Concurrent programming with clean syntax made easy and smashing performance.
 - [Docker](https://www.docker.com/) - Future of containers.
 - [Kubernetes](https://github.com/kubernetes/kubernetes) - Easy to setup but powerful clustering for Dockers.
@@ -48,9 +44,9 @@ I'm a fullstack web developer but any one of us have a tail to tell about our co
 - [Functional Programming](https://github.com/MostlyAdequate/mostly-adequate-guide) - Pure functions equals easier tests(no mocks), less/cleaner/faster code.
 
 
-### Boilerplates I love to learn from and play with
+### Boilerplates
 - [react-boilerplate](https://github.com/mxstbr/react-boilerplate) - React/Redux/Offline first/Immutable.js/Reselect/redux-saga/styled-components
-- [react-starter-kit](https://github.com/kriasoft/react-starter-kit) / [Electrode](http://www.electrode.io/) / [next.js](https://github.com/zeit/next.js) - Well tested Univeral JavaScript approaches.
+- [Electrode](http://www.electrode.io/) / [next.js](https://github.com/zeit/next.js) - Well tested Univeral JavaScript approaches.
 - [create-react-app](https://github.com/facebookincubator/create-react-app) - Create React apps with no build configuration.
 - [ignite](https://github.com/infinitered/ignite) - Battle tested stack React Native with redux/sagas/i18n and CLI generators
 - [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) - React/Redux on top of Electron to build native desktop apps.
