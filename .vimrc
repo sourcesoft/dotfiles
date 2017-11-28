@@ -103,7 +103,7 @@ Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 " ------------------------------------------------
-" --- Syntax, Autocomplete & Linters
+" --- JS Syntax, Autocomplete & Linters
 " ------------------------------------------------
 Plug 'ervandew/supertab' " --- autocomplete with tabs
 if has('nvim')
@@ -130,12 +130,15 @@ Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'posva/vim-vue' " --- vuejs
 Plug 'XadillaX/json-formatter.vim' " --- format json using jjson package
 " ------------------------------------------------
-" --- GO
+" --- GO, C#, JAVA, Python
 " ------------------------------------------------
 Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
 Plug 'fatih/vim-go' " --- Go plugin
 Plug 'zchee/deoplete-go' " --- Go completion
-Plug 'AndrewRadev/splitjoin.vim' " --- split and join struct literals
+Plug 'AndrewRadev/splitjoin.vim' " --- GO split and join struct literals
+" Plug 'OmniSharp/omnisharp-vim' " --- omnicompletion (intellisense) and more
+Plug 'OrangeT/vim-csharp' " --- C# Enhancement's to Vim's C-Sharp Functionality
+Plug 'python-mode/python-mode' " --- makes Vim a Python IDE
 " ------------------------------------------------
 " --- CSS
 " ------------------------------------------------
@@ -156,6 +159,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
 Plug 'vim-airline/vim-airline' " lightweight line
 Plug 'vim-airline/vim-airline-themes' " airline theme pack
 Plug 'junegunn/goyo.vim' " --- distraction free mode
+Plug 'amix/vim-zenroom2' " --- iA Writer environment when editing Markdown
 Plug 'morhetz/gruvbox' " --- cool theme
 Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
 Plug 'nathanaelkane/vim-indent-guides' " --- see indents clearly
@@ -426,11 +430,11 @@ let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fix_on_save = 0
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 let g:ale_javascript_prettier_use_local_config = 1
-command FIXDisable let ale_fix_on_save=0
-command FIXEnable let ale_fix_on_save=1
-command FIXOptionSemi let ale_javascript_prettier_options='--single-quote --trailing-comma es5'
-command FIXOptionNosemi let ale_javascript_prettier_options='--single-quote --no-semi es5'
-command FIXOptionNosemiTrailing let ale_javascript_prettier_options='--single-quote --no-semi --trailing-comma es5'
+command! FIXDisable let ale_fix_on_save=0
+command! FIXEnable let ale_fix_on_save=1
+command! FIXOptionSemi let ale_javascript_prettier_options='--single-quote --trailing-comma es5'
+command! FIXOptionNosemi let ale_javascript_prettier_options='--single-quote --no-semi es5'
+command! FIXOptionNosemiTrailing let ale_javascript_prettier_options='--single-quote --no-semi --trailing-comma es5'
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
