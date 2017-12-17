@@ -113,15 +113,17 @@ Plug 'ervandew/supertab' " --- autocomplete with tabs
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'steelsojka/deoplete-flow'
 Plug 'pangloss/vim-javascript'
+Plug 'ternjs/tern_for_vim' " --- intelligent js
 " Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
-" Plug 'ternjs/tern_for_vim' " --- intelligent js
 " Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
 " Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
 " Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
+Plug 'othree/jspc.vim' " function parameter completion
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
+Plug 'mhartington/nvim-typescript' " --- IDE features for TS
 Plug 'posva/vim-vue' " --- vuejs
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
@@ -322,6 +324,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
 let g:deoplete#enable_at_startup = 1 " start deoplete
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
 let g:deoplete#file#enable_buffer_path = 1 " includes from the current buffer
+let g:deoplete#sources#ternjs#types = 1
 let g:tern#command = ["tern"] " fix for deoplete-ternjs and tern_for_vim
 let g:tern#arguments = ["--persistent"]
 let g:tern_request_timeout = 3 " longer timeout for tern lookup
