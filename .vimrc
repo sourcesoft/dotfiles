@@ -86,9 +86,13 @@ Plug 'mattn/emmet-vim' " --- faster html coding
 Plug 'benmills/vimux' " --- send commands to tmux
 Plug 'airblade/vim-rooter' " --- change root directory on the fly
 Plug 'suan/vim-instant-markdown' " --- live markdown edit
+Plug 'Shougo/unite.vim' " --- dev helper
+Plug 'neovim/python-client' " --- support python for neovim
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
+Plug 'Shougo/vimfiler.vim' " --- file explorer
 Plug 'scrooloose/nerdtree' " --- file explorer
 Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
@@ -106,29 +110,19 @@ Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 " --- JS Syntax, Autocomplete & Linters
 " ------------------------------------------------
 Plug 'ervandew/supertab' " --- autocomplete with tabs
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  Plug 'steelsojka/deoplete-flow'
-  " Plug 'neomake/neomake'
-else
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-  " Plug 'scrooloose/syntastic'
-  Plug 'flowtype/vim-flow' " --- use flow type checker
-endif
-Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
-Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
-Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
-Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'steelsojka/deoplete-flow'
+Plug 'pangloss/vim-javascript'
+" Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
+" Plug 'ternjs/tern_for_vim' " --- intelligent js
+" Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
+" Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
+" Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
-Plug 'ternjs/tern_for_vim' " --- intelligent js
+Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
-Plug 'sbdchd/neoformat' " --- format based on prettier
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'posva/vim-vue' " --- vuejs
-Plug 'XadillaX/json-formatter.vim' " --- format json using jjson package
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
 " ------------------------------------------------
@@ -294,6 +288,7 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:vimfiler_as_default_explorer=1 " make vimfiler as default
 let g:bufExplorerShowRelativePath=1 " shows shorter path
 let g:bufExplorerSortBy='fullpath' " sort by path
 let g:tmuxline_powerline_separators = 0
@@ -432,9 +427,13 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 let g:ale_javascript_prettier_use_local_config = 1
 command! FIXDisable let ale_fix_on_save=0
 command! FIXEnable let ale_fix_on_save=1
+" if user calls these options manually, local configuration will be replaced
+" so use these options only if you don't have local config in package.json or
+" .prettierrc defined.
 command! FIXOptionSemi let ale_javascript_prettier_options='--single-quote --trailing-comma es5'
 command! FIXOptionNosemi let ale_javascript_prettier_options='--single-quote --no-semi es5'
 command! FIXOptionNosemiTrailing let ale_javascript_prettier_options='--single-quote --no-semi --trailing-comma es5'
+command! FIXOptionJSON let g:ale_fixers['json'] = ['prettier']
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
