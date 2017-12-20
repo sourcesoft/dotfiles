@@ -5,7 +5,7 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="pure"
+ZSH_THEME="refined"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,10 +49,10 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker last-working-dir meteor node npm osx redis-cli sudo cp emoji-clock pj zsh-autosuggestions)
+plugins=(git docker last-working-dir meteor node npm osx redis-cli sudo cp emoji-clock pj zsh-autosuggestions vi-mode)
 
 # User configuration
-PROJECT_PATHS=(~/Documents/Projects/temp ~/Documents/Projects ~/Library/WebServer/Documents)
+PROJECT_PATHS=(~/work ~/work/app ~/work/go ~/work/lamp)
 
 export PATH="/usr/local/sbin:~/Documents/mongodb/bin:/usr/local/git/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -97,7 +97,7 @@ alias transfer=transfer
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-. `brew --prefix`/etc/profile.d/z.sh
+# . `brew --prefix`/etc/profile.d/z.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
