@@ -1,4 +1,5 @@
 # Terminal stuff
+ulimit -n 2048
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -22,7 +23,7 @@ alias gc="git checkout"
 set -o vi
 
 # Go stuff
-export GOPATH=~/Documents/Projects/temp/go
+export GOPATH=~/work/go
 export PATH=/usr/local/go/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 
@@ -32,7 +33,7 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="/usr/local/heroku/bin:$PATH"
 
 ###export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/mysql/support-files/:/usr/local/mysql-5.6.15-osx10.7-x86_64/bin:$PATH"
 
@@ -40,6 +41,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/git/bin:$PATH"
 export PATH="~/Documents/mongodb/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH=/usr/local/share:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/php5/bin:$PATH
 export PATH=$(brew --prefix openssl)/bin:$PATH
+export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
