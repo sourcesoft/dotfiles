@@ -182,7 +182,6 @@ if has('nvim')
   let g:deoplete#enable_at_startup = 1
   let g:SuperTabDefaultCompletionType = "<c-n>"
   let g:deoplete#sources#flow#flow_bin = g:flow_path
-  let g:tern_request_timeout = 1
   let g:tern_show_signature_in_pum = 1
   set completeopt-=preview
   let g:neomake_warning_sign = {
@@ -290,6 +289,7 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
 let g:vimfiler_as_default_explorer=1 " make vimfiler as default
 let g:bufExplorerShowRelativePath=1 " shows shorter path
 let g:bufExplorerSortBy='fullpath' " sort by path
@@ -325,9 +325,9 @@ let g:deoplete#enable_at_startup = 1 " start deoplete
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
 let g:deoplete#file#enable_buffer_path = 1 " includes from the current buffer
 let g:deoplete#sources#ternjs#types = 1
+let g:tern_request_timeout = 1 " longer timeout for tern lookup
 let g:tern#command = ["tern"] " fix for deoplete-ternjs and tern_for_vim
 let g:tern#arguments = ["--persistent"]
-let g:tern_request_timeout = 3 " longer timeout for tern lookup
 let g:tern_show_signature_in_pum = 1 " completion for function arguments
 let g:tern_show_argument_hints='on_hold' " update arguments after updatetime
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
@@ -459,8 +459,10 @@ nnoremap <C-f> :Ag<cr>
 nnoremap gf :Commits<cr>
 " --- control-t --- search all files in PROJECT directory using 'fzf'
 nnoremap <C-t> :FZF<cr>
-" --- control-p --- run a command in current directory using Vim
-nnoremap <C-p> :cd %:h<cr>:! 
+" --- control-p --- search all commands
+nnoremap <C-p> :Commands<cr>
+" --- alt-p --- run a command in current directory using Vim
+nnoremap <a-p> :cd %:h<cr>:! 
 " --- leader-p --- run a command using tmux
 " --- iTerm hexcodes: '0x2C 0x70' --- Command-P
 nnoremap <leader>p :call VimuxRunCommand("")<left><left>
