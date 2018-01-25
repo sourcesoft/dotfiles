@@ -112,18 +112,20 @@ Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 Plug 'ervandew/supertab' " --- autocomplete with tabs
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'steelsojka/deoplete-flow'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim' " --- intelligent js
 " Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
 " Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
 " Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
 " Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
-Plug 'othree/jspc.vim' " function parameter completion
+" Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
+" Plug 'othree/jspc.vim' " function parameter completion
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
-Plug 'mhartington/nvim-typescript' " --- IDE features for TS
+" Plug 'mhartington/nvim-typescript' " --- IDE features for TS
 Plug 'posva/vim-vue' " --- vuejs
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
