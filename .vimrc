@@ -125,6 +125,7 @@ Plug 'mhartington/nvim-typescript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
+Plug 'jparise/vim-graphql'
 " Plug 'mhartington/nvim-typescript' " --- IDE features for TS
 Plug 'posva/vim-vue' " --- vuejs
 " ------------------------------------------------
