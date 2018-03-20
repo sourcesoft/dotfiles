@@ -3,7 +3,7 @@ Configuration is based on Tmux, iTerm2, OSX.
 I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 
-### Installation
+## Installation
 
 #### Install required binaries:
 
@@ -28,7 +28,7 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 #### Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
 #### Learn key bindings by reading this file
 
-### Mappings and Environment
+## Mappings and Environment
 
 It's much easier to use right CMD or Alt instead of reaching out escape.
 I also use Caps Lock for Control, since it's closer and easier to hit.
