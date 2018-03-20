@@ -1,3 +1,7 @@
+![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
+
+![ZSH](https://github.com/sourcesoft/dotfiles/blob/master/images/zsh.png "vim")
+
 > List of current tools and techs I use as a developer
 
 ### Tools as a developer
