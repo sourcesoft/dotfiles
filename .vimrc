@@ -1,73 +1,4 @@
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Notes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" My own (Neo)Vim configuration, works best to develop JS and GO.
-" Configuration is based on Tmux, iTerm2, OSX.
-" I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
-"
-" -------------
-" ------------- Installation
-" -------------
-" - Install required binaries:
-" --- 1) Have (Neo)Vim and Git installed ofcourse
-" --- 2) Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
-" --- 3) If using OSX: brew install reattach-to-user-namespace
-" --- 4) Rainbarf (https://github.com/creaktive/rainbarf)
-" --- 5) Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
-" --- 6) If you're running OSX install iTerm and Dash.app (https://kapeli.com/dash)
-" --- 7) GO (https://golang.org/doc/install)
-" --- 8) The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
-" --- 9) Free 'Inconsolata' font
-" - Backup your old configuration ~/.vimrc and replace it with this file or create a symlink
-" --- 1) Backup the old one first: mv ~/.vimrc ~/.vimrc.bak
-" --- 2) Replace it: wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc
-" --- 3) NeoVim uses XDG configuration: ln -s ~/.vimrc ~/.config/nvim/init.vim
-" --- 4) Vim uses old .vimrc location so there's no need to create symlink
-" - Install vim-plug: https://github.com/junegunn/vim-plug
-" - Install plugins by running 'vim +PlugInstall +qall' or 'nvim +PlugInstall +qall' in terminal
-" - Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
-" - Learn key bindings by reading this file
-"
-" -------------
-" ------------- Mappings and Environment
-" -------------
-" It's much easier to use right CMD or Alt instead of reaching out escape.
-" I also use Caps Lock for Control, since it's closer and easier to hit.
-" - Escape -> Right CMD or Right Alt
-" - Control -> Caps Lock
-"
-" Tools to setup the key bindings:
-" - OSX: Use Karabiner to map
-" --- Visit: https://github.com/tekezo/Karabiner-Elements
-" - Ubuntu: Install xcape (https://github.com/alols/xcape)
-" --- Use the following command: xcape -e 'Alt_R=Escape;ISO_Level3_Shift=Escape'
-"
-" Hex code mappings for iTerm:
-" - cmd-o: 0x01 0x29 --- tmux next session
-" - cmd-i: 0x01 0x28 --- tmux previous session
-" - cmd-j: 0x2C 0x73 0x6A --- vim jump page down
-" - cmd-k: 0x2C 0x73 0x6B --- vim jump page up
-" - cmd-m: 0x2C 0x6D --- vim quickfix previous
-" - cmd-n: 0x2C 0x6E --- vim quickfix next
-" - cmd-n: 0x2C 0x71 --- vim quickfix toggle
-" - cmd-p: 0x2C 0x70 --- vim run tmux command
-" - cmd-r: 0x2C 0x72 --- vim run last tmux command
-" - cmd-f: 0x2C 0x66 --- vim toggle fullscreen
-" - cmd-;: 0x2C 0x3B --- list buffers
-" - cmd-a: 0x2C 0x61 --- search current buffer subdirectory
-" - cmd-s: 0x2C 0x73 0x73 --- run ALEFix
-" - ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
-"
-" Troubleshooting to get NeoVim, iTerm and Tmux all work together smoothly:
-" - https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
-" - https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
-" - https://github.com/neovim/neovim/issues/2048
-" - http://stackoverflow.com/questions/6778961
-" - http://stackoverflow.com/questions/39645253
-" - http://www.nthelp.com/ascii.htm
-" - http://superuser.com/questions/259614
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set nocompatible
@@ -113,7 +44,6 @@ Plug 'ervandew/supertab' " --- autocomplete with tabs
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'steelsojka/deoplete-flow'
 " Plug 'pangloss/vim-javascript'
-Plug 'ternjs/tern_for_vim' " --- intelligent js
 " Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
 " Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
 " Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
@@ -185,7 +115,6 @@ if has('nvim')
   let g:deoplete#enable_at_startup = 1
   let g:SuperTabDefaultCompletionType = "<c-n>"
   let g:deoplete#sources#flow#flow_bin = g:flow_path
-  let g:tern_show_signature_in_pum = 1
   set completeopt-=preview
   let g:neomake_warning_sign = {
   \ 'text': 'W',
@@ -326,13 +255,18 @@ let g:ctrlp_map = '' " disable default ctrl-p mapping
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
 let g:deoplete#enable_at_startup = 1 " start deoplete
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
-let g:deoplete#file#enable_buffer_path = 1 " includes from the current buffer
-let g:deoplete#sources#ternjs#types = 1
-let g:tern_request_timeout = 1 " longer timeout for tern lookup
-let g:tern#command = ["tern"] " fix for deoplete-ternjs and tern_for_vim
-let g:tern#arguments = ["--persistent"]
-let g:tern_show_signature_in_pum = 1 " completion for function arguments
-let g:tern_show_argument_hints='on_hold' " update arguments after updatetime
+let g:deoplete#sources#ternjs#timeout = 1
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#sources = {}
+let g:deoplete#sources.javascript = ['buffer', 'tern']
+let g:tern#filetypes = [
+      \ 'js',
+      \ 'jsx',
+      \ 'javascript.jsx',
+      \ 'ts',
+      \ 'vue'
+      \ ]
+let g:deoplete#sources#ternjs#tern_bin = '/usr/local/bin/tern'
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
 let g:multi_cursor_use_default_mapping=0 " disable default vim-multiple-cursors mappings
 let g:multi_cursor_next_key='<C-d>' " multi select with control-d like sublime
@@ -437,8 +371,8 @@ command! FIXEnable let ale_fix_on_save=1
 " so use these options only if you don't have local config in package.json or
 " .prettierrc defined.
 command! FIXOptionSemi let ale_javascript_prettier_options='--single-quote --trailing-comma es5'
-command! FIXOptionNosemi let ale_javascript_prettier_options='--single-quote --no-semi es5'
-command! FIXOptionNosemiTrailing let ale_javascript_prettier_options='--single-quote --no-semi --trailing-comma es5'
+command! FIXOptionNosemi let ale_javascript_prettier_options='--single-quote --trailing-comma --no-semi es5'
+command! FIXOptionNosemiTrailing let ale_javascript_prettier_options='--single-quote --no-semi es5'
 command! FIXOptionJSON let g:ale_fixers['json'] = ['prettier']
 
 
@@ -458,8 +392,8 @@ xmap <C-v> <Plug>(neosnippet_expand_target)
 nnoremap <C-g> :cd %:h<cr>:FZF<cr>
 " --- control-f --- search with Ag
 nnoremap <C-f> :Ag<cr>
-" --- gf --- search git commits
-nnoremap gf :Commits<cr>
+" --- gt --- search git commits
+nnoremap gt :Commits<cr>
 " --- control-t --- search all files in PROJECT directory using 'fzf'
 nnoremap <C-t> :FZF<cr>
 " --- control-p --- search all commands
@@ -719,6 +653,19 @@ endfunction
 fu! CloseAllOtherBuffers()
   %bd|e#
 endfunction
+" makes gf open nodejs imports
+set path=.,src
+set suffixesadd=.js,.jsx
+function! LoadMainNodeModule(fname)
+    let nodeModules = "./node_modules/"
+    let packageJsonPath = nodeModules . a:fname . "/package.json"
+    if filereadable(packageJsonPath)
+        return nodeModules . a:fname . "/" . json_decode(join(readfile(packageJsonPath))).main
+    else
+        return nodeModules . a:fname
+    endif
+endfunction
+set includeexpr=LoadMainNodeModule(v:fname)
 " quickly switch between buffers by their number
 func! Key_leader_bufnum(num)
   let l:buffers = Buflisted()
