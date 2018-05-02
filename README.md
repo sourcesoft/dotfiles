@@ -2,6 +2,10 @@ My own (Neo)Vim configuration, works best to develop JS and GO.
 Configuration is based on Tmux, iTerm2, OSX.
 I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
+![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
+
+![ZSH](https://github.com/sourcesoft/dotfiles/blob/master/images/zsh.png "vim")
+
 
 ## Installation
 
@@ -9,22 +13,22 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 1. Have (Neo)Vim and Git installed ofcourse
 2. Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
-3. If using OSX: brew install reattach-to-user-namespace
+3. If using OSX: `brew install reattach-to-user-namespace`
 4. Rainbarf (https://github.com/creaktive/rainbarf)
 5. Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
 6. If you're running OSX install iTerm and Dash.app (https://kapeli.com/dash)
 7. GO (https://golang.org/doc/install)
 8. The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
-9. Free 'Inconsolata' font
+9. Free `Inconsolata` font
 
 #### Backup your old configuration ~/.vimrc and replace it with this file or create a symlink
-1. Backup the old one first: mv ~/.vimrc ~/.vimrc.bak
-2. Replace it: wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc
-3. NeoVim uses XDG configuration: ln -s ~/.vimrc ~/.config/nvim/init.vim
-4. Vim uses old .vimrc location so there's no need to create symlink
+1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
+2. Replace it: `wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc`
+3. NeoVim uses XDG configuration: `ln -s ~/.vimrc ~/.config/nvim/init.vim`
+4. Vim uses old `.vimrc` location so there's no need to create symlink
 
 #### Install vim-plug: https://github.com/junegunn/vim-plug
-#### Install plugins by running 'vim +PlugInstall +qall' or 'nvim +PlugInstall +qall' in terminal
+#### Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
 #### Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
 #### Learn key bindings by reading this file
 
@@ -39,7 +43,7 @@ Tools to setup the key bindings:
 - OSX: Use Karabiner to map
   - Visit: https://github.com/tekezo/Karabiner-Elements
 - Ubuntu: Install xcape (https://github.com/alols/xcape)
-  - Use the following command: xcape -e 'Alt_R=Escape;ISO_Level3_Shift=Escape'
+  - Use the following command: `xcape -e 'Alt_R=Escape;ISO_Level3_Shift=Escape'`
 
 
 #### Hex code mappings for iTerm:
@@ -67,10 +71,6 @@ Tools to setup the key bindings:
 - http://www.nthelp.com/ascii.htm
 - http://superuser.com/questions/259614
 
-
-![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
-
-![ZSH](https://github.com/sourcesoft/dotfiles/blob/master/images/zsh.png "vim")
 
 > List of current tools and techs I use as a developer
 
