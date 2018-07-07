@@ -23,9 +23,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
+Plug 'chrisbra/improvedft' " --- better f and t
 Plug 'Shougo/vimfiler.vim' " --- file explorer
 Plug 'scrooloose/nerdtree' " --- file explorer
 Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
+Plug 'unkiwii/vim-nerdtree-sync' " Sync open file to NERDTree
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
@@ -43,16 +45,16 @@ Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 Plug 'ervandew/supertab' " --- autocomplete with tabs
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'steelsojka/deoplete-flow'
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 " Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
 " Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
 " Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
 " Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
 " Plug 'othree/jspc.vim' " function parameter completion
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript'
-Plug 'mxw/vim-jsx'
+" Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'jparise/vim-graphql'
@@ -140,7 +142,7 @@ else
   let g:syntastic_check_on_wq = 1
   let g:syntastic_javascript_checkers = ['eslint']
 endif
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 0 " Highlight JSX in .js files
 nnoremap <C-T> :FZF<CR>
 inoremap <C-T> <ESC>:FZF<CR>i
 
@@ -153,6 +155,9 @@ let mapleader="," " leader key
 set clipboard=unnamed " Use osx clipboard
 set wildmenu " better completion
 set lcs=tab:▸\ ,trail:#,nbsp:_ " Show “invisible” characters
+set nobk " Don't create backup files 
+set ai " Turn on auto indentation
+set si " Turn on smart indent
 set list
 set foldcolumn=1 " extra margin to the left
 set autoindent " Copy indent from last line when starting new line
@@ -168,10 +173,12 @@ set visualbell " Use visual bell instead of audible bell
 set noerrorbells " Disable error bells
 set noshowmode " show current mode
 set scrolloff=5 " extra space from edges while scrolling
-set autoread
+set autoread " Automatically read changed files from disk
+au FocusGained,BufEnter * :checktime " Also reload when we switch buffers
 set report=0 " Show all changes
 set showtabline=2 " Always show tab bar
 set undofile " Persistent Undo
+set undodir=~/.vim/undo " store all the persisted files in a single directory
 set title " show file name in window
 set shortmess=atI " no intro message
 set mouse=a " enable mouse in all modes
@@ -221,6 +228,7 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:ft_improved_ignorecase = 1 " make f in-casesensitive
 let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
 let g:vimfiler_as_default_explorer=1 " make vimfiler as default
 let g:bufExplorerShowRelativePath=1 " shows shorter path
@@ -332,6 +340,12 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.o$', '\.pyc$', '\.php\~$']
 let NERDTreeWinSize = 35
+let g:NERDTreeShowHidden=1 " show dotfiles by default
+let NERDTreeRespectWildIgnore=1 " respect wildignore
+let loaded_netrwPlugin=1 " disable netrw since we're going to hijack it with NERDTree anyway
+let g:NERDTreeHijackNetrw = 1 " use the split explorer model, hijack netrw
+let g:NERDTreeMinimalUI=1 " Hide 'Press ? for help' prompt
+let g:nerdtree_sync_cursorline=1 " Enable syncing of active file to nerdtree
 " NERDTree Make sure that when NT root is changed, Vim's pwd is also updated
 let NERDTreeChDirMode = 2
 let NERDTreeShowLineNumbers = 1
@@ -357,6 +371,12 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'go': [],
 \}
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '💩'
+let g:ale_sign_warning = '⚠️'
+let g:ale_javascript_eslint_suppress_missing_config = 1
+let g:ale_javascript_eslint_suppress_eslintignore = 1
+let g:ale_javascript_eslint_use_global = 0
 " enable formatter for js and jsx file using prettier
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
