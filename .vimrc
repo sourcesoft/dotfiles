@@ -73,10 +73,10 @@ Plug 'python-mode/python-mode' " --- makes Vim a Python IDE
 " ------------------------------------------------
 " --- CSS
 " ------------------------------------------------
-Plug 'cakebaker/scss-syntax.vim' " --- sass
 Plug 'hail2u/vim-css3-syntax' " --- css3
 Plug 'ap/vim-css-color' " --- css colors highlight
-" Plug 'fleischie/vim-styled-components' " --- styled-components highlight
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'cakebaker/scss-syntax.vim' " --- sass
 " ------------------------------------------------
 " --- Git & Diff
 " ------------------------------------------------
