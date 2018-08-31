@@ -39,6 +39,9 @@ Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
 Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
+Plug 'majutsushi/tagbar' " --- ctags outline
+Plug 'junegunn/vim-slash' " --- better in-buffer search
+Plug 'junegunn/vim-emoji' " --- emoji in vim
 " ------------------------------------------------
 " --- JS Syntax, Autocomplete & Linters
 " ------------------------------------------------
@@ -84,6 +87,7 @@ Plug 'tpope/vim-fugitive' " --- awesome git
 Plug 'airblade/vim-gitgutter'
 Plug 'will133/vim-dirdiff' " --- git diff for directories
 Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
+Plug 'junegunn/gv.vim' " --- git commit browser
 " ------------------------------------------------
 " --- Look and feel
 " ------------------------------------------------
