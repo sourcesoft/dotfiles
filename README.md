@@ -25,14 +25,15 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
 2. Replace it: `wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc`
 3. NeoVim uses XDG configuration: `ln -s ~/.vimrc ~/.config/nvim/init.vim`
-4. Vim uses old `.vimrc` location so there's no need to create symlink
+4. Vim uses old `.vimrc` location so there's no need to create symlink.
+5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc`, `prettierrc` and configure more if feel comfortable.
 5. Before opening (Neo)Vim:
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
 - Install vim-plug: https://github.com/junegunn/vim-plug
 - Download and install `Knack Nerd Font` from [here](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm2 to use it.
 - Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
 - Install necessary global node packages by running `npm install -g typescript neovim`
-- Install global node packages for eslint `npm i -g eslint eslint-config-airbnb eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack`
+- Install global node packages for eslint `npm i -g eslint eslint-config-airbnb eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack babel-eslint`
 6. Open (Neo)Vim and:
 - Run `:UpdateRemotePlugins` in vim at the end.
 - Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
