@@ -259,6 +259,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tmuxline#enabled = 1 " tmux fix
 let g:airline#extensions#bufferline#enabled = 1 " show buffers
+let g:airline#extensions#ale#enabled = 1
 let g:vimtex_motion_matchparen = 0
 let g:airline_powerline_fonts = 0 " disable for better perf
 let g:SexyScroller_EasingStyle = 5 " linear no easing
@@ -376,15 +377,17 @@ let g:tmuxline_preset = {
 " specific linters while typing, disable linting for go
 " options including standard, eslint, flow
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'prettier', 'importjs', 'tsserver', 'typecheck'],
+\   'typescript': ['eslint', 'prettier', 'tsserver', 'typecheck'],
 \   'go': [],
 \}
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '💩'
 let g:ale_sign_warning = '⚠️'
-let g:ale_javascript_eslint_suppress_missing_config = 1
+let g:ale_javascript_eslint_suppress_missing_config = 0
 let g:ale_javascript_eslint_suppress_eslintignore = 1
-let g:ale_javascript_eslint_use_global = 0
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_prettier_use_global = 1
 " enable formatter for js and jsx file using prettier
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
