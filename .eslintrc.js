@@ -73,4 +73,11 @@ module.exports = {
     'require-yield': 0,
     'lines-between-class-members': 0,
   },
+  // settings: {
+  //   'import/resolver': {
+  //     webpack: {
+  //       config: './webpack.config.js',
+  //     },
+  //   },
+  // },
 };
