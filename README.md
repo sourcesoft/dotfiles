@@ -32,7 +32,7 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 - Download and install `Knack Nerd Font` from [here](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm2 to use it.
 - Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
 - Install necessary global node packages by running `npm install -g typescript neovim`
-- Install global node packages for eslint `npm i -g eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack`
+- Install global node packages for eslint `npm i -g eslint eslint-config-airbnb eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack`
 6. Open (Neo)Vim and:
 - Run `:UpdateRemotePlugins` in vim at the end.
 - Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
