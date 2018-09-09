@@ -26,15 +26,16 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 2. Replace it: `wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc`
 3. NeoVim uses XDG configuration: `ln -s ~/.vimrc ~/.config/nvim/init.vim`
 4. Vim uses old `.vimrc` location so there's no need to create symlink
-
-#### Install tmux plugins `Prefix + I`
-#### Install vim-plug: https://github.com/junegunn/vim-plug
-#### Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
-#### Install necessary global node packages by running `npm install -g import-js typescript neovim`
-#### Run `:UpdateRemotePlugins` at the end.
-#### Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
-#### Download and install `Knack Nerd Font` from [here](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm2 to use it.
-#### Learn key bindings by reading this file
+5. Before opening (Neo)Vim:
+- Open tmux running `tmux` and install tmux plugins with `Prefix + I`
+- Install vim-plug: https://github.com/junegunn/vim-plug
+- Download and install `Knack Nerd Font` from [here](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm2 to use it.
+- Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
+- Install necessary global node packages by running `npm install -g typescript neovim`
+6. Open (Neo)Vim and:
+- Run `:UpdateRemotePlugins` in vim at the end.
+- Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
+- Learn key bindings by reading this file
 
 ## Mappings and Environment
 
