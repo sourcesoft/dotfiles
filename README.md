@@ -1,5 +1,5 @@
-My own (Neo)Vim configuration, works best to develop JS and GO.
-Configuration is based on Tmux, iTerm2, OSX.
+My own (Neo)Vim configuration which focuses on JS(React, Vue, stage-0, TS, Flow), CSS(and styled-components), GraphQL and GO, however also works with C# and Python.
+Configuration is based on Tmux, iTerm2, OSX but I also use it on Ubuntu.
 I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 ![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
