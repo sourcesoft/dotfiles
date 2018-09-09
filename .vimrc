@@ -42,13 +42,17 @@ Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 Plug 'majutsushi/tagbar' " --- ctags outline
 Plug 'junegunn/vim-slash' " --- better in-buffer search
 Plug 'junegunn/vim-emoji' " --- emoji in vim
+Plug 'Shougo/denite.nvim'
 " ------------------------------------------------
 " --- JS Syntax, Autocomplete & Linters
 " ------------------------------------------------
 Plug 'ervandew/supertab' " --- autocomplete with tabs
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'steelsojka/deoplete-flow'
-Plug 'pangloss/vim-javascript'
+Plug 'galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
+Plug 'billyvg/deoplete-import-js'
+" Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mxw/vim-jsx'
 " Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
 " Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
@@ -56,12 +60,11 @@ Plug 'mxw/vim-jsx'
 " Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
 " Plug 'othree/jspc.vim' " function parameter completion
-" Plug 'HerringtonDarkholme/yats.vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'jparise/vim-graphql'
-" Plug 'mhartington/nvim-typescript' " --- IDE features for TS
+Plug 'leafgarland/typescript-vim' " --- TS syntax highlighting
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " --- TS autocomplete
 Plug 'posva/vim-vue' " --- vuejs
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
@@ -265,6 +268,7 @@ let g:comfortable_motion_no_default_key_mappings = 1 " disable default mapping
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
 let g:ctrlp_map = '' " disable default ctrl-p mapping
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
+let g:deoplete_import_js#bin = 'importjs'
 let g:deoplete#enable_at_startup = 1 " start deoplete
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
 let g:deoplete#sources#ternjs#timeout = 1
