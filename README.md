@@ -9,8 +9,7 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 ## Installation
 
-#### Install required binaries:
-
+#### 1. Install required binaries
 1. Have (Neo)Vim and Git installed ofcourse
 2. Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
 3. If using OSX: `brew install reattach-to-user-namespace`
@@ -21,20 +20,22 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 8. The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
 9. Free `Inconsolata` font
 
-#### Backup your old configuration ~/.vimrc and replace it with this file or create a symlink
+#### 2. Backup your old configuration and get new ones
 1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
 2. Replace it: `wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc`
 3. NeoVim uses XDG configuration: `ln -s ~/.vimrc ~/.config/nvim/init.vim`
 4. Vim uses old `.vimrc` location so there's no need to create symlink.
-5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc`, `prettierrc` and configure more if feel comfortable.
-5. Before opening (Neo)Vim:
+5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc`, `prettierrc`, `.gitignore`, `.prettierignore` and configure more if feel comfortable.
+
+#### 3. Download and install more
+1. Before opening (Neo)Vim:
+- Install necessary global node packages by running `npm install -g typescript neovim`
+- Install global node packages for eslint `npm i -g eslint eslint-config-airbnb eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack babel-eslint`
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
 - Install vim-plug: https://github.com/junegunn/vim-plug
 - Download and install `Knack Nerd Font` from [here](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm2 to use it.
 - Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
-- Install necessary global node packages by running `npm install -g typescript neovim`
-- Install global node packages for eslint `npm i -g eslint eslint-config-airbnb eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack babel-eslint`
-6. Open (Neo)Vim and:
+2. Open (Neo)Vim and:
 - Run `:UpdateRemotePlugins` in vim at the end.
 - Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
 - Learn key bindings by reading this file
