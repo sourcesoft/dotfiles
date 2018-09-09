@@ -1,13 +1,24 @@
 {
   "libs": [
     "browser",
+    "ecmascript",
+    "ecma5",
+    "ecma6",
     "react"
   ],
+  "loadEagerly": [],
+  "async": true,
   "plugins": {
-      "angular": {},
-      "doc_comment": null,
-      "es_modules": {},
-      "node": {}
+    "angular": {},
+    "doc_comment": {
+      "fullDocs": true
+    },
+    "complete_strings": {},
+    "es_modules": {},
+    "modules": {},
+    "node": {},
+    "commonjs": {},
+    "node_resolve":{}
   },
   "dontLoad": [
       "node_modules/**"
