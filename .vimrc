@@ -19,15 +19,17 @@ Plug 'airblade/vim-rooter' " --- change root directory on the fly
 Plug 'suan/vim-instant-markdown' " --- live markdown edit
 Plug 'Shougo/unite.vim' " --- dev helper
 Plug 'neovim/python-client' " --- support python for neovim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
+Plug 'w0rp/ale' " --- lint engine while typing better than neomake
+Plug 'Valloric/YouCompleteMe' " --- best autocomplete ever
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
 Plug 'chrisbra/improvedft' " --- better f and t
 Plug 'Shougo/vimfiler.vim' " --- file explorer
 Plug 'scrooloose/nerdtree' " --- file explorer
-Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
-Plug 'unkiwii/vim-nerdtree-sync' " Sync open file to NERDTree
+" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
+" Plug 'unkiwii/vim-nerdtree-sync' " Sync open file to NERDTree
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
@@ -44,34 +46,20 @@ Plug 'junegunn/vim-slash' " --- better in-buffer search
 Plug 'junegunn/vim-emoji' " --- emoji in vim
 Plug 'Shougo/denite.nvim'
 " ------------------------------------------------
-" --- JS Syntax, Autocomplete & Linters
+" --- JS, JSX, TS, Flow, React, Vue
 " ------------------------------------------------
-Plug 'ervandew/supertab' " --- autocomplete with tabs
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'steelsojka/deoplete-flow'
-Plug 'galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
-Plug 'billyvg/deoplete-import-js'
-" Plug 'pangloss/vim-javascript'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mxw/vim-jsx'
-" Plug 'chemzqm/vim-jsx-improve' " --- support React jsx correctly
-" Plug 'othree/yajs.vim' " --- heavy lifting, disable for better performance
-" Plug 'othree/es.next.syntax.vim' " --- experimental next ES version syntax
-" Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'jelera/vim-javascript-syntax' " JavaScript syntax
-" Plug 'othree/jspc.vim' " function parameter completion
-Plug 'w0rp/ale' " --- lint engine while typing better than neomake
-Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
-Plug 'jparise/vim-graphql'
+Plug 'pangloss/vim-javascript' " --- General JS syntax highlighter
 Plug 'leafgarland/typescript-vim' " --- TS syntax highlighting
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " --- TS autocomplete
-Plug 'posva/vim-vue' " --- vuejs
+Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlighting (both js and ts)
+Plug 'Quramy/vim-js-pretty-template' " --- syntax for JS inside tagged template
+Plug 'posva/vim-vue' " --- Vue syntax highlighting
+Plug 'jparise/vim-graphql'
+" Plug 'HerringtonDarkholme/yats.vim'
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
 " ------------------------------------------------
 Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
 Plug 'fatih/vim-go' " --- Go plugin
-Plug 'zchee/deoplete-go' " --- Go completion
 Plug 'AndrewRadev/splitjoin.vim' " --- GO split and join struct literals
 " Plug 'OmniSharp/omnisharp-vim' " --- omnicompletion (intellisense) and more
 Plug 'OrangeT/vim-csharp' " --- C# Enhancement's to Vim's C-Sharp Functionality
@@ -102,56 +90,13 @@ Plug 'morhetz/gruvbox' " --- cool theme
 Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
 Plug 'nathanaelkane/vim-indent-guides' " --- see indents clearly
 " ------------------------------------------------
-" --- Snippets using neosnippets with deoplete
+" --- Snippets using neosnippets
 " ------------------------------------------------
 Plug 'Shougo/neosnippet.vim' " --- engine
 Plug 'Shougo/neosnippet-snippets' " --- snippets #1
 Plug 'honza/vim-snippets' " --- snippets #2
 Plug 'rizzatti/dash.vim' " --- offline doc
 call plug#end()
-
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~ Config ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-syntax enable
-set number
-function! StrTrim(txt)
-  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-endfunction
-let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
-  let g:SuperTabDefaultCompletionType = "<c-n>"
-  let g:deoplete#sources#flow#flow_bin = g:flow_path
-  set completeopt-=preview
-  let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'WarningMsg',
-  \ }
-  let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'ErrorMsg',
-  \ }
-  let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
-  let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
-  let g:neomake_javascript_flow_exe = g:flow_path
-  let g:neomake_jsx_flow_exe = g:flow_path
-  " autocmd! BufWritePost * Neomake
-else
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_always_populate_loc_list = 0
-  let g:syntastic_auto_jump = 0
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_check_on_wq = 1
-  let g:syntastic_javascript_checkers = ['eslint']
-endif
-let g:jsx_ext_required = 0 " Highlight JSX in .js files
-nnoremap <C-T> :FZF<CR>
-inoremap <C-T> <ESC>:FZF<CR>i
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -226,6 +171,7 @@ set colorcolumn=80 " aditional column width -- disable for better perf
 " -------------
 " ------------- Theme and look
 " -------------
+syntax enable
 syntax on
 filetype plugin on
 set background=dark
@@ -235,24 +181,36 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" JSX tag coloring
+let g:vim_jsx_pretty_enable_jsx_highlight = 0
+highlight def link jsxTag String
+highlight def link jsxTagName Function
+highlight def link jsxString String
+highlight def link jsxNameSpace String
+highlight def link jsxComment Error
+highlight def link jsxAttrib Type
+highlight def link jsxEscapeJs jsxEscapeJs
+highlight def link jsxCloseTag String
+highlight def link jsxCloseString Function
 let g:ft_improved_ignorecase = 1 " make f in-casesensitive
 let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
 let g:vimfiler_as_default_explorer=1 " make vimfiler as default
 let g:bufExplorerShowRelativePath=1 " shows shorter path
 let g:bufExplorerSortBy='fullpath' " sort by path
 let g:tmuxline_powerline_separators = 0
-let g:neomake_css_enabled_makers = ['stylelint'] " stylelint
 let g:airline_left_sep='' " no extra characters
 let g:airline_right_sep=''
 let g:airline_theme='powerlineish' " airline simple theme
-let g:airline_extensions = ['branch', 'tabline', 'ctrlp', 'hunks']
+let g:airline_extensions = ['tabline']
+let g:airline_highlighting_cache = 1
+let g:ale_cache_executable_check_failures = 1
 let g:airline#extensions#tabline#enabled = 1 " enable tabline
 let g:airline#extensions#tabline#show_tab_nr = 0 " no tab number
 let g:airline#extensions#tabline#buffer_nr_show = 1 " show buffer number
 let g:airline#extensions#tabline#show_splits = 0 " disable split count
 let g:airline#extensions#tabline#fnamemod = ':p:t' " no directories in anem
 let g:airline#extensions#tabline#fnamecollapse = 1 " collapse directories
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " tab names
+let g:airline#extensions#tabline#formatter = 'jsformatter' " tab names
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]' " don't need this
 let g:airline_section_x = '' " no need for file-type
 let g:airline#extensions#tabline#left_sep = ' '
@@ -269,21 +227,7 @@ let g:comfortable_motion_no_default_key_mappings = 1 " disable default mapping
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
 let g:ctrlp_map = '' " disable default ctrl-p mapping
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
-let g:deoplete_import_js#bin = 'importjs'
-let g:deoplete#enable_at_startup = 1 " start deoplete
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
-let g:deoplete#sources#ternjs#timeout = 1
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#sources = {}
-let g:deoplete#sources.javascript = ['buffer', 'tern']
-let g:tern#filetypes = [
-      \ 'js',
-      \ 'jsx',
-      \ 'javascript.jsx',
-      \ 'ts',
-      \ 'vue'
-      \ ]
-let g:deoplete#sources#ternjs#tern_bin = '/usr/local/bin/tern'
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
 let g:multi_cursor_use_default_mapping=0 " disable default vim-multiple-cursors mappings
 let g:multi_cursor_next_key='<C-d>' " multi select with control-d like sublime
@@ -348,7 +292,7 @@ let g:tagbar_type_go = {
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.o$', '\.pyc$', '\.php\~$']
-let NERDTreeWinSize = 35
+let NERDTreeWinSize = 25
 let g:NERDTreeShowHidden=1 " show dotfiles by default
 let NERDTreeRespectWildIgnore=1 " respect wildignore
 let loaded_netrwPlugin=1 " disable netrw since we're going to hijack it with NERDTree anyway
@@ -377,8 +321,8 @@ let g:tmuxline_preset = {
 " specific linters while typing, disable linting for go
 " options including standard, eslint, flow
 let g:ale_linters = {
-\   'javascript': ['eslint', 'prettier', 'importjs', 'tsserver', 'typecheck'],
-\   'typescript': ['eslint', 'prettier', 'tsserver', 'typecheck'],
+\   'javascript': ['eslint', 'tsserver'],
+\   'typescript': ['eslint', 'tsserver'],
 \   'go': [],
 \}
 let g:ale_sign_column_always = 1
@@ -386,11 +330,12 @@ let g:ale_sign_error = '💩'
 let g:ale_sign_warning = '⚠️'
 let g:ale_javascript_eslint_suppress_missing_config = 0
 let g:ale_javascript_eslint_suppress_eslintignore = 1
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_prettier_use_global = 1
+" let g:ale_javascript_eslint_use_global = 1
+" let g:ale_javascript_prettier_use_global = 1
 " enable formatter for js and jsx file using prettier
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
 " let g:ale_fixers['json'] = ['prettier']
 let g:ale_fix_on_save = 0
@@ -441,9 +386,6 @@ nnoremap <leader>r :call VimuxRunLastCommand()<cr>
 nnoremap <silent> <esc> :noh<CR>
 " --- control-n --- create a new file in current buffer directory
 nnoremap <C-n> :tabe %:h/
-" --- leader-j, leader-jj --- JS: jump to definition file in split or tab
-au FileType javascript nmap <leader>j <ESC>:TernDefSplit<CR>
-au FileType javascript nmap <leader>jj <ESC>:TernDefTab<CR>
 " --- leader-i --- Go: show type
 au FileType go nmap <leader>i <Plug>(go-info)
 " --- leader-j --- Go: jump to def in new split
@@ -515,7 +457,7 @@ inoremap <silent> <leader>sk <Esc><C-u>
 " --- control-e --- nerdtree control+e
 nnoremap <silent> <C-e> :call ToggleNerdFocus()<CR>
 inoremap <silent> <C-e> <ESC>:call ToggleNerdFocus()<CR>
-noremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
+noremap <silent> <Leader>e :call ToggleNerdFocus()<CR>
 " --- gi, go --- change tabs
 nnoremap go :tabn<CR>
 nnoremap gi :tabp<CR>
@@ -610,7 +552,8 @@ map <a-r> :source ~/vim_session <cr>
 " is saved. Also we use FindRootDirectory() utility from airblade/vim-rooter
 " plugin so we always have the correct pwd, using native pwd is buggy sometimes.
 fu! SaveSess()
-  NERDTreeTabsClose
+  " NERDTreeTabsClose
+  NERDTreeClose
   execute 'mksession! ' . getcwd() . '/.session.vim'
 endfunction
 fu! RestoreSess()
@@ -675,10 +618,10 @@ fu! ToggleNerdFocus()
     if bufname("") == "NERD_tree_2"
       wincmd p
     else
-      NERDTreeTabsFind
+      NERDTreeFind
     endif
   else
-    NERDTreeTabsToggle
+    NERDTreeToggle
   endif
 endfunction
 fu! CloseAllOtherBuffers()
