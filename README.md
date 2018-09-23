@@ -1,6 +1,6 @@
-My own (Neo)Vim configuration which focuses on JS(React, Vue, stage-0, TS, Flow), CSS(and styled-components), GraphQL and GO, however also works with C# and Python.
+My own (Neo)Vim configuration which focuses on JS(React, Vue, TypeScript, Flow), CSS(and styled-components), GraphQL and GO, however also works with C#, Java, Python and Rust.
 Configuration is based on Tmux, iTerm2, OSX but I also use it on Ubuntu.
-I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
+I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 ![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
 
@@ -11,13 +11,13 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 #### 1. Install required binaries
 1. Have (Neo)Vim and Git installed ofcourse
-2. Tmux (plugins: https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
+2. Install Tmux and [plugins](https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
 3. If using OSX: `brew install reattach-to-user-namespace`
-4. Rainbarf (https://github.com/creaktive/rainbarf)
-5. Oh My ZSH (https://github.com/robbyrussell/oh-my-zsh)
-6. If you're running OSX install iTerm and Dash.app (https://kapeli.com/dash)
-7. GO (https://golang.org/doc/install)
-8. The Silver Searcher (https://github.com/ggreer/the_silver_searcher)
+4. [Rainbarf](https://github.com/creaktive/rainbarf)
+5. [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh)
+6. If you're running OSX install iTerm and [Dash.app](https://kapeli.com/dash)
+7. Install [GO](https://golang.org/doc/install)
+8. [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
 9. Free `Inconsolata` font
 
 #### 2. Backup your old configuration and get new ones
@@ -28,12 +28,13 @@ I use Alt and CMD for some key mappings, so it's more suitable for Mac+iTerm.
 5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc.js`, `prettierrc`, `.gitignore`, `.prettierignore` and configure more if feel comfortable.
 6. install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md) custom plugins for zsh.
 
-#### 3. Download and install more
+#### 3. Download and install more (in order)
 1. Before opening (Neo)Vim:
 - Install necessary global node packages by running `npm install -g typescript neovim`
 - Install global node packages for eslint `npm i -g eslint eslint-config-airbnb eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack babel-eslint` or install them in the project directory as a dev dependency.
+- Compile [YouCompleteMe](https://github.com/Valloric/YouCompleteMe#mac-os-x). Remeber to have `xbuild`, `go`, `tsserver` ,`npm`, `node`, `cargo`, `rustc`, Java JDK installed to use `--all` flag.
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
-- Install vim-plug: https://github.com/junegunn/vim-plug
+- [Install vim-plug](https://github.com/junegunn/vim-plug)
 - Download and install `Knack Nerd Font` from [here](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm2 to use it.
 - Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
 2. Open (Neo)Vim and:
