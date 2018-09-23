@@ -85,11 +85,7 @@ Tools to setup the key bindings:
 ### Tools as a developer
 - [NeoVim](https://neovim.io) / [vimrc](https://github.com/sourcesoft/my-long-list/blob/master/.vimrc) / [ag](https://github.com/ggreer/the_silver_searcher) - Can't live without ya'll, not even a day.
 - [iTerm2](https://www.iterm2.com/) / [zsh](https://github.com/robbyrussell/oh-my-zsh) / [tmux](https://tmux.github.io/) - Performant terminal and shell everywhere.
-- [SourceTree](https://www.sourcetreeapp.com) - I can't remember all those weird hard to memorize git commands, so this is my GUI.
-- [Transmit](https://panic.com/transmit/) - I'm using it for what it is and It's got everything I want.
-- [Paw](https://paw.butt/) - Advanced REST client for testing my backend
 - [Little Snitch](https://www.obdev.at/products/littlesnitch) - Sometimes I need to monitor I/O of an application I'm developing.
 - [Charles](https://www.charlesproxy.com/) - Monitoring using all the tools even the ones I have no idea what they are.
 - [Fritzing](fritzing.org/) - Easily design electronic circuits for Arduino in no time.
 - [OsmondCocoa](www.osmondpcb.com/) - Sometimes I need to build a ready to print for some home-made circuits.
-
