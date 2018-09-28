@@ -142,6 +142,7 @@ set textwidth=80
 " set esckeys " cursor keys in insert mode
 set backspace=indent,eol,start " backspace in insert mode
 set nobackup " all backups off
+set backupcopy=yes
 set nowb
 set noswapfile " no swap files
 set nostartofline " don't jump start of lines
@@ -183,15 +184,15 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " JSX tag coloring
 let g:vim_jsx_pretty_enable_jsx_highlight = 0
-highlight def link jsxTag String
-highlight def link jsxTagName Function
+highlight def link jsxTag Keyword
+highlight def link jsxTagName Keyword
 highlight def link jsxString String
 highlight def link jsxNameSpace String
 highlight def link jsxComment Error
 highlight def link jsxAttrib Type
 highlight def link jsxEscapeJs jsxEscapeJs
-highlight def link jsxCloseTag String
-highlight def link jsxCloseString Function
+highlight def link jsxCloseTag Keyword
+highlight def link jsxCloseString Keyword
 let g:ft_improved_ignorecase = 1 " make f in-casesensitive
 let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
 let g:vimfiler_as_default_explorer=1 " make vimfiler as default
@@ -321,8 +322,9 @@ let g:tmuxline_preset = {
 " specific linters while typing, disable linting for go
 " options including standard, eslint, flow
 let g:ale_linters = {
-\   'javascript': ['eslint', 'tsserver'],
-\   'typescript': ['eslint', 'tsserver'],
+\   'javascript': ['eslint', 'tsserver', 'stylelint'],
+\   'typescript': ['tslint', 'tsserver', 'stylelint'],
+\   'css': ['stylelint'],
 \   'go': [],
 \}
 let g:ale_sign_column_always = 1
@@ -337,7 +339,7 @@ let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
-" let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['json'] = ['prettier']
 let g:ale_fix_on_save = 0
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 let g:ale_javascript_prettier_use_local_config = 1
