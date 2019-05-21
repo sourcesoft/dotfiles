@@ -21,7 +21,7 @@ Plug 'Shougo/unite.vim' " --- dev helper
 Plug 'neovim/python-client' " --- support python for neovim
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'w0rp/ale' " --- lint engine while typing better than neomake
-Plug 'Valloric/YouCompleteMe' " --- best autocomplete ever
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
@@ -54,6 +54,7 @@ Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlighting (both js and ts)
 Plug 'Quramy/vim-js-pretty-template' " --- syntax for JS inside tagged template
 Plug 'posva/vim-vue' " --- Vue syntax highlighting
 Plug 'jparise/vim-graphql'
+Plug 'flowtype/vim-flow'
 " Plug 'HerringtonDarkholme/yats.vim'
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
@@ -79,6 +80,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'will133/vim-dirdiff' " --- git diff for directories
 Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
 Plug 'junegunn/gv.vim' " --- git commit browser
+Plug 'tpope/vim-rhubarb' " fugitive GitHub handler
 " ------------------------------------------------
 " --- Look and feel
 " ------------------------------------------------
@@ -132,13 +134,14 @@ set showtabline=2 " Always show tab bar
 set undofile " Persistent Undo
 set undodir=~/.vim/undo " store all the persisted files in a single directory
 set title " show file name in window
-set shortmess=atI " no intro message
+set shortmess+=c " don't give ins-completion-menu messages.
+set signcolumn=yes " always show signcolumns
 set mouse=a " enable mouse in all modes
 set bs=2
 set laststatus=2 " always show status bar
 set history=100 " Increase history from 20 default to 100
 set hidden
-set textwidth=80
+set textwidth=0
 " set esckeys " cursor keys in insert mode
 set backspace=indent,eol,start " backspace in insert mode
 set nobackup " all backups off
@@ -148,6 +151,8 @@ set noswapfile " no swap files
 set nostartofline " don't jump start of lines
 set ruler " Show the cursor position
 set switchbuf=usetab,newtab " quickfix opens buffer in existing tabs
+set nowrap
+set cmdheight=2 " Better display for messages
 " -------------
 " ------------- Searching
 " -------------
@@ -160,7 +165,7 @@ set smartcase
 " -------------
 " ------------- Heavy lifting stuff
 " -------------
-set updatetime=750 " more frequent updates -- disable for better perf
+set updatetime=300 " more frequent updates -- disable for better perf
 set regexpengine=1 " use the old engine for better perf
 " set lazyredraw " redraw -- disable for better perf
 set relativenumber " relatives numbers -- disable for better perf
@@ -193,6 +198,8 @@ highlight def link jsxAttrib Type
 highlight def link jsxEscapeJs jsxEscapeJs
 highlight def link jsxCloseTag Keyword
 highlight def link jsxCloseString Keyword
+let g:python2_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ft_improved_ignorecase = 1 " make f in-casesensitive
 let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
 let g:vimfiler_as_default_explorer=1 " make vimfiler as default
@@ -322,11 +329,12 @@ let g:tmuxline_preset = {
 " specific linters while typing, disable linting for go
 " options including standard, eslint, flow
 let g:ale_linters = {
-\   'javascript': ['eslint', 'tsserver', 'stylelint'],
+\   'javascript': ['flow', 'eslint', 'stylelint'],
 \   'typescript': ['tslint', 'tsserver', 'stylelint'],
 \   'css': ['stylelint'],
 \   'go': [],
 \}
+let g:flow#enable = 0
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '💩'
 let g:ale_sign_warning = '⚠️'
@@ -340,9 +348,11 @@ let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['jsp'] = ['prettier']
 let g:ale_fix_on_save = 0
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_echo_msg_format = '%linter% says %s'
 command! FIXDisable let ale_fix_on_save=0
 command! FIXEnable let ale_fix_on_save=1
 " if user calls these options manually, local configuration will be replaced
@@ -353,10 +363,22 @@ command! FIXOptionNosemi let ale_javascript_prettier_options='--single-quote --t
 command! FIXOptionNosemiTrailing let ale_javascript_prettier_options='--single-quote --no-semi es5'
 command! FIXOptionJSON let g:ale_fixers['json'] = ['prettier']
 
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" --- shift+3 --- Highlight symbol under cursor on CursorHold
+nnoremap <silent> <s-3> :call CocActionAsync('highlight')<cr>
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 " --- leader+ff --- AG and ACK
 nnoremap <leader>ff :Ack 
 if executable('ag')
@@ -466,8 +488,8 @@ nnoremap gi :tabp<CR>
 " --- control-i, control-o --- next prev buffers
 nnoremap <C-o> :call NextBuffer()<cr>
 nnoremap <C-i> :call PrevBuffer()<CR>
-inoremap <C-o> <ESC>:call NextBuffer()<CR>
-inoremap <C-i> <ESC>:call PrevBuffer()<CR>
+" inoremap <C-o> <ESC>:call NextBuffer()<CR>
+" inoremap <C-i> <ESC>:call PrevBuffer()<CR>
 " --- gp --- fuzzy serach buffers
 nnoremap gp :Buffers<CR>
 " --- <leader>-a --- easier buffer switch
