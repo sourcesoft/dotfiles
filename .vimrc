@@ -6,6 +6,7 @@ call plug#begin()
 " ------------------------------------------------
 " --- Utility
 " ------------------------------------------------
+Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround' " --- handy quick parentheses, brackets, ...
 Plug 'tpope/vim-commentary' " --- comment code quickly
 Plug 'tpope/vim-repeat' " --- repeat everything
@@ -20,28 +21,25 @@ Plug 'suan/vim-instant-markdown' " --- live markdown edit
 Plug 'Shougo/unite.vim' " --- dev helper
 Plug 'neovim/python-client' " --- support python for neovim
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
-Plug 'w0rp/ale' " --- lint engine while typing better than neomake
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'dense-analysis/ale' " --- lint engine while typing better than neomake
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'itchyny/calendar.vim'
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
 Plug 'chrisbra/improvedft' " --- better f and t
 Plug 'Shougo/vimfiler.vim' " --- file explorer
 Plug 'scrooloose/nerdtree' " --- file explorer
-" Plug 'jistr/vim-nerdtree-tabs' " --- nerdtree in all tabs
-" Plug 'unkiwii/vim-nerdtree-sync' " Sync open file to NERDTree
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
 Plug 'junegunn/fzf.vim' " extra fzf features
-Plug 'majutsushi/tagbar' " --- tagbar sidebar
 Plug 'junegunn/vim-slash' " --- improved searching
 Plug 'tpope/vim-unimpaired' " --- awesome mappings
 Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
 Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
-Plug 'majutsushi/tagbar' " --- ctags outline
 Plug 'junegunn/vim-slash' " --- better in-buffer search
 Plug 'junegunn/vim-emoji' " --- emoji in vim
 Plug 'Shougo/denite.nvim'
@@ -62,7 +60,6 @@ Plug 'flowtype/vim-flow'
 Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
 Plug 'fatih/vim-go' " --- Go plugin
 Plug 'AndrewRadev/splitjoin.vim' " --- GO split and join struct literals
-" Plug 'OmniSharp/omnisharp-vim' " --- omnicompletion (intellisense) and more
 Plug 'OrangeT/vim-csharp' " --- C# Enhancement's to Vim's C-Sharp Functionality
 Plug 'python-mode/python-mode' " --- makes Vim a Python IDE
 " ------------------------------------------------
@@ -187,6 +184,7 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:calendar_google_calendar = 1
 " JSX tag coloring
 let g:vim_jsx_pretty_enable_jsx_highlight = 0
 highlight def link jsxTag Keyword
@@ -268,34 +266,6 @@ let g:go_fmt_autosave = 1
 let g:go_auto_sameids = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_list_height = 10
-" tagbar config for Go
-let g:tagbar_type_go = {
-\ 'ctagstype' : 'go',
-\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-\ ],
-\ 'sro' : '.',
-\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-\ },
-\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-\ },
-\ 'ctagsbin'  : 'gotags',
-\ 'ctagsargs' : '-sort -silent'
-\ }
 " NERDTree General properties
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
@@ -329,8 +299,8 @@ let g:tmuxline_preset = {
 " specific linters while typing, disable linting for go
 " options including standard, eslint, flow
 let g:ale_linters = {
-\   'javascript': ['flow', 'eslint', 'stylelint'],
-\   'typescript': ['tslint', 'tsserver', 'stylelint'],
+\   'javascript': ['eslint', 'stylelint'],
+\   'typescript': ['tsserver', 'stylelint'],
 \   'css': ['stylelint'],
 \   'go': [],
 \}
@@ -350,7 +320,7 @@ let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['json'] = ['prettier']
 let g:ale_fixers['jsp'] = ['prettier']
 let g:ale_fix_on_save = 0
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 printWidth=100'
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_echo_msg_format = '%linter% says %s'
 command! FIXDisable let ale_fix_on_save=0
@@ -428,8 +398,6 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 " --- leader-e --- Go: check errors
 au FileType go nmap <leader>c :GoErrCheck<cr>
-" --- leader-z --- open tagbar
-nnoremap <leader>z :TagbarToggle<CR>
 au FileType go nnoremap <leader>f :GoDeclsDir<CR>
 " --- leader-; --- quickly navigate to necessary buffer
 " --- iTerm hexcodes: '0x2C 0x3B' --- Command-;
@@ -564,42 +532,19 @@ imap <c-s> <Esc>:w<CR>a
 nmap <a-s> :wa<CR>
 imap <a-s> <Esc>:wa<CR>a
 " --- alt-q --- save all buffers, save session based on directory and quit
-nmap <a-q> :wqa!<CR>
-imap <a-q> <Esc>:wqa!<CR>
-" --- alt-w --- save special session and all buffers
-nmap <a-w> :mksession! ~/vim_session <cr>:wqa!<CR>
-imap <a-w> <esc>:mksession! ~/vim_session <cr>:wqa!<CR>
-" --- alt-r --- restore special session
-map <a-r> :source ~/vim_session <cr>
+nmap <a-q> :NERDTreeClose<CR>:wqa!<CR>
+imap <a-q> :NERDTreeClose<CR><Esc>:wqa!<CR>
 " --- automatic --- save and restore session based on current directory.
 " we need to use :qa! to quit all buffers at once otherwise only the last one
-" is saved. Also we use FindRootDirectory() utility from airblade/vim-rooter
-" plugin so we always have the correct pwd, using native pwd is buggy sometimes.
+" is saved.
 fu! SaveSess()
-  " NERDTreeTabsClose
   NERDTreeClose
-  execute 'mksession! ' . getcwd() . '/.session.vim'
-endfunction
-fu! RestoreSess()
-  if filereadable(getcwd() . '/.session.vim')
-    execute 'so ' . getcwd() . '/.session.vim'
-    if bufexists(1)
-      for l in range(1, bufnr('$'))
-        if bufwinnr(l) == -1
-          exec 'sbuffer ' . l
-        endif
-      endfor
-    endif
-  endif
-  syntax on
-  execute 'bd ' . getcwd()
+  execute 'mksession! ' . getcwd() . '/Session.vim'
 endfunction
 " --- We use automatic sessions for neovim only
 if has('nvim')
   " Save session on quitting Vim
   autocmd VimLeave * call SaveSess()
-  " Restore session on starting Vim
-  autocmd VimEnter * nested call RestoreSess()
 endif
 
 
@@ -607,7 +552,7 @@ endif
 " ~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- alt-e --- reload vim
-noremap <a-e> <Esc>:source ~/.vimrc.js/vimrc<cr>
+noremap <a-e> <Esc>:source ~/.vimrc<cr>
 " --- ,w --- remove trailing spaces manualy if there's any
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
@@ -648,69 +593,3 @@ fu! ToggleNerdFocus()
     NERDTreeToggle
   endif
 endfunction
-fu! CloseAllOtherBuffers()
-  %bd|e#
-endfunction
-" makes gf open nodejs imports
-set path=.,src
-set suffixesadd=.js,.jsx
-function! LoadMainNodeModule(fname)
-    let nodeModules = "./node_modules/"
-    let packageJsonPath = nodeModules . a:fname . "/package.json"
-    if filereadable(packageJsonPath)
-        return nodeModules . a:fname . "/" . json_decode(join(readfile(packageJsonPath))).main
-    else
-        return nodeModules . a:fname
-    endif
-endfunction
-set includeexpr=LoadMainNodeModule(v:fname)
-" quickly switch between buffers by their number
-func! Key_leader_bufnum(num)
-  let l:buffers = Buflisted()
-  let l:input = a:num . ""
-
-  while 1
-
-    let l:cnt = 0
-    let l:i=0
-    " count matches
-    while l:i<len(l:buffers)
-      let l:bn = l:buffers[l:i] . ""
-      if l:input==l:bn[0:len(l:input)-1]
-        let l:cnt+=1
-      endif
-      let l:i+=1
-    endwhile
-
-    " no matches
-    if l:cnt==0 && len(l:input)>0
-      echo "no buffer [" . l:input . "]"
-      return ''
-    elseif l:cnt==1
-      return ":b " . l:input . "\<CR>"
-    endif
-
-    echo ":b " . l:input
-
-    let l:n = getchar()
-
-    if l:n==char2nr("\<BS>") ||  l:n==char2nr("\<C-h>")
-      " delete one word
-      if len(l:input)>=2
-        let l:input = l:input[0:len(l:input)-2]
-      else
-        let l:input = ""
-      endif
-    elseif l:n==char2nr("\<CR>") || (l:n<char2nr('0') || l:n>char2nr('9'))
-      return ":b " . l:input . "\<CR>"
-    else
-      let l:input = l:input . nr2char(l:n)
-    endif
-
-    let g:n = l:n
-
-  endwhile
-endfunc
-func! Buflisted()
-  return filter(range(1, bufnr('$')), 'buflisted(v:val)')
-endfunc
