@@ -184,6 +184,10 @@ colorscheme gruvbox " heavy lifting -- disable for better perf
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+augroup END
 let g:calendar_google_calendar = 1
 " JSX tag coloring
 let g:vim_jsx_pretty_enable_jsx_highlight = 0
@@ -270,7 +274,7 @@ let g:go_list_height = 10
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.o$', '\.pyc$', '\.php\~$']
-let NERDTreeWinSize = 25
+let NERDTreeWinSize = 35
 let g:NERDTreeShowHidden=1 " show dotfiles by default
 let NERDTreeRespectWildIgnore=1 " respect wildignore
 let loaded_netrwPlugin=1 " disable netrw since we're going to hijack it with NERDTree anyway
