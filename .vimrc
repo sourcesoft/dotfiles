@@ -361,7 +361,7 @@ xmap <C-v> <Plug>(neosnippet_expand_target)
 " --- control-g --- search files in CURRENT BUFFER directory using 'fzf'
 nnoremap <C-g> :cd %:h<cr>:FZF<cr>
 " --- control-f --- search with Ag
-nnoremap <C-f> :Ag<cr>
+nnoremap <C-f> :call ToggleSilverSearch()<cr>
 " --- gt --- search git commits
 nnoremap gt :Commits<cr>
 " --- control-t --- search all files in PROJECT directory using 'fzf'
@@ -563,28 +563,34 @@ if has('nvim')
 endif
 " move outside nerdtree first then switch buffer or list buffers
 fu! NextBuffer()
-  if bufname("") == "NERD_tree_2"
+  if bufname("") == "NERD_tree_1"
     wincmd p
   endif
   bn
 endfunction
 fu! PrevBuffer()
-  if bufname("") == "NERD_tree_2"
+  if bufname("") == "NERD_tree_1"
     wincmd p
   endif
   bp
 endfunction
 fu! ToggleBuf()
-  if bufname("") == "NERD_tree_2"
+  if bufname("") == "NERD_tree_1"
     wincmd p
   endif
   ToggleBufExplorer
 endfunction
+fu! ToggleSilverSearch()
+  if bufname("") == "NERD_tree_1"
+    wincmd p
+  endif
+  Ag
+endfunction
 " opens nerdtree if it's not open already, then switches between file and
 " nerdtree split
 fu! ToggleNerdFocus()
-  if bufwinnr("NERD_tree_2") == 1
-    if bufname("") == "NERD_tree_2"
+  if bufwinnr("NERD_tree_1") == 1
+    if bufname("") == "NERD_tree_1"
       wincmd p
     else
       NERDTreeFind
@@ -593,3 +599,53 @@ fu! ToggleNerdFocus()
     NERDTreeToggle
   endif
 endfunction
+" quickly switch between buffers by their number
+func! Key_leader_bufnum(num)
+  let l:buffers = Buflisted()
+  let l:input = a:num . ""
+
+  while 1
+
+    let l:cnt = 0
+    let l:i=0
+    " count matches
+    while l:i<len(l:buffers)
+      let l:bn = l:buffers[l:i] . ""
+      if l:input==l:bn[0:len(l:input)-1]
+        let l:cnt+=1
+      endif
+      let l:i+=1
+    endwhile
+
+    " no matches
+    if l:cnt==0 && len(l:input)>0
+      echo "no buffer [" . l:input . "]"
+      return ''
+    elseif l:cnt==1
+      return ":b " . l:input . "\<CR>"
+    endif
+
+    echo ":b " . l:input
+
+    let l:n = getchar()
+
+    if l:n==char2nr("\<BS>") ||  l:n==char2nr("\<C-h>")
+      " delete one word
+      if len(l:input)>=2
+        let l:input = l:input[0:len(l:input)-2]
+      else
+        let l:input = ""
+      endif
+    elseif l:n==char2nr("\<CR>") || (l:n<char2nr('0') || l:n>char2nr('9'))
+      return ":b " . l:input . "\<CR>"
+    else
+      let l:input = l:input . nr2char(l:n)
+    endif
+
+    let g:n = l:n
+
+  endwhile
+endfunc
+func! Buflisted()
+  return filter(range(1, bufnr('$')), 'buflisted(v:val)')
+endfunc
