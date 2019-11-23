@@ -267,6 +267,7 @@ let g:go_def_mapping_enabled = 0 " disable control-t
 let g:go_doc_keywordprg_enabled = 0
 let g:go_auto_type_info = 0
 let g:go_fmt_autosave = 1
+let g:go_metalinter_autosave = 1
 let g:go_auto_sameids = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_list_height = 10
@@ -288,8 +289,6 @@ let NERDTreeAutoCenter = 1
 " NERDTreeTabs
 let nerdtree_tabs_focus_on_files = 1
 let nerdtree_tabs_autofind = 1
-" auto build to find errors on save
-autocmd BufWritePre *.go silent! :GoBuild!
 " tmuxline look and feel
 let g:tmuxline_preset = {
 \'a'    : '  #S  ',
@@ -306,7 +305,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint', 'stylelint'],
 \   'typescript': ['tsserver', 'stylelint'],
 \   'css': ['stylelint'],
-\   'go': [],
+\   'go': ['golint', 'govet', 'errcheck'],
 \}
 let g:flow#enable = 0
 let g:ale_sign_column_always = 1
@@ -323,6 +322,7 @@ let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['json'] = ['prettier']
 let g:ale_fixers['jsp'] = ['prettier']
+let g:ale_fixers['go'] = ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace']
 let g:ale_fix_on_save = 0
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 printWidth=100'
 let g:ale_javascript_prettier_use_local_config = 1
