@@ -19,6 +19,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 7. Install [GO](https://golang.org/doc/install)
 8. [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
 9. Free `Inconsolata` font
+10. https://github.com/athityakumar/colorls
 
 #### 2. Backup your old configuration and get new ones
 1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
