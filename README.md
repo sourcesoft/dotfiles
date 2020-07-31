@@ -27,6 +27,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 4. Vim uses old `.vimrc` location so there's no need to create symlink.
 5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc.js`, `prettierrc`, `.gitignore`, `.prettierignore` and configure more if feel comfortable.
 6. install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md) custom plugins for zsh.
+7. Install pwerlevel10k theme for zsh https://github.com/romkatv/powerlevel10k#oh-my-zsh
 
 #### 3. Download and install more (in order)
 1. Before opening (Neo)Vim:
