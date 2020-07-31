@@ -50,7 +50,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker last-working-dir meteor node npm osx redis-cli sudo cp emoji-clock pj zsh-autosuggestions vi-mode kubectl)
+plugins=(git docker last-working-dir meteor node npm osx redis-cli sudo cp emoji-clock pj zsh-autosuggestions vi-mode kubectl zsh-syntax-highlighting)
 
 # User configuration
 PROJECT_PATHS=(~/work ~/work/app ~/work/go ~/work/lamp)
@@ -99,8 +99,6 @@ alias transfer=transfer
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # . `brew --prefix`/etc/profile.d/z.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias l='colorls -lA --sd'
