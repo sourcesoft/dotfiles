@@ -8,6 +8,7 @@ call plug#begin()
 " ------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround' " --- handy quick parentheses, brackets, ...
+Plug 'wellle/targets.vim' " --- provides additional text objects
 Plug 'tpope/vim-commentary' " --- comment code quickly
 Plug 'tpope/vim-repeat' " --- repeat everything
 Plug 'jiangmiao/auto-pairs' " --- pair and close everything automatically
@@ -89,7 +90,7 @@ Plug 'junegunn/goyo.vim' " --- distraction free mode
 Plug 'amix/vim-zenroom2' " --- iA Writer environment when editing Markdown
 Plug 'morhetz/gruvbox' " --- cool theme
 Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
-Plug 'nathanaelkane/vim-indent-guides' " --- see indents clearly
+Plug 'Yggdroot/indentLine' " --- see indents clearly
 " ------------------------------------------------
 " --- Snippets using neosnippets
 " ------------------------------------------------
