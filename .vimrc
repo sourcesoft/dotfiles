@@ -29,7 +29,10 @@ Plug 'itchyny/calendar.vim'
 " ------------------------------------------------
 Plug 'chrisbra/improvedft' " --- better f and t
 Plug 'Shougo/vimfiler.vim' " --- file explorer
-Plug 'scrooloose/nerdtree' " --- file explorer
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'LumaKernel/fern-mapping-fzf.vim'
+Plug 'lambdalisue/fern.vim' " --- file explorer
 Plug 'ctrlpvim/ctrlp.vim' " --- fuzzy search
 Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
@@ -75,7 +78,6 @@ Plug 'cakebaker/scss-syntax.vim' " --- sass
 Plug 'tpope/vim-fugitive' " --- awesome git
 Plug 'airblade/vim-gitgutter'
 Plug 'will133/vim-dirdiff' " --- git diff for directories
-Plug 'Xuyuanp/nerdtree-git-plugin' " --- nerdtree with git flags
 Plug 'junegunn/gv.vim' " --- git commit browser
 Plug 'tpope/vim-rhubarb' " fugitive GitHub handler
 " ------------------------------------------------
@@ -271,24 +273,11 @@ let g:go_metalinter_autosave = 1
 let g:go_auto_sameids = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_list_height = 10
-" NERDTree General properties
-let NERDTreeDirArrows=1
-let NERDTreeMinimalUI=1
-let NERDTreeIgnore=['\.o$', '\.pyc$', '\.php\~$']
-let NERDTreeWinSize = 35
-let g:NERDTreeShowHidden=1 " show dotfiles by default
-let NERDTreeRespectWildIgnore=1 " respect wildignore
-let loaded_netrwPlugin=1 " disable netrw since we're going to hijack it with NERDTree anyway
-let g:NERDTreeHijackNetrw = 1 " use the split explorer model, hijack netrw
-let g:NERDTreeMinimalUI=1 " Hide 'Press ? for help' prompt
-let g:nerdtree_sync_cursorline=1 " Enable syncing of active file to nerdtree
-" NERDTree Make sure that when NT root is changed, Vim's pwd is also updated
-let NERDTreeChDirMode = 2
-let NERDTreeShowLineNumbers = 1
-let NERDTreeAutoCenter = 1
-" NERDTreeTabs
-let nerdtree_tabs_focus_on_files = 1
-let nerdtree_tabs_autofind = 1
+" fern
+let g:fern#default_hidden = 1
+let g:fern#opener = "split"
+let g:fern#drawer_width = 40
+let g:fern#renderer = "nerdfont"
 " tmuxline look and feel
 let g:tmuxline_preset = {
 \'a'    : '  #S  ',
@@ -322,6 +311,7 @@ let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['json'] = ['prettier']
 let g:ale_fixers['jsp'] = ['prettier']
+let g:ale_fixers['sql'] = ['sqlformat', 'pgformatter']
 let g:ale_fixers['go'] = ['gofmt', 'goimports', 'remove_trailing_lines', 'trim_whitespace']
 let g:ale_fix_on_save = 0
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 printWidth=100'
@@ -450,10 +440,10 @@ nnoremap <silent> <leader>sj <C-d>
 nnoremap <silent> <leader>sk <C-u>
 inoremap <silent> <leader>sj <Esc><C-d>
 inoremap <silent> <leader>sk <Esc><C-u>
-" --- control-e --- nerdtree control+e
-nnoremap <silent> <C-e> :call ToggleNerdFocus()<CR>
-inoremap <silent> <C-e> <ESC>:call ToggleNerdFocus()<CR>
-noremap <silent> <Leader>e :call ToggleNerdFocus()<CR>
+" --- control-e --- filemanager
+nnoremap <silent> <C-e> :call ToggleFileManager()<CR>
+inoremap <silent> <C-e> <ESC>:call ToggleFileManager()<CR>
+noremap <silent> <Leader>e :call ToggleFileManager()<CR>
 " --- gi, go --- change tabs
 nnoremap go :tabn<CR>
 nnoremap gi :tabp<CR>
@@ -536,13 +526,13 @@ imap <c-s> <Esc>:w<CR>a
 nmap <a-s> :wa<CR>
 imap <a-s> <Esc>:wa<CR>a
 " --- alt-q --- save all buffers, save session based on directory and quit
-nmap <a-q> :NERDTreeClose<CR>:wqa!<CR>
-imap <a-q> :NERDTreeClose<CR><Esc>:wqa!<CR>
+nmap <a-q> :wqa!<CR>
+imap <a-q> <Esc>:wqa!<CR>
 " --- automatic --- save and restore session based on current directory.
 " we need to use :qa! to quit all buffers at once otherwise only the last one
 " is saved.
 fu! SaveSess()
-  NERDTreeClose
+  Fern . -drawer -toggle
   execute 'mksession! ' . getcwd() . '/Session.vim'
 endfunction
 " --- We use automatic sessions for neovim only
@@ -551,10 +541,13 @@ if has('nvim')
   autocmd VimLeave * call SaveSess()
 endif
 
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Open buffer with 'o' in fern, not just 'e'
+autocmd FileType fern nmap <buffer> o <Plug>(fern-action-open)
+autocmd FileType fern nmap <buffer> q :Fern . -drawer -toggle<CR>
+autocmd FileType fern nmap <buffer> <c-l> :call Wincmdp()<cr>
 " --- alt-e --- reload vim
 noremap <a-e> <Esc>:source ~/.vimrc<cr>
 " --- ,w --- remove trailing spaces manualy if there's any
@@ -565,43 +558,48 @@ cmap w!! :w !sudo tee %
 if has('nvim')
   nmap <bs> :<c-u>TmuxNavigateLeft<cr>
 endif
-" move outside nerdtree first then switch buffer or list buffers
+" move outside filemanager first then switch buffer or list buffers
 fu! NextBuffer()
-  if bufname("") == "NERD_tree_1"
+  if bufname()[0:3] == "fern"
     wincmd p
   endif
   bn
 endfunction
 fu! PrevBuffer()
-  if bufname("") == "NERD_tree_1"
+  if bufname()[0:3] == "fern"
     wincmd p
   endif
   bp
 endfunction
 fu! ToggleBuf()
-  if bufname("") == "NERD_tree_1"
+  if bufname()[0:3] == "fern"
     wincmd p
   endif
   ToggleBufExplorer
 endfunction
 fu! ToggleSilverSearch()
-  if bufname("") == "NERD_tree_1"
+  if bufname()[0:3] == "fern"
     wincmd p
   endif
   Ag
 endfunction
-" opens nerdtree if it's not open already, then switches between file and
-" nerdtree split
-fu! ToggleNerdFocus()
-  if bufwinnr("NERD_tree_1") == 1
-    if bufname("") == "NERD_tree_1"
+" opens filemanager if it's not open already, then switches between file and
+" filemanager split
+fu! ToggleFileManager()
+  if bufwinnr("fern") == 1
+    if bufname()[0:3] == "fern"
       wincmd p
     else
-      NERDTreeFind
+      Fern . -reveal=% -drawer
+      " FernDo :
     endif
   else
-    NERDTreeToggle
+    Fern . -drawer -toggle
   endif
+endfunction
+" simply calls Wincmdp
+fu! Wincmdp()
+  wincmd p
 endfunction
 " quickly switch between buffers by their number
 func! Key_leader_bufnum(num)
