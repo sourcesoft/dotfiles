@@ -21,3 +21,6 @@ log/
 .session.vim
 .tern-project
 .tern-port
+tags
+tags.lock
+tags.temp
