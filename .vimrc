@@ -47,6 +47,8 @@ Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 Plug 'junegunn/vim-slash' " --- better in-buffer search
 Plug 'junegunn/vim-emoji' " --- emoji in vim
 Plug 'Shougo/denite.nvim'
+Plug 'majutsushi/tagbar' " --- show tags on the right sidebar
+Plug 'ludovicchabant/vim-gutentags' " --- update tags automatically
 " ------------------------------------------------
 " --- JS, JSX, TS, Flow, React, Vue
 " ------------------------------------------------
@@ -114,6 +116,8 @@ set ai " Turn on auto indentation
 set si " Turn on smart indent
 set list
 set foldcolumn=1 " extra margin to the left
+set fdm=syntax " fold based on syntax
+set nofoldenable " don't fold everthing by default
 set autoindent " Copy indent from last line when starting new line
 set expandtab " use spaces instead of tabs
 set mouse= " make cmd-c work
@@ -203,6 +207,35 @@ highlight def link jsxAttrib Type
 highlight def link jsxEscapeJs jsxEscapeJs
 highlight def link jsxCloseTag Keyword
 highlight def link jsxCloseString Keyword
+let g:tagbar_type_javascript = {
+      \ 'ctagstype': 'javascript',
+      \ 'kinds': [
+      \ 'A:arrays',
+      \ 'P:properties',
+      \ 'T:tags',
+      \ 'O:objects',
+      \ 'G:generator functions',
+      \ 'F:functions',
+      \ 'C:constructors/classes',
+      \ 'M:methods',
+      \ 'V:variables',
+      \ 'I:imports',
+      \ 'E:exports',
+      \ 'S:styled components'
+      \ ]}
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
 let g:python2_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ft_improved_ignorecase = 1 " make f in-casesensitive
@@ -243,7 +276,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
 let g:neosnippet#snippets_directory = '~/.config/nvim/plugged/vim-snippets/snippets' " extra snippets
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx,*.php"
 let g:multi_cursor_use_default_mapping=0 " disable default vim-multiple-cursors mappings
-let g:multi_cursor_next_key='<C-d>' " multi select with control-d like sublime
+let g:multi_cursor_next_key='<C-y>' " multi select with control-d like sublime
 let g:multi_cursor_prev_key='<C-p>' " deselect last one
 let g:multi_cursor_quit_key='<Esc>' " clear selection
 " let g:user_emmet_leader_key='<C-r>' " run emmet
@@ -458,8 +491,8 @@ nnoremap gp :Buffers<CR>
 " --- <leader>-a --- easier buffer switch
 " --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
 nnoremap <leader>a <c-^>
-" --- control-u --- close tab or pane
-nmap <C-u> :bp<bar>sp<bar>bn<bar>bd<CR>
+" --- control-w --- close tab or pane
+nmap <C-w> :bp<bar>sp<bar>bn<bar>bd<CR>
 " --- gu --- close tab or pane
 nmap gu :q<CR>
 " --- control-h, control-j, control-k, control-l --- Jump to panes
@@ -483,7 +516,8 @@ inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
 " --- =, - --- Resizing panes
 nnoremap = <C-w>>
 nnoremap - <C-w><
-
+" --- control-a --- toggle tagbar
+nnoremap <silent> <c-a> :TagbarToggle<CR>
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
