@@ -11,16 +11,12 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 #### 1. Install required binaries
 1. Have (Neo)Vim and Git installed ofcourse
-2. Install Tmux and [plugins manager](https://github.com/tmux-plugins/tpm)
+2. Install Tmux and the [plugins manager](https://github.com/tmux-plugins/tpm)
 3. If using OSX: `brew install reattach-to-user-namespace`
-4. [Rainbarf](https://github.com/creaktive/rainbarf)
-5. [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh)
-6. If you're running OSX install iTerm and [Dash.app](https://kapeli.com/dash)
-7. Install [GO](https://golang.org/doc/install)
-8. [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
-9. Free `Inconsolata` font
-10. https://github.com/athityakumar/colorls
-11. Install [`universal-ctags`](https://github.com/universal-ctags/ctags)
+4. [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+5. Install `Inconsolata` and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm to use Knack Nerd.
+6. Install some cool binaries like [colorls](https://github.com/athityakumar/colorls), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher) and [Rainbarf](https://github.com/creaktive/rainbarf)
+7. Install [`universal-ctags`](https://github.com/universal-ctags/ctags)
 
 #### 2. Backup your old configuration and get new ones
 1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
@@ -28,17 +24,13 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 3. NeoVim uses XDG configuration: `ln -s ~/.vimrc ~/.config/nvim/init.vim`
 4. Vim uses old `.vimrc` location so there's no need to create symlink.
 5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc.js`, `prettierrc`, `.gitignore`, `.prettierignore` and configure more if feel comfortable.
-6. install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md) custom plugins for zsh.
-7. Install pwerlevel10k theme for zsh https://github.com/romkatv/powerlevel10k#oh-my-zsh
 
 #### 3. Download and install more (in order)
 1. Before opening (Neo)Vim:
 - Install necessary global node packages by running `npm install -g typescript neovim`
-- Install global node packages for eslint `npm i -g eslint eslint-config-airbnb eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier prettier eslint-import-resolver-webpack eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-redux-saga redux-saga webpack babel-eslint` or install them in the project directory as a dev dependency.
-- Compile [YouCompleteMe](https://github.com/Valloric/YouCompleteMe#mac-os-x). Remeber to have `xbuild`, `go`, `tsserver` ,`npm`, `node`, `cargo`, `rustc`, Java JDK installed to use `--all` flag.
+- Install [GO](https://golang.org/doc/install)
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
 - [Install vim-plug](https://github.com/junegunn/vim-plug)
-- Download and install `Knack Nerd Font` from [here](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm2 to use it.
 - Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
 2. Open (Neo)Vim and:
 - Run `:UpdateRemotePlugins` in vim at the end.
@@ -73,7 +65,6 @@ Tools to setup the key bindings:
 - cmd-;: 0x2C 0x3B --- list buffers
 - cmd-a: 0x2C 0x61 --- search current buffer subdirectory
 - cmd-s: 0x2C 0x73 0x73 --- run ALEFix
-- ctrl-space: 0x2C 0x76 --- lookup Dash.app docs
 
 #### Troubleshooting to get NeoVim, iTerm and Tmux all work together smoothly:
 - https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
