@@ -475,9 +475,9 @@ nnoremap <silent> <leader>sk <C-u>
 inoremap <silent> <leader>sj <Esc><C-d>
 inoremap <silent> <leader>sk <Esc><C-u>
 " --- control-e --- filemanager
-nnoremap <silent> <C-e> :call ToggleFileManager()<CR>
-inoremap <silent> <C-e> <ESC>:call ToggleFileManager()<CR>
-noremap <silent> <Leader>e :call ToggleFileManager()<CR>
+nnoremap <silent> <C-e> :TagbarOpen<CR>:call ToggleFileManager()<CR>
+inoremap <silent> <C-e> <ESC>:TagbarOpen<CR>:call ToggleFileManager()<CR>
+noremap <silent> <Leader>e :TagbarOpen<CR>:call ToggleFileManager()<CR>
 " --- gi, go --- change tabs
 nnoremap go :tabn<CR>
 nnoremap gi :tabp<CR>
