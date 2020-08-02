@@ -15,7 +15,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 3. If using OSX: `brew install reattach-to-user-namespace`
 4. [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
 5. Install `Inconsolata` and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm to use Knack Nerd.
-6. Install some cool binaries like [colorls](https://github.com/athityakumar/colorls), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher) and [Rainbarf](https://github.com/creaktive/rainbarf)
+6. Install some cool binaries like [colorls](https://github.com/athityakumar/colorls), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher), [Rainbarf](https://github.com/creaktive/rainbarf) and [delta](https://github.com/dandavison/delta)
 7. Install [`universal-ctags`](https://github.com/universal-ctags/ctags)
 
 #### 2. Backup your old configuration and get new ones
