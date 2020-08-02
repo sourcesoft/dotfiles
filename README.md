@@ -20,7 +20,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 8. [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
 9. Free `Inconsolata` font
 10. https://github.com/athityakumar/colorls
-11. Install https://github.com/universal-ctags/ctags
+11. Install `exuberant-ctags`, [follow this guide](https://medium.com/trabe/navigate-es6-projects-with-vim-using-ctags-948d114b94f3)
 
 #### 2. Backup your old configuration and get new ones
 1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
