@@ -24,12 +24,10 @@ Plug 'neovim/python-client' " --- support python for neovim
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'dense-analysis/ale' " --- lint engine while typing better than neomake
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'itchyny/calendar.vim'
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
 Plug 'chrisbra/improvedft' " --- better f and t
-Plug 'Shougo/vimfiler.vim' " --- file explorer
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'LumaKernel/fern-mapping-fzf.vim'
@@ -39,18 +37,18 @@ Plug 'mileszs/ack.vim' " --- ack built in
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " --- fuzzy search
 Plug 'junegunn/fzf.vim' " extra fzf features
 Plug 'junegunn/vim-slash' " --- improved searching
+Plug 'junegunn/vim-emoji' " --- emoji in vim
 Plug 'tpope/vim-unimpaired' " --- awesome mappings
 Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
 Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
-Plug 'junegunn/vim-slash' " --- better in-buffer search
-Plug 'junegunn/vim-emoji' " --- emoji in vim
 Plug 'Shougo/denite.nvim'
 Plug 'majutsushi/tagbar' " --- show tags on the right sidebar
 Plug 'ludovicchabant/vim-gutentags' " --- update tags automatically
+Plug 'amix/open_file_under_cursor.vim'
 " ------------------------------------------------
-" --- JS, JSX, TS, Flow, React, Vue
+" --- JS, JSX, TS, Flow, React, Vue, Svelte
 " ------------------------------------------------
 Plug 'pangloss/vim-javascript' " --- General JS syntax highlighter
 Plug 'leafgarland/typescript-vim' " --- TS syntax highlighting
@@ -59,6 +57,7 @@ Plug 'Quramy/vim-js-pretty-template' " --- syntax for JS inside tagged template
 Plug 'posva/vim-vue' " --- Vue syntax highlighting
 Plug 'jparise/vim-graphql'
 Plug 'flowtype/vim-flow'
+Plug 'leafOfTree/vim-svelte-plugin'
 " Plug 'HerringtonDarkholme/yats.vim'
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
@@ -99,7 +98,6 @@ Plug 'Yggdroot/indentLine' " --- see indents clearly
 Plug 'Shougo/neosnippet.vim' " --- engine
 Plug 'Shougo/neosnippet-snippets' " --- snippets #1
 Plug 'honza/vim-snippets' " --- snippets #2
-Plug 'rizzatti/dash.vim' " --- offline doc
 call plug#end()
 
 
@@ -195,7 +193,6 @@ augroup SyntaxSettings
     autocmd!
     autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 augroup END
-let g:calendar_google_calendar = 1
 " JSX tag coloring
 let g:vim_jsx_pretty_enable_jsx_highlight = 0
 highlight def link jsxTag Keyword
@@ -240,7 +237,6 @@ let g:python2_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ft_improved_ignorecase = 1 " make f in-casesensitive
 let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
-let g:vimfiler_as_default_explorer=1 " make vimfiler as default
 let g:bufExplorerShowRelativePath=1 " shows shorter path
 let g:bufExplorerSortBy='fullpath' " sort by path
 let g:tmuxline_powerline_separators = 0
@@ -442,9 +438,6 @@ au FileType javascript map <leader>n <Plug>(ale_next_wrap)
 " --- leader-q --- toggle quickfix list
 " --- iTerm hexcodes: '0x2C 0x71' --- Command-B
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
-" --- leader-q --- toggle quickfix list
-" --- iTerm hexcodes: '0x2C 0x76' --- Control-Space
-map <leader>v :Dash<CR>
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
