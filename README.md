@@ -11,7 +11,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 #### 1. Install required binaries
 1. Have (Neo)Vim and Git installed ofcourse
-2. Install Tmux and [plugins](https://github.com/sourcesoft/my-long-list/blob/master/.tmux.conf)
+2. Install Tmux and [plugins manager](https://github.com/tmux-plugins/tpm)
 3. If using OSX: `brew install reattach-to-user-namespace`
 4. [Rainbarf](https://github.com/creaktive/rainbarf)
 5. [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh)
