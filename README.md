@@ -16,23 +16,20 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 2. Replace it: `wget -O ~/.vimrc https://raw.githubusercontent.com/sourcesoft/my-long-list/master/.vimrc`
 3. NeoVim uses XDG configuration: `ln -s ~/.vimrc ~/.config/nvim/init.vim`
 4. Vim uses old `.vimrc` location so there's no need to create symlink.
-5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc.js`, `prettierrc`, `.gitignore`, `.prettierignore` and configure more if feel comfortable.
+5. Copy other config files in the repository like `.bash_profile`, `.gitconfig`, `.tern-config`, `.tmux.conf`, `.zshrc`, `.eslintrc.js`, `prettierrc`, `.gitignore`, `.prettierignore`, `.ctags` and configure more if feel comfortable.
 
-#### 3. Download and install more (in order)
+#### 3. Setup (Neo)Vim (in order)
 1. Before opening (Neo)Vim:
-- Install necessary global node packages by running `npm install -g typescript neovim`
-- Install [GO](https://golang.org/doc/install)
+- Install some required compilers for our plugins with `npm install -g typescript neovim` and [GO](https://golang.org/doc/install)
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
-- [Install vim-plug](https://github.com/junegunn/vim-plug)
-- Install plugins by running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in terminal
+- Setup plugins by first installing [vim-plug](https://github.com/junegunn/vim-plug) and then running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in the terminal
 2. Open (Neo)Vim and:
-- Run `:UpdateRemotePlugins` in vim at the end.
-- Open NeoVim(Vim) and run :GoInstallBinaries and then :TmuxLine
+- run `:UpdateRemotePlugins`, `:TmuxLine` and `:GoInstallBinaries` 
 - Learn key bindings by reading this file
 
 ## Mappings and Environment
 
-It's much easier to use right CMD or Alt instead of reaching out escape.
+It's much easier to use right CMD or Alt instead of reaching out to escape.
 I also use Caps Lock for Control, since it's closer and easier to hit.
 - Escape -> Right CMD or Right Alt
 - Control -> Caps Lock
