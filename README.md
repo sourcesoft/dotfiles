@@ -1,22 +1,15 @@
-My own (Neo)Vim configuration which focuses on JS(React, Vue, TypeScript, Flow), CSS(and styled-components), GraphQL and GO, however also works with C#, Java, Python and Rust.
-Configuration is based on Tmux, iTerm2, OSX but I also use it on Ubuntu.
+My own (Neo)Vim configuration which focuses on JS(React, Vue, TypeScript, Flow, ...) and GO, however it also works with C#, Java, Python and Rust.
+Configuration is based on Tmux, iTerm2, OSX but also works it on Ubuntu.
 I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
-
-![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
-
-![ZSH](https://github.com/sourcesoft/dotfiles/blob/master/images/zsh.png "vim")
-
 
 ## Installation
 
 #### 1. Install required binaries
 1. Have (Neo)Vim and Git installed ofcourse
-2. Install Tmux and the [plugins manager](https://github.com/tmux-plugins/tpm)
-3. If using OSX: `brew install reattach-to-user-namespace`
-4. [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
-5. Install `Inconsolata` and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm to use Knack Nerd.
-6. Install some cool binaries like [colorls](https://github.com/athityakumar/colorls), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher), [Rainbarf](https://github.com/creaktive/rainbarf) and [delta](https://github.com/dandavison/delta)
-7. Install [`universal-ctags`](https://github.com/universal-ctags/ctags)
+2. Install `tmux` and the [plugins manager](https://github.com/tmux-plugins/tpm)
+3. Install `zsh`: [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+4. Install `Inconsolata font`  and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm to use Knack Nerd.
+5. Install some cool binaries like [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard), [`universal-ctags`](https://github.com/universal-ctags/ctags), [colorls](https://github.com/athityakumar/colorls), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher), [Rainbarf](https://github.com/creaktive/rainbarf) and [delta](https://github.com/dandavison/delta)
 
 #### 2. Backup your old configuration and get new ones
 1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
@@ -83,3 +76,7 @@ Tools to setup the key bindings:
 - [Charles](https://www.charlesproxy.com/) - Monitoring using all the tools even the ones I have no idea what they are.
 - [Fritzing](fritzing.org/) - Easily design electronic circuits for Arduino in no time.
 - [OsmondCocoa](www.osmondpcb.com/) - Sometimes I need to build a ready to print for some home-made circuits.
+
+![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
+
+![ZSH](https://github.com/sourcesoft/dotfiles/blob/master/images/zsh.png "vim")
