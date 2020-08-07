@@ -204,6 +204,7 @@ highlight def link jsxAttrib Type
 highlight def link jsxEscapeJs jsxEscapeJs
 highlight def link jsxCloseTag Keyword
 highlight def link jsxCloseString Keyword
+let g:gutentags_ctags_exclude = ['node_modules', '.git', 'log', 'tmp']
 let g:tagbar_type_javascript = {
       \ 'ctagstype': 'javascript',
       \ 'kinds': [
