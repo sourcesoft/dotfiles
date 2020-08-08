@@ -23,6 +23,7 @@ Plug 'Shougo/unite.vim' " --- dev helper
 Plug 'neovim/python-client' " --- support python for neovim
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'dense-analysis/ale' " --- lint engine while typing better than neomake
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ------------------------------------------------
 " --- Search & Navigate
@@ -517,7 +518,7 @@ nnoremap <silent> <c-a> :TagbarToggle<CR>
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " --- command-s --- run ALEFix
-nmap <leader>ss :ALEFix<cr>
+nmap <leader>ss :Prettier<cr>
 " --- >, < --- don't lose selection after indenting
 vnoremap > >gv
 vnoremap < <gv
