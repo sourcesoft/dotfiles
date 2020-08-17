@@ -301,6 +301,8 @@ let g:go_doc_keywordprg_enabled = 0
 let g:go_auto_type_info = 0
 let g:go_fmt_autosave = 1
 let g:go_metalinter_autosave = 1
+let g:go_metalinter_command = "golangci-lint"
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 let g:go_auto_sameids = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_list_height = 10
@@ -407,14 +409,14 @@ nnoremap <silent> <esc> :noh<CR>
 nnoremap <C-n> :tabe %:h/
 " --- leader-i --- Go: show type
 au FileType go nmap <leader>i <Plug>(go-info)
-" --- leader-j --- Go: jump to def in new split
-au FileType go nmap <leader>j <Plug>(go-def-vertical)
-" --- leader-t --- Go: jump to def in new tab
-au FileType go nmap <leader>jj <Plug>(go-def-tab)
+" --- leader-j --- Go: jump to def in new buffer
+au FileType go nmap <leader>j <Plug>(go-def)
+" --- leader-j --- Go: show referrer
+au FileType go nmap <leader>k <Plug>(go-referrers)
 " --- leader-d --- Go: jump to godoc in new split
 au FileType go nmap <leader>d <Plug>(go-doc-vertical)
 " --- leader-r --- Go: run in new tab
-au FileType go nmap <leader>r <Plug>(go-run-tab)
+au FileType go nmap <leader>r <Plug>(go-run)
 " --- leader-b --- Go: build
 au FileType go nmap <leader>b :GoBuild!<CR>
 " --- leader-t --- Go: test
@@ -423,7 +425,6 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 " --- leader-e --- Go: check errors
 au FileType go nmap <leader>c :GoErrCheck<cr>
-au FileType go nnoremap <leader>f :GoDeclsDir<CR>
 " --- leader-; --- quickly navigate to necessary buffer
 " --- iTerm hexcodes: '0x2C 0x3B' --- Command-;
 map <leader>; :call ToggleBuf()<cr>
@@ -565,6 +566,7 @@ imap <a-q> <Esc>:wqa!<CR>
 " we need to use :qa! to quit all buffers at once otherwise only the last one
 " is saved.
 fu! SaveSess()
+  call CleanNoNameEmptyBuffers()
   if bufwinnr("fern") == 1
     Fern . -drawer -toggle
   endif
@@ -686,3 +688,11 @@ endfunc
 func! Buflisted()
   return filter(range(1, bufnr('$')), 'buflisted(v:val)')
 endfunc
+function! CleanNoNameEmptyBuffers()
+    let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val))')
+    if !empty(buffers)
+        exe 'bd '.join(buffers, ' ')
+    else
+        echo 'No buffer deleted'
+    endif
+endfunction
