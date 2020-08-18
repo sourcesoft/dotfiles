@@ -40,7 +40,7 @@ Plug 'junegunn/fzf.vim' " extra fzf features
 Plug 'junegunn/vim-slash' " --- improved searching
 Plug 'junegunn/vim-emoji' " --- emoji in vim
 Plug 'tpope/vim-unimpaired' " --- awesome mappings
-Plug 'yuttie/comfortable-motion.vim' " --- animate scroll
+Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
 Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
@@ -263,11 +263,9 @@ let g:airline#extensions#bufferline#enabled = 1 " show buffers
 let g:airline#extensions#ale#enabled = 1
 let g:vimtex_motion_matchparen = 0
 let g:airline_powerline_fonts = 0 " disable for better perf
-let g:comfortable_motion_friction = 200.0
-let g:comfortable_motion_air_drag = 2.0
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
-let g:comfortable_motion_no_default_key_mappings = 1 " disable default mapping
+let g:SexyScroller_EasingStyle = 5 " linear no easing
+let g:SexyScroller_ScrollTime = 40 " enough to see
+let g:SexyScroller_CursorTime = 5 " better compared to previous
 let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache
 let g:ctrlp_map = '' " disable default ctrl-p mapping
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " pipe cursor in insert mode
@@ -465,14 +463,10 @@ nnoremap <space> m
 " --- leader-sj, leader-sk --- jump up or down half screen
 " --- iTerm hexcodes: '0x2C 0x6A' --- Command-J
 " --- iTerm hexcodes: '0x2C 0x6B' --- Command-K
-nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
-nnoremap <silent> <leader>sj :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <leader>sk :call comfortable_motion#flick(-100)<CR>
-inoremap <silent> <leader>sj <Esc>:call comfortable_motion#flick(100)<CR>
-inoremap <silent> <leader>sk <Esc>:call comfortable_motion#flick(-100)<CR>
-noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+nnoremap <silent> <leader>sj <C-d>
+nnoremap <silent> <leader>sk <C-u>
+inoremap <silent> <leader>sj <Esc><C-d>
+inoremap <silent> <leader>sk <Esc><C-u>
 " --- control-e --- filemanager
 nnoremap <silent> <C-e> :TagbarOpen<CR>:call ToggleFileManager()<CR>
 inoremap <silent> <C-e> <ESC>:TagbarOpen<CR>:call ToggleFileManager()<CR>
@@ -597,16 +591,22 @@ if has('nvim')
 endif
 " move outside filemanager first then switch buffer or list buffers
 fu! NextBuffer()
-  if bufname()[0:3] == "fern"
+  if bufname()[0:3] == "fern" || bufname() == ""
     wincmd p
   endif
   bn
+  if bufname() == ""
+    bn
+  endif
 endfunction
 fu! PrevBuffer()
-  if bufname()[0:3] == "fern"
+  if bufname()[0:3] == "fern" || bufname() == ""
     wincmd p
   endif
   bp
+  if bufname() == ""
+    bp
+  endif
 endfunction
 fu! ToggleBuf()
   if bufname()[0:3] == "fern"
