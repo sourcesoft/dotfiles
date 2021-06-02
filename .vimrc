@@ -20,11 +20,10 @@ Plug 'benmills/vimux' " --- send commands to tmux
 Plug 'airblade/vim-rooter' " --- change root directory on the fly
 Plug 'suan/vim-instant-markdown' " --- live markdown edit
 Plug 'Shougo/unite.vim' " --- dev helper
-Plug 'neovim/python-client' " --- support python for neovim
+" Plug 'neovim/python-client' " --- support python for neovim
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
 Plug 'dense-analysis/ale' " --- lint engine while typing better than neomake
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ------------------------------------------------
 " --- Search & Navigate
 " ------------------------------------------------
@@ -44,8 +43,7 @@ Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
 Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
-Plug 'Shougo/denite.nvim'
-Plug 'majutsushi/tagbar' " --- show tags on the right sidebar
+" Plug 'majutsushi/tagbar' " --- show tags on the right sidebar
 Plug 'ludovicchabant/vim-gutentags' " --- update tags automatically
 Plug 'amix/open_file_under_cursor.vim'
 " ------------------------------------------------
@@ -63,11 +61,12 @@ Plug 'leafOfTree/vim-svelte-plugin'
 " ------------------------------------------------
 " --- GO, C#, JAVA, Python
 " ------------------------------------------------
-Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
-Plug 'fatih/vim-go' " --- Go plugin
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'AndrewRadev/splitjoin.vim' " --- GO split and join struct literals
-Plug 'OrangeT/vim-csharp' " --- C# Enhancement's to Vim's C-Sharp Functionality
-Plug 'python-mode/python-mode' " --- makes Vim a Python IDE
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
+Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
+" Plug 'OrangeT/vim-csharp' " --- C# Enhancement's to Vim's C-Sharp Functionality
+" Plug 'python-mode/python-mode' " --- makes Vim a Python IDE
 " ------------------------------------------------
 " --- CSS
 " ------------------------------------------------
@@ -86,19 +85,21 @@ Plug 'tpope/vim-rhubarb' " fugitive GitHub handler
 " ------------------------------------------------
 " --- Look and feel
 " ------------------------------------------------
+Plug 'whatyouhide/vim-gotham' " dark theme
+" Plug 'morhetz/gruvbox' " --- cool theme
 Plug 'vim-airline/vim-airline' " lightweight line
 Plug 'vim-airline/vim-airline-themes' " airline theme pack
 Plug 'junegunn/goyo.vim' " --- distraction free mode
-Plug 'amix/vim-zenroom2' " --- iA Writer environment when editing Markdown
-Plug 'morhetz/gruvbox' " --- cool theme
 Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
 Plug 'Yggdroot/indentLine' " --- see indents clearly
 " ------------------------------------------------
 " --- Snippets using neosnippets
 " ------------------------------------------------
-Plug 'Shougo/neosnippet.vim' " --- engine
-Plug 'Shougo/neosnippet-snippets' " --- snippets #1
-Plug 'honza/vim-snippets' " --- snippets #2
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets' " --- snippets
+" ------------------------------------------------
+" --- Misc
+" ------------------------------------------------
 call plug#end()
 
 
@@ -160,6 +161,7 @@ set cmdheight=2 " Better display for messages
 " -------------
 set gdefault " Add the g flag to search/replace by default
 set hlsearch " hightlight results
+set magic
 set incsearch " Highlight dynamically as pattern is typed
 set ignorecase
 set showmatch
@@ -183,64 +185,22 @@ syntax enable
 syntax on
 filetype plugin on
 set background=dark
-colorscheme gruvbox " heavy lifting -- disable for better perf
+set termguicolors
+" colorscheme gruvbox " heavy lifting -- disable for better perf
+colorscheme gotham256
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-augroup SyntaxSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
-augroup END
+"
 " JSX tag coloring
-let g:vim_jsx_pretty_enable_jsx_highlight = 0
-highlight def link jsxTag Keyword
-highlight def link jsxTagName Keyword
-highlight def link jsxString String
-highlight def link jsxNameSpace String
-highlight def link jsxComment Error
-highlight def link jsxAttrib Type
-highlight def link jsxEscapeJs jsxEscapeJs
-highlight def link jsxCloseTag Keyword
-highlight def link jsxCloseString Keyword
-let g:gutentags_ctags_exclude = ['node_modules', '.git', 'log', 'tmp']
-let g:tagbar_type_javascript = {
-      \ 'ctagstype': 'javascript',
-      \ 'kinds': [
-      \ 'A:arrays',
-      \ 'P:properties',
-      \ 'T:tags',
-      \ 'O:objects',
-      \ 'G:generator functions',
-      \ 'F:functions',
-      \ 'C:constructors/classes',
-      \ 'M:methods',
-      \ 'V:variables',
-      \ 'I:imports',
-      \ 'E:exports',
-      \ 'S:styled components'
-      \ ]}
-let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
-\ }
-let g:python2_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ft_improved_ignorecase = 1 " make f in-casesensitive
 let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
 let g:bufExplorerShowRelativePath=1 " shows shorter path
 let g:bufExplorerSortBy='fullpath' " sort by path
 let g:tmuxline_powerline_separators = 0
+let g:rooter_patterns = ['.git']
 let g:airline_left_sep='' " no extra characters
 let g:airline_right_sep=''
 let g:airline_theme='powerlineish' " airline simple theme
@@ -301,9 +261,12 @@ let g:go_fmt_autosave = 1
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_command = "golangci-lint"
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
-let g:go_auto_sameids = 1
+let g:UltiSnipsExpandTrigger='<C-l>'
+" let g:go_auto_sameids = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_list_height = 10
+" let g:go_debug=1
+autocmd FileType json execute "let b:indentLine_enabled=0"
 " fern
 let g:fern#default_hidden = 1
 let g:fern#opener = "split"
@@ -361,14 +324,8 @@ command! FIXOptionJSON let g:ale_fixers['json'] = ['prettier']
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Searching and selecting files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" --- shift+3 --- Highlight symbol under cursor on CursorHold
-nnoremap <silent> <s-3> :call CocActionAsync('highlight')<cr>
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -406,11 +363,13 @@ nnoremap <silent> <esc> :noh<CR>
 " --- control-n --- create a new file in current buffer directory
 nnoremap <C-n> :tabe %:h/
 " --- leader-i --- Go: show type
-au FileType go nmap <leader>i <Plug>(go-info)
+" au FileType go nmap <leader>i <Plug>(go-info)
+autocmd BufEnter *.go nmap <leader>i  <Plug>(go-info)
+autocmd BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
 " --- leader-j --- Go: jump to def in new buffer
-au FileType go nmap <leader>j <Plug>(go-def)
+au FileType go nmap <leader>j :YcmCompleter GoTo<cr>
 " --- leader-j --- Go: show referrer
-au FileType go nmap <leader>k <Plug>(go-referrers)
+au FileType go nmap <leader>k :YcmCompleter GoToReferences<cr>
 " --- leader-d --- Go: jump to godoc in new split
 au FileType go nmap <leader>d <Plug>(go-doc-vertical)
 " --- leader-r --- Go: run in new tab
@@ -427,6 +386,9 @@ au FileType go nmap <leader>c :GoErrCheck<cr>
 " --- iTerm hexcodes: '0x2C 0x3B' --- Command-;
 map <leader>; :call ToggleBuf()<cr>
 vmap <leader>; <esc>:call ToggleBuf()<cr>
+" --- leader-e --- quickly navigate to necessary buffer
+map <leader>e :Buffers<cr>
+vmap <leader>e <esc>:Buffers<cr>
 " --- leader-m --- previous in quickfix list
 " --- iTerm hexcodes: '0x2C 0x6D' --- Command-M
 au FileType go map <leader>m :cprevious<CR>
@@ -468,15 +430,14 @@ nnoremap <silent> <leader>sk <C-u>
 inoremap <silent> <leader>sj <Esc><C-d>
 inoremap <silent> <leader>sk <Esc><C-u>
 " --- control-e --- filemanager
-nnoremap <silent> <C-e> :TagbarOpen<CR>:call ToggleFileManager()<CR>
-inoremap <silent> <C-e> <ESC>:TagbarOpen<CR>:call ToggleFileManager()<CR>
-noremap <silent> <Leader>e :TagbarOpen<CR>:call ToggleFileManager()<CR>
+nnoremap <silent> <C-e> :call ToggleFileManager()<CR>
+inoremap <silent> <C-e> <ESC>:call ToggleFileManager()<CR>
 " --- gi, go --- change tabs
 nnoremap go :tabn<CR>
 nnoremap gi :tabp<CR>
 " --- control-i, control-o --- next prev buffers
-nnoremap <C-o> :call NextBuffer()<cr>
-nnoremap <C-i> :call PrevBuffer()<CR>
+nnoremap <silent> <C-o> :call NextBuffer()<cr>
+nnoremap <silent> <C-i> :call PrevBuffer()<CR>
 " inoremap <C-o> <ESC>:call NextBuffer()<CR>
 " inoremap <C-i> <ESC>:call PrevBuffer()<CR>
 " --- gp --- fuzzy serach buffers
@@ -510,7 +471,7 @@ inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
 nnoremap = <C-w>>
 nnoremap - <C-w><
 " --- control-a --- toggle tagbar
-nnoremap <silent> <c-a> :TagbarToggle<CR>
+" nnoremap <silent> <c-a> :TagbarToggle<CR>
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Editing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -560,6 +521,7 @@ imap <a-q> <Esc>:wqa!<CR>
 " we need to use :qa! to quit all buffers at once otherwise only the last one
 " is saved.
 fu! SaveSess()
+  MinimapClose
   call CleanNoNameEmptyBuffers()
   if bufwinnr("fern") == 1
     Fern . -drawer -toggle
