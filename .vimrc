@@ -47,33 +47,20 @@ Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 Plug 'ludovicchabant/vim-gutentags' " --- update tags automatically
 Plug 'amix/open_file_under_cursor.vim'
 " ------------------------------------------------
-" --- JS, JSX, TS, Flow, React, Vue, Svelte
+" --- Syntax Highlighting
 " ------------------------------------------------
-Plug 'pangloss/vim-javascript' " --- General JS syntax highlighter
-Plug 'leafgarland/typescript-vim' " --- TS syntax highlighting
-Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlighting (both js and ts)
-Plug 'Quramy/vim-js-pretty-template' " --- syntax for JS inside tagged template
-Plug 'posva/vim-vue' " --- Vue syntax highlighting
-Plug 'jparise/vim-graphql'
-Plug 'flowtype/vim-flow'
-Plug 'leafOfTree/vim-svelte-plugin'
-" Plug 'HerringtonDarkholme/yats.vim'
+Plug 'sheerun/vim-polyglot'
 " ------------------------------------------------
-" --- GO, C#, JAVA, Python
+" --- Autocomplete
 " ------------------------------------------------
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'AndrewRadev/splitjoin.vim' " --- GO split and join struct literals
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
 Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
-" Plug 'OrangeT/vim-csharp' " --- C# Enhancement's to Vim's C-Sharp Functionality
-" Plug 'python-mode/python-mode' " --- makes Vim a Python IDE
 " ------------------------------------------------
 " --- CSS
 " ------------------------------------------------
-Plug 'hail2u/vim-css3-syntax' " --- css3
-Plug 'ap/vim-css-color' " --- css colors highlight
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'cakebaker/scss-syntax.vim' " --- sass
 " ------------------------------------------------
 " --- Git & Diff
 " ------------------------------------------------
@@ -83,16 +70,6 @@ Plug 'will133/vim-dirdiff' " --- git diff for directories
 Plug 'junegunn/gv.vim' " --- git commit browser
 Plug 'tpope/vim-rhubarb' " fugitive GitHub handler
 " ------------------------------------------------
-" --- Look and feel
-" ------------------------------------------------
-Plug 'whatyouhide/vim-gotham' " dark theme
-" Plug 'morhetz/gruvbox' " --- cool theme
-Plug 'vim-airline/vim-airline' " lightweight line
-Plug 'vim-airline/vim-airline-themes' " airline theme pack
-Plug 'junegunn/goyo.vim' " --- distraction free mode
-Plug 'edkolev/tmuxline.vim' " --- tmux status for vim
-Plug 'Yggdroot/indentLine' " --- see indents clearly
-" ------------------------------------------------
 " --- Snippets using neosnippets
 " ------------------------------------------------
 Plug 'SirVer/ultisnips'
@@ -100,7 +77,18 @@ Plug 'honza/vim-snippets' " --- snippets
 " ------------------------------------------------
 " --- Misc
 " ------------------------------------------------
+" ------------------------------------------------
+" --- Look and feel
+" ------------------------------------------------
+Plug 'vim-airline/vim-airline' " lightweight line
+Plug 'vim-airline/vim-airline-themes' " airline theme pack
+Plug 'junegunn/goyo.vim' " --- distraction free mode
+Plug 'Yggdroot/indentLine' " --- see indents clearly
+Plug 'joshdick/onedark.vim'
+" Plug 'morhetz/gruvbox' " --- cool theme
 call plug#end()
+" colorscheme gruvbox " heavy lifting -- disable for better perf
+colorscheme onedark
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -186,24 +174,19 @@ syntax on
 filetype plugin on
 set background=dark
 set termguicolors
-" colorscheme gruvbox " heavy lifting -- disable for better perf
-colorscheme gotham256
-
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~ Plugins configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
-" JSX tag coloring
 let g:ft_improved_ignorecase = 1 " make f in-casesensitive
 let g:AutoPairsShortcutToggle = '' " disable alt-p by autopairs
 let g:bufExplorerShowRelativePath=1 " shows shorter path
 let g:bufExplorerSortBy='fullpath' " sort by path
-let g:tmuxline_powerline_separators = 0
 let g:rooter_patterns = ['.git']
 let g:airline_left_sep='' " no extra characters
 let g:airline_right_sep=''
-let g:airline_theme='powerlineish' " airline simple theme
+let g:airline_theme='onedark' " airline simple theme
 let g:airline_extensions = ['tabline']
 let g:airline_highlighting_cache = 1
 let g:ale_cache_executable_check_failures = 1
@@ -218,7 +201,6 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]' " don't need this
 let g:airline_section_x = '' " no need for file-type
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tmuxline#enabled = 1 " tmux fix
 let g:airline#extensions#bufferline#enabled = 1 " show buffers
 let g:airline#extensions#ale#enabled = 1
 let g:vimtex_motion_matchparen = 0
@@ -272,16 +254,6 @@ let g:fern#default_hidden = 1
 let g:fern#opener = "split"
 let g:fern#drawer_width = 40
 let g:fern#renderer = "nerdfont"
-" tmuxline look and feel
-let g:tmuxline_preset = {
-\'a'    : '  #S  ',
-\'b'    : '',
-\'c'    : '',
-\'win'  : ' #I-#W ',
-\'cwin' : ' #I-#W ',
-\'x'    : '#(whoami)',
-\'y'    : '#[fg=green]#(rainbarf --nobattery --width 25 --rgb --no-bright)#[default]',
-\'z'    : '#H'}
 " specific linters while typing, disable linting for go
 " options including standard, eslint, flow
 let g:ale_linters = {
@@ -658,3 +630,18 @@ function! CleanNoNameEmptyBuffers()
         echo 'No buffer deleted'
     endif
 endfunction
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
