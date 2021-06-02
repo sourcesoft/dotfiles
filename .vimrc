@@ -20,9 +20,7 @@ Plug 'benmills/vimux' " --- send commands to tmux
 Plug 'airblade/vim-rooter' " --- change root directory on the fly
 Plug 'suan/vim-instant-markdown' " --- live markdown edit
 Plug 'Shougo/unite.vim' " --- dev helper
-" Plug 'neovim/python-client' " --- support python for neovim
 Plug 'qpkorr/vim-bufkill' " --- kill buffs without destroying window/split
-Plug 'dense-analysis/ale' " --- lint engine while typing better than neomake
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " ------------------------------------------------
 " --- Search & Navigate
@@ -44,22 +42,20 @@ Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
 Plug 'christoomey/vim-tmux-navigator' " --- navigate between tmux and vim
 " Plug 'majutsushi/tagbar' " --- show tags on the right sidebar
-Plug 'ludovicchabant/vim-gutentags' " --- update tags automatically
+" Plug 'ludovicchabant/vim-gutentags' " --- update tags automatically
 Plug 'amix/open_file_under_cursor.vim'
 " ------------------------------------------------
 " --- Syntax Highlighting
 " ------------------------------------------------
+Plug 'dense-analysis/ale' " --- lint engine while typing better than neomake
 Plug 'sheerun/vim-polyglot'
-" ------------------------------------------------
-" --- Autocomplete
-" ------------------------------------------------
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'AndrewRadev/splitjoin.vim' " --- GO split and join struct literals
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
+" ------------------------------------------------
+" --- Misc
+" ------------------------------------------------
+Plug 'AndrewRadev/splitjoin.vim' " --- GO split and join struct literals
 Plug 'tpope/vim-dispatch' " --- asynchronous build and test dispatcher
-" ------------------------------------------------
-" --- CSS
-" ------------------------------------------------
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " ------------------------------------------------
 " --- Git & Diff
@@ -226,6 +222,7 @@ let g:tmux_navigator_no_mappings = 1 " disable default tmuxnavigator mappings
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck'] " fix syntastic and vim-go perf
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_highlight_functions = 1 " Go syntax highlighting
+let g:go_info_mode = 'guru'
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 0
@@ -252,7 +249,7 @@ autocmd FileType json execute "let b:indentLine_enabled=0"
 " fern
 let g:fern#default_hidden = 1
 let g:fern#opener = "split"
-let g:fern#drawer_width = 40
+let g:fern#drawer_width = 35
 let g:fern#renderer = "nerdfont"
 " specific linters while typing, disable linting for go
 " options including standard, eslint, flow
@@ -312,8 +309,6 @@ endif
 imap <C-v> <Plug>(neosnippet_expand_or_jump)
 smap <C-v> <Plug>(neosnippet_expand_or_jump)
 xmap <C-v> <Plug>(neosnippet_expand_target)
-" --- control-g --- search files in CURRENT BUFFER directory using 'fzf'
-nnoremap <C-g> :cd %:h<cr>:FZF<cr>
 " --- control-f --- search with Ag
 nnoremap <C-f> :call ToggleSilverSearch()<cr>
 " --- gt --- search git commits
@@ -645,3 +640,5 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+let g:UltiSnipsExpandTrigger='<c-g>'
+let g:UltiSnipsJumpForwardTrigger="<c-g>"
