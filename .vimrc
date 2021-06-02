@@ -413,6 +413,7 @@ nnoremap gp :Buffers<CR>
 " --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
 nnoremap <leader>a <c-^>
 " --- control-w --- close tab or pane
+nnoremap <leader>w :bp<bar>sp<bar>bn<bar>bd<CR>
 nmap <C-w> :bp<bar>sp<bar>bn<bar>bd<CR>
 " --- gu --- close tab or pane
 nmap gu :q<CR>
@@ -510,8 +511,6 @@ autocmd FileType fern nmap <buffer> q :Fern . -drawer -toggle<CR>
 autocmd FileType fern nmap <buffer> <c-l> :call Wincmdp()<cr>
 " --- alt-e --- reload vim
 noremap <a-e> <Esc>:source ~/.vimrc<cr>
-" --- ,w --- remove trailing spaces manualy if there's any
-nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! :w !sudo tee %
 " fix c-h bug
