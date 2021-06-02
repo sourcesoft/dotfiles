@@ -20,7 +20,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 
 #### 3. Setup (Neo)Vim (in order)
 1. Before opening (Neo)Vim:
-- Install some required compilers for our plugins with `npm install -g typescript neovim` and [GO](https://golang.org/doc/install)
+- Install some required compilers for our plugins with `npm install -g typescript neovim`, `pip install pynvim`, `pip3 install pynvim`, `curl -L http://xrl.us/installperlosx | bash` and [GO](https://golang.org/doc/install)
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
 - Setup plugins by first installing [vim-plug](https://github.com/junegunn/vim-plug) and then running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in the terminal
 2. Open (Neo)Vim and:
