@@ -1,7 +1,3 @@
-My own (Neo)Vim configuration which focuses on JS(React, Vue, TypeScript, Flow, ...) and GO, however it also works with C#, Java, Python and Rust.
-Configuration is based on Tmux, iTerm2, OSX but also works it on Ubuntu.
-I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
-
 ## Installation
 
 #### 1. Install required binaries
@@ -9,7 +5,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 2. Install `tmux` and the [plugins manager](https://github.com/tmux-plugins/tpm)
 3. Install `zsh`: [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
 4. Install `Inconsolata font`  and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf) and configure iTerm to use Knack Nerd.
-5. Install some cool binaries like [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard), [`universal-ctags`](https://github.com/universal-ctags/ctags), [colorls](https://github.com/athityakumar/colorls), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher), [Rainbarf](https://github.com/creaktive/rainbarf) and [delta](https://github.com/dandavison/delta)
+5. Install some cool binaries like [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard), [`universal-ctags`](https://github.com/universal-ctags/ctags), [colorls](https://github.com/athityakumar/colorls), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher) and [delta](https://github.com/dandavison/delta)
 
 #### 2. Backup your old configuration and get new ones
 1. Backup the old one first: `mv ~/.vimrc ~/.vimrc.bak`
@@ -24,7 +20,7 @@ I use Alt/CMD for some key mappings, so it's more suitable for Mac+iTerm.
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
 - Setup plugins by first installing [vim-plug](https://github.com/junegunn/vim-plug) and then running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in the terminal
 2. Open (Neo)Vim and:
-- run `:UpdateRemotePlugins`, `:TmuxLine` and `:GoInstallBinaries` 
+- run `:UpdateRemotePlugins` and `:GoInstallBinaries` 
 - Learn key bindings by reading this file
 
 ## Mappings and Environment
