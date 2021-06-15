@@ -37,6 +37,7 @@ Plug 'junegunn/fzf.vim' " extra fzf features
 Plug 'junegunn/vim-slash' " --- improved searching
 Plug 'junegunn/vim-emoji' " --- emoji in vim
 Plug 'tpope/vim-unimpaired' " --- awesome mappings
+Plug 'romainl/vim-qf' " -- improvements to quick and location list
 Plug 'joeytwiddle/sexy_scroller.vim' " --- animate scroll
 Plug 'jlanzarotta/bufexplorer' " --- list buffers
 Plug 'milkypostman/vim-togglelist' " --- toggle quicklist with one command
@@ -331,8 +332,8 @@ nnoremap <silent> <esc> :noh<CR>
 nnoremap <C-n> :tabe %:h/
 " --- leader-i --- Go: show type
 " au FileType go nmap <leader>i <Plug>(go-info)
-autocmd BufEnter *.go nmap <leader>i  <Plug>(go-info)
-autocmd BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
+autocmd BufEnter *.go nmap <leader>i :YcmCompleter GetType<cr>
+autocmd BufEnter *.go nmap <leader>ci :YcmCompleter GetDoc<cr>
 " --- leader-j --- Go: jump to def in new buffer
 au FileType go nmap <leader>j :YcmCompleter GoTo<cr>
 " --- leader-j --- Go: show referrer
