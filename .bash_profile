@@ -11,6 +11,8 @@ export MANPAGER='less -X';
 alias e='nvim .'
 alias ls='ls -GFh'
 alias ll='ls -la'
+alias l='exa -abghHliS'
+alias cat='bat'
 alias ick='ack -i --pager="less -R -S -X"'
 alias agg='ag --ignore={doc,docs,README.md} -i --ignore-case'
 bindkey '^ ' autosuggest-accept
