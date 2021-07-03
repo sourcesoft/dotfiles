@@ -155,7 +155,6 @@ set smartcase
 " ------------- Heavy lifting stuff
 " -------------
 set updatetime=300 " more frequent updates -- disable for better perf
-set regexpengine=1 " use the old engine for better perf
 " set lazyredraw " redraw -- disable for better perf
 set relativenumber " relatives numbers -- disable for better perf
 set number " line numbers
