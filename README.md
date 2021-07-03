@@ -1,8 +1,10 @@
-## Installation
+My dotfiles, Debian/GNOME (personal laptop) and OSX (work laptop) compatible.
 
 ![Vim](https://user-images.githubusercontent.com/608906/124341365-bc3c4100-db89-11eb-8919-3ed3c7a6074a.png "vim")
 
 ![ZSH](https://user-images.githubusercontent.com/608906/124360522-6357c180-dbf8-11eb-9ce2-c9e9a54bcf5c.png "zsh")
+
+## Installation
 
 #### 1. Install required binaries
 1. Have [Alacritty](https://github.com/alacritty/alacritty) (Neo)Vim and Git installed ofcourse
