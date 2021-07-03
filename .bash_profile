@@ -9,6 +9,7 @@ export LC_ALL='en_US.UTF-8';
 export LESS_TERMCAP_md="${yellow}";
 export MANPAGER='less -X';
 export HISTCONTROL=ignoreboth
+export STARSHIP_CONFIG=~/.starship.toml
 alias e='nvim .'
 alias ls='ls -GFh'
 alias ll='ls -la'
