@@ -1,4 +1,8 @@
-My dotfiles, Debian/GNOME (personal laptop) and OSX (work laptop) compatible.
+My dotfiles.
+
+Since I use two laptops (+ homelab servers) daily and jump between environments all the time, I had to ensure my setup is fully compatible with both:
+- Debian/GNOME (personal laptop)
+- OSX (work laptop) compatible.
 
 ![Vim](https://user-images.githubusercontent.com/608906/124360869-25f43380-dbfa-11eb-8e49-d11f1aa7bf68.png "vim")
 
