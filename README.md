@@ -1,6 +1,6 @@
 My dotfiles, Debian/GNOME (personal laptop) and OSX (work laptop) compatible.
 
-![Vim](https://user-images.githubusercontent.com/608906/124341365-bc3c4100-db89-11eb-8919-3ed3c7a6074a.png "vim")
+![Vim](https://user-images.githubusercontent.com/608906/124360869-25f43380-dbfa-11eb-8e49-d11f1aa7bf68.png "vim")
 
 ![ZSH](https://user-images.githubusercontent.com/608906/124360522-6357c180-dbf8-11eb-9ce2-c9e9a54bcf5c.png "zsh")
 
@@ -43,15 +43,23 @@ Tools to setup the key bindings:
 - Ubuntu: Install xcape (https://github.com/alols/xcape)
   - Use the following command: `xcape -e 'Alt_R=Escape;ISO_Level3_Shift=Escape'`
 
-### Tools included
+### Main tools included
 - [NeoVim](https://neovim.io)
 - [vimrc](https://github.com/sourcesoft/my-long-list/blob/master/.vimrc)
 - [ag](https://github.com/ggreer/the_silver_searcher)
 - [Alacritty](https://github.com/alacritty/alacritty)
 - [zsh](https://github.com/robbyrussell/oh-my-zsh)
 - [tmux](https://tmux.github.io/)
-- [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
+
+### Main languages & libraries fully supported and used daily with this setup
+- Golang, Rust, C/C++
+- JavaScript + Nodejs + TypeScript + React(Native), ...
+- And basically everything else is also supported by `ycm-core/YouCompleteMe`, `dense-analysis/ale` and `sheerun/vim-polyglot` in (Neo)Vim
+
+### Misc tools
 - [bat](https://github.com/sharkdp/bat)
 - [fd](https://github.com/sharkdp/fd)
 - [exa](https://github.com/ogham/exa)
 - [delta](https://github.com/dandavison/delta)
+- [universal-ctags](https://github.com/universal-ctags/ctags)
+- ...
