@@ -1,0 +1,49 @@
+format = """
+[┌─](bold green) $directory[$git_branch](green) [───────](bold green) [$package$kubernetes$terraform$aws$golang](green)
+[│](bold green)
+[└─](bold green) -> """
+
+[directory]
+format="[$path](bold red underline bg:#fff)"
+truncate_to_repo=false
+truncation_length=8
+
+[time]
+disabled = false
+format = '[$time](green bold)'
+time_format = "%T"
+utc_time_offset = "-5"
+
+[git_branch]
+format=":[$branch]()"
+truncation_length = 4
+truncation_symbol = ""
+
+[package]
+format = "pkg:[$version](blue) "
+
+[kubernetes]
+format = "k8s:[$context](blue) "
+disabled = false
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[➜](blue) "
+error_symbol = "[✗](bold red) "
+
+[golang]
+format = "Go:[$version](blue) "
+
+[terraform]
+format = "TF:[$version$workspace](blue) "
+
+[aws]
+format = 'sws:[$symbol($profile )(\($region\) )](blue)'
+style = "bold blue"
+
+[git_commit]
+format="[$hash](blue)"
+commit_hash_length = 4
+tag_symbol = "🔖"
