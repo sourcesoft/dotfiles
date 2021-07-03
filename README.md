@@ -11,7 +11,7 @@ Since I use two laptops (+ homelab servers) daily and jump between environments 
 ## Installation
 
 #### 1. Install required binaries
-1. Have [Alacritty](https://github.com/alacritty/alacritty), [Starship](https://starship.rs/) (Neo)Vim and Git installed ofcourse
+1. Have [Alacritty](https://github.com/alacritty/alacritty), [Starship](https://starship.rs/), (Neo)Vim and Git installed ofcourse
 2. Install `tmux` and the [plugins manager](https://github.com/tmux-plugins/tpm)
 3. Install `zsh`: [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
 4. Install `Inconsolata font`  and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf).
