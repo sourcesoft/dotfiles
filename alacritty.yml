@@ -45,12 +45,12 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 6
-    y: 6
+  # padding:
+  #   x: 1
+  #   y: 1
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -72,7 +72,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Fullscreen
+  startup_mode: SimpleFullscreen
 
   # Window title
   #title: Alacritty
@@ -719,7 +719,10 @@ alt_send_esc: true
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
+  - { key: I,              mods: Alt, chars: "\x1bi" }
+  - { key: O,              mods: Alt, chars: "\x1bo" }
+  #- { key: Paste,                                       action: Paste          }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -829,6 +832,21 @@ alt_send_esc: true
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
+  - { key: J,              mods: Command, chars: "\x2C\x73\x6A" }
+  - { key: K,              mods: Command, chars: "\x2C\x73\x6B" }
+  - { key: I,              mods: Command, chars: "\x01\x28"     }
+  - { key: O,              mods: Command, chars: "\x01\x29"     }
+  - { key: N,              mods: Command, chars: "\x2C\x6E"     }
+  - { key: M,              mods: Command, chars: "\x2C\x6D"     }
+  - { key: S,              mods: Command, chars: "\x2C\x73\x73" }
+  - { key: P,              mods: Command, chars: "\x2C\x70"     }
+  - { key: R,              mods: Command, chars: "\x2C\x72"     }
+  - { key: U,              mods: Command, chars: "\x01\x62"     }
+  - { key: F,              mods: Command, chars: "\x2C\x66"     }
+  - { key: B,              mods: Command, chars: "\x2C\x71"     }
+  - { key: A,              mods: Command, chars: "\x2C\x61"     }
+  - { key: Semicolon,      mods: Command, chars: "\x2C\x3B"     }
+  - { key: Q,              mods: Control, action: Hide          }
 
 #debug:
   # Display the time it takes to redraw each frame.
