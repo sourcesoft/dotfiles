@@ -70,6 +70,6 @@ Tools to setup the key bindings:
 - [Fritzing](fritzing.org/) - Easily design electronic circuits for Arduino in no time.
 - [OsmondCocoa](www.osmondpcb.com/) - Sometimes I need to build a ready to print for some home-made circuits.
 
-![Vim](https://github.com/sourcesoft/dotfiles/blob/master/images/vim.png "vim")
+![Vim](https://user-images.githubusercontent.com/608906/124341365-bc3c4100-db89-11eb-8919-3ed3c7a6074a.png "vim")
 
 ![ZSH](https://github.com/sourcesoft/dotfiles/blob/master/images/zsh.png "vim")
