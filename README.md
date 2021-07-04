@@ -15,7 +15,7 @@ Since I use two laptops (+ homelab servers) daily and jump between environments 
 2. Install `tmux` and the [plugins manager](https://github.com/tmux-plugins/tpm)
 3. Install `zsh`: [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
 4. Install `Inconsolata font`  and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf).
-5. Install some cool binaries like [`universal-ctags`](https://github.com/universal-ctags/ctags), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta)
+5. Install some cool binaries like [vifm](https://vifm.info/), [`universal-ctags`](https://github.com/universal-ctags/ctags), [The Silver Searcher](https://github.com/ggreer/the_silver_searcher), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta)
 6. If you're on OSX install [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
 
 #### 2. Backup your old configuration and get new ones
@@ -49,7 +49,7 @@ Tools to setup the key bindings:
 
 ### Main tools included
 - Editor: [NeoVim](https://neovim.io)
-- Terminal: [tmux](https://tmux.github.io/), [zsh](https://github.com/robbyrussell/oh-my-zsh), [Alacritty](https://github.com/alacritty/alacritty) & [Starship](https://starship.rs/)
+- Terminal: [vifm](https://vifm.info/), [tmux](https://tmux.github.io/), [zsh](https://github.com/robbyrussell/oh-my-zsh), [Alacritty](https://github.com/alacritty/alacritty) & [Starship](https://starship.rs/)
 
 ### Main languages & libraries fully supported and used daily with this setup
 - Golang, Rust, C/C++
