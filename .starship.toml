@@ -16,7 +16,7 @@ utc_time_offset = "-5"
 
 [git_branch]
 format=":[$branch]()"
-truncation_length = 4
+truncation_length = 15
 truncation_symbol = ""
 
 [package]
