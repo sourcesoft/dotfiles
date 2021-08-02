@@ -45,12 +45,12 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  # padding:
-  #   x: 1
-  #   y: 1
+  padding:
+     x: 1
+     y: 1
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: true
+  dynamic_padding: false
 
   # Window decorations
   #
@@ -61,7 +61,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -72,7 +72,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: SimpleFullscreen
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -111,7 +111,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Knack Nerd Font
+    family: Knack
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -722,6 +722,21 @@ alt_send_esc: true
 key_bindings:
   - { key: I,              mods: Alt, chars: "\x1bi" }
   - { key: O,              mods: Alt, chars: "\x1bo" }
+  - { key: J,              mods: Alt, chars: "\x2C\x73\x6A" }
+  - { key: K,              mods: Alt, chars: "\x2C\x73\x6B" }
+  # Linux (Super Key)
+  - { key: I,              mods: Super, chars: "\x01\x28"     }
+  - { key: O,              mods: Super, chars: "\x01\x29"     }
+  - { key: N,              mods: Super, chars: "\x2C\x6E"     }
+  - { key: M,              mods: Super, chars: "\x2C\x6D"     }
+  - { key: S,              mods: Super, chars: "\x2C\x73\x73" }
+  - { key: P,              mods: Super, chars: "\x2C\x70"     }
+  - { key: R,              mods: Super, chars: "\x2C\x72"     }
+  - { key: U,              mods: Super, chars: "\x01\x62"     }
+  - { key: F,              mods: Super, chars: "\x2C\x66"     }
+  - { key: B,              mods: Super, chars: "\x2C\x71"     }
+  - { key: A,              mods: Super, chars: "\x2C\x61"     }
+  - { key: Semicolon,      mods: Super, chars: "\x2C\x3B"     }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
