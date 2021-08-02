@@ -17,4 +17,5 @@ else
 	xdotool set_desktop_for_window $wid $activews
 	sleep 0.1
 	xdotool windowactivate $wid
+	xdotool windowsize $wid 100% 100%
 fi
