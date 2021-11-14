@@ -12,34 +12,14 @@ end
 
 vim.g.mapleader = ","
 vim.g.tokyonight_style = "night" -- styles: storm, night and day.
-vim.g.onedark_style = "dark"     -- styles: dark, darker, cool, deep, warm and warmer.
+vim.g.onedark_style = "warm"     -- styles: dark, darker, cool, deep, warm and warmer.
 vim.cmd("colorscheme onedark")
 
 
 additional_plugins = {
     "famiu/bufdelete.nvim",
-  -- You can put your additional plugins here.
-  -- Syntax is like normal packer.nvim Syntax. Examples:
-
-  -- { "famiu/feline.nvim", branch = "develop" },
-
-  -- "mhartington/formatter.nvim",
-
-  --{ "crispgm/nvim-go", ft = "go", after = "nvim-lua/popup.nvim"},
   { "mfussenegger/nvim-dap", ft = "go" }
 }
-
--- Other settings here
--- For examples for disabling line number:
--- vim.opt.number = false
--- vim.opt.relativenumber = false
-
-
--- Or for changing terminal toggle mapping:
--- first argument is mode of mapping. second argument is keymap.
--- third argument is command. and last argument is optional argument like {expr = true}.
--- map("n", "<C-t>", ":ToggleTerm<CR>")
--- map("t", "<C-t>", ":ToggleTerm<CR>")
 
 -- Buffer switching.
 map("n", "<C-i>", ":lua prevBuffer()<CR>")
@@ -89,6 +69,7 @@ map("n", "<Leader>bm", ":DashboardJumpMarks<CR>")
 map("n", "<c-s>s", ":lua vim.lsp.buf.formatting()<CR>:w<CR>", lsp_opts)
 map("n", "<C-s>o", ":SessionLoad<CR>")
 map("n", "<C-s>i", ":SessionSave<CR>")
+map("n", "<C-s>q", ":SessionSave<CR>:qa<CR>")
 
 vim.cmd
 [[
@@ -99,10 +80,6 @@ function! CleanNoNameEmptyBuffers()
     endif
 endfunction
 
-autocmd VimEnter * NvimTreeToggle
-autocmd BufEnter * call CleanNoNameEmptyBuffers()
-autocmd VimLeave * call SaveSess()
-
 fu! SaveSess()
   call CleanNoNameEmptyBuffers()
   if bufwinnr("NvimTree") == 1
@@ -110,24 +87,9 @@ fu! SaveSess()
   endif
 endfunction
 
-fu! NextBuffer()
-  if bufname()[0:3] == "fern" || bufname() == ""
-    wincmd p
-  endif
-  bn
-  if bufname() == ""
-    bn
-  endif
-endfunction
-fu! PrevBuffer()
-  if bufname()[0:3] == "fern" || bufname() == ""
-    wincmd p
-  endif
-  bp
-  if bufname() == ""
-    bp
-  endif
-endfunction
+autocmd VimEnter * NvimTreeToggle
+autocmd VimLeave * call SaveSess()
+"autocmd BufEnter * call CleanNoNameEmptyBuffers()
 autocmd BufEnter * map <silent> <c-i> :lua prevBuffer()<cr>
 autocmd BufEnter * map <silent> <c-o> :lua nextBuffer()<cr>
 autocmd BufEnter * map <silent> <C-e> :lua toggleFileManager()<cr>
