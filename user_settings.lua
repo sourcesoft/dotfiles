@@ -31,6 +31,8 @@ additional_plugins = {
     }
 }
 
+local lsp_opts = { noremap=true, silent=true }
+
 -- Buffer switching.
 map("n", "<C-i>", ":lua prevBuffer()<CR>")
 map("n", "<C-o>", ":lua nextBuffer()<CR>")
@@ -54,11 +56,12 @@ map("n", "<leader>q", ":Bdelete<CR>")
 -- Buffer moving.
 map("n", "<leader>bl", ":BufferLineMoveNext<CR>")
 map("n", "<leader>bh", ":BufferLineMovePrev<CR>")
+map("n", "<leader>sj", "<C-d>", lsp_opts)
+map("n", "<leader>sk", "<C-u>", lsp_opts)
 
 -- NvimTree toggle
 map("n", "<leader>e", ":NvimTreeFindFile<CR>")
 
-local lsp_opts = { noremap=true, silent=true }
 map("n", "<leader>j", ":lua vim.lsp.buf.definition()<CR>", lsp_opts) -- def
 map("n", "<leader>k", ":lua vim.lsp.buf.references()<CR>", lsp_opts) -- ref
 map("n", "<leader>i", ":lua vim.lsp.buf.hover()<CR>", lsp_opts)
@@ -87,11 +90,18 @@ map("n", "<C-s>i", ":SessionSave<CR>")
 map("n", "<C-s>q", ":call SaveSess()<CR>:SessionSave<CR>:qa<CR>")
 --map("n", "<C-s>q", ":SessionSave<CR>:qa<CR>")
 
-map("n", "<C-t>", ":FloatermToggle<CR>")
+map("n", "<C-t>", ":FloatermToggle<CR>", lsp_opts)
+map("i", "<C-t>", "<ESC>:FloatermToggle<CR>", lsp_opts)
 map("n", "<Leader>t", ":TodoTrouble<CR>")
 
 vim.cmd
 [[
+set undofile " Persistent Undo
+set undodir=~/.vim/undo " store all the persisted files in a single directory
+set colorcolumn=80 " aditional column width -- disable for better perf
+" --- <leader>-a --- easier buffer switch
+" --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
+nnoremap <leader>a <c-^>
 let g:vista_stay_on_open = 0
 function! CleanBuffers()
     let vistabn = bufnr("__vista__")
@@ -150,7 +160,7 @@ autocmd VimLeave * call SaveSess()
 autocmd BufEnter * map <silent> <c-i> :lua prevBuffer()<cr>
 autocmd BufEnter * map <silent> <c-o> :lua nextBuffer()<cr>
 autocmd BufEnter * map <silent> <C-e> :lua toggleFileManager()<cr>
-autocmd BufEnter * map <silent> <C-r> :Vista<cr>
+autocmd BufEnter * map <silent> <C-p> :Vista<cr>
 autocmd VimEnter * :lua require("surround").setup { mappings_style = "sandwich", prefix = "S" }
 ]]
 
