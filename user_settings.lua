@@ -11,8 +11,8 @@ local function nmap(mode, lhs, rhs, opts)
 end
 
 vim.g.mapleader = ","
-vim.g.tokyonight_style = "night" -- styles: storm, night and day.
-vim.g.onedark_style = "warm"     -- styles: dark, darker, cool, deep, warm and warmer.
+vim.g.tokyonight_style = "storm" -- styles: storm, night and day.
+vim.g.onedark_style = "dark"     -- styles: dark, darker, cool, deep, warm and warmer.
 vim.cmd("colorscheme onedark")
 
 
@@ -21,6 +21,10 @@ additional_plugins = {
     { "mfussenegger/nvim-dap", ft = "go" },
     "voldikss/vim-floaterm",
     "tversteeg/registers.nvim",
+    {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+    },
     {
         "blackCauldron7/surround.nvim",
         cmd = ':lua require("surround").setup { mappings_style = "sandwich", prefix = "S" }'
@@ -37,6 +41,12 @@ map("n", "<C-j>", "<C-w><C-j>")
 map("n", "<C-k>", "<C-w><C-k>")
 map("n", "<C-l>", "<C-w><C-l>")
 map("n", "<C-h>", "<C-w><C-h>")
+
+-- Buffer resizing.
+map("n", "<S-h>", ":call ResizeLeft(3)<CR><Esc>")
+map("n", "<S-l>", ":call ResizeRight(3)<CR><Esc>")
+map("n", "<S-k>", ":call ResizeUp(1)<CR><Esc>")
+map("n", "<S-j>", ":call ResizeDown(1)<CR><Esc>")
 
 -- Buffer closing.
 map("n", "<leader>q", ":Bdelete<CR>")
@@ -66,41 +76,81 @@ map("n", "<Leader>fp", ":Telescope media_files<CR>")
 map("n", "<Leader>fb", ":Telescope buffers<CR>")
 map("n", "<Leader>fh", ":Telescope help_tags<CR>")
 map("n", "<Leader>fo", ":Telescope oldfiles<CR>")
-map("n", "<Leader>th", ":Telescope colorscheme<CR>")
 
--- Dashboar
+-- Dashboard
 map("n", "<Leader>db", ":Dashboard<CR>")
 map("n", "<Leader>fn", ":DashboardNewFile<CR>")
 map("n", "<Leader>bm", ":DashboardJumpMarks<CR>")
 map("n", "<c-s>s", ":lua vim.lsp.buf.formatting()<CR>:w<CR>", lsp_opts)
-map("n", "<C-s>o", ":SessionLoad<CR>")
+map("n", "<C-s>o", ":SessionLoad<CR>:call CleanNoNameEmptyBuffers()<CR>:call ResizeDown(200)<CR>")
 map("n", "<C-s>i", ":SessionSave<CR>")
-map("n", "<C-s>q", ":SessionSave<CR>:qa<CR>")
+map("n", "<C-s>q", ":call SaveSess()<CR>:SessionSave<CR>:qa<CR>")
+--map("n", "<C-s>q", ":SessionSave<CR>:qa<CR>")
 
 map("n", "<C-t>", ":FloatermToggle<CR>")
+map("n", "<Leader>t", ":TodoTrouble<CR>")
 
 vim.cmd
 [[
+let g:vista_stay_on_open = 0
+function! CleanBuffers()
+    let vistabn = bufnr("__vista__")
+    if vistabn != -1
+        exe 'bwipeout '.vistabn
+    endif
+    let nvimtreebn = bufnr("NvimTree")
+    if nvimtreebn != -1
+        exe 'bwipeout '.nvimtreebn
+    endif
+endfunction
 function! CleanNoNameEmptyBuffers()
+    call CleanBuffers()
     let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val))')
     if !empty(buffers)
         exe 'bd '.join(buffers, ' ')
     endif
 endfunction
-
-fu! SaveSess()
-  call CleanNoNameEmptyBuffers()
-  if bufwinnr("NvimTree") == 1
-    NvimTreeClose
-  endif
+function! CleanZeroLinesBuffers()
+    let bufferszerolines = filter(range(1, bufnr('$')), 'buflisted(v:val) && len(getbufline(v:val, 1, "$")) == 0')
+    if !empty(bufferszerolines)
+        exe 'bd '.join(bufferszerolines, ' ')
+    endif
+endfunction
+function! CleanNvimTreeBuffer()
+    let currentcwd = getcwd()
+    let splitcwd = split(currentcwd, "/")
+    echo splitcwd
+    let firstIndex = splitcwd[0]
+    if firstIndex == "home" || firsindex == "~"
+        echo firstIndex
+    endif
+endfunction
+function! IsEmptyNvimTreeBuffer()
+    let currentcwd = getcwd()
+    let splitcwd = split(currentcwd, "/")
+    echo splitcwd
+    let firstIndex = splitcwd[0]
+    if firstIndex == "home" || firsindex == "~"
+        return true
+    endif
+    return false
 endfunction
 
-autocmd VimEnter * NvimTreeToggle
+fu! SaveSess()
+  call CleanBuffers()
+endfunction
+
+fu! ToggleNvimTree()
+    call timer_start(900, { tid -> execute('NvimTreeToggle')})
+endfunction
+
+autocmd VimEnter * call ToggleNvimTree()
 autocmd VimLeave * call SaveSess()
 "autocmd BufEnter * call CleanNoNameEmptyBuffers()
 autocmd BufEnter * map <silent> <c-i> :lua prevBuffer()<cr>
 autocmd BufEnter * map <silent> <c-o> :lua nextBuffer()<cr>
 autocmd BufEnter * map <silent> <C-e> :lua toggleFileManager()<cr>
+autocmd BufEnter * map <silent> <C-r> :Vista<cr>
 autocmd VimEnter * :lua require("surround").setup { mappings_style = "sandwich", prefix = "S" }
 ]]
 
@@ -123,6 +173,10 @@ function nextBuffer()
         vim.cmd("wincmd p")
     end
     vim.cmd("BufferLineCycleNext")
+    local buffername = vim.fn.expand('%')
+    if  buffername == "NvimTree" then
+        vim.cmd("wincmd p")
+    end
 end
 function prevBuffer()
     local buffername = vim.fn.expand('%')
