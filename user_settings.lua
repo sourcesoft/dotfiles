@@ -18,7 +18,13 @@ vim.cmd("colorscheme onedark")
 
 additional_plugins = {
     "famiu/bufdelete.nvim",
-  { "mfussenegger/nvim-dap", ft = "go" }
+    { "mfussenegger/nvim-dap", ft = "go" },
+    "voldikss/vim-floaterm",
+    "tversteeg/registers.nvim",
+    {
+        "blackCauldron7/surround.nvim",
+        cmd = ':lua require("surround").setup { mappings_style = "sandwich", prefix = "S" }'
+    }
 }
 
 -- Buffer switching.
@@ -71,6 +77,8 @@ map("n", "<C-s>o", ":SessionLoad<CR>")
 map("n", "<C-s>i", ":SessionSave<CR>")
 map("n", "<C-s>q", ":SessionSave<CR>:qa<CR>")
 
+map("n", "<C-t>", ":FloatermToggle<CR>")
+
 vim.cmd
 [[
 function! CleanNoNameEmptyBuffers()
@@ -93,6 +101,7 @@ autocmd VimLeave * call SaveSess()
 autocmd BufEnter * map <silent> <c-i> :lua prevBuffer()<cr>
 autocmd BufEnter * map <silent> <c-o> :lua nextBuffer()<cr>
 autocmd BufEnter * map <silent> <C-e> :lua toggleFileManager()<cr>
+autocmd VimEnter * :lua require("surround").setup { mappings_style = "sandwich", prefix = "S" }
 ]]
 
 map("n", "<leader>e", ":lua toggleFileManager()<CR>")
