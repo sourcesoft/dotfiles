@@ -17,6 +17,7 @@ vim.cmd("colorscheme onedark")
 
 
 additional_plugins = {
+    "joeytwiddle/sexy_scroller.vim",
     "famiu/bufdelete.nvim",
     { "mfussenegger/nvim-dap", ft = "go" },
     "voldikss/vim-floaterm",
@@ -96,9 +97,15 @@ map("n", "<Leader>t", ":TodoTrouble<CR>")
 
 vim.cmd
 [[
+set scrolloff=5 " extra space from edges while scrolling
+let g:SexyScroller_EasingStyle = 5 " linear no easing
+let g:SexyScroller_ScrollTime = 40 " enough to see
+let g:SexyScroller_CursorTime = 5 " better compared to previous
 set undofile " Persistent Undo
 set undodir=~/.vim/undo " store all the persisted files in a single directory
 set colorcolumn=80 " aditional column width -- disable for better perf
+" --- esc --- search clear on pressing escape by default
+nnoremap <silent> <esc> :noh<CR>
 " --- <leader>-a --- easier buffer switch
 " --- iTerm hexcodes: '0x2C 0x61' --- Cmd-A
 nnoremap <leader>a <c-^>
