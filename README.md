@@ -31,8 +31,10 @@ Since I use two laptops (+ homelab servers) daily and jump between environments 
 - Open tmux running `tmux` and install tmux plugins with `Prefix + I`
 - Setup plugins by first installing [vim-plug](https://github.com/junegunn/vim-plug) and then running `vim +PlugInstall +qall` or `nvim +PlugInstall +qall` in the terminal
 2. Open (Neo)Vim and:
-- run `:UpdateRemotePlugins` and `:GoInstallBinaries` 
+- run `:UpdateRemotePlugins` and `:GoInstallBinaries`
 - Learn key bindings by reading this file
+- run `:TSInstall go bash c cmake comment cpp css dockerfile gomod http html hcl graphql javascript json lua make markdown python regex rust svelte tsx typescript vim yaml`
+- run `:LspInstall stylelint_lsp tflint tsserver html graphql hls bashls dockerls eslint gopls pyright rust_analyzer tailwindcss terraformls vimls yamlls angularls clangd cssls denols jsonls`
 
 ## Mappings and Environment
 
