@@ -6,7 +6,7 @@ export ZSH=~/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="refined"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -50,7 +50,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker last-working-dir meteor node npm osx redis-cli sudo cp emoji-clock pj zsh-autosuggestions vi-mode kubectl zsh-syntax-highlighting)
+plugins=(git docker last-working-dir meteor node npm macos redis-cli sudo cp emoji-clock pj zsh-autosuggestions vi-mode kubectl zsh-syntax-highlighting)
 
 # User configuration
 PROJECT_PATHS=(~/work ~/work/app ~/work/go ~/work/lamp)
@@ -58,11 +58,8 @@ PROJECT_PATHS=(~/work ~/work/app ~/work/go ~/work/lamp)
 export PATH="/usr/local/sbin:~/Documents/mongodb/bin:/usr/local/git/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source ~/.bash_profile
+source ~/.bashrc
 source $ZSH/oh-my-zsh.sh
-
-eval $(thefuck --alias)
-
 
 transfer() {
     # write to output to tmpfile because of progress bar
@@ -101,12 +98,6 @@ alias transfer=transfer
 # . `brew --prefix`/etc/profile.d/z.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-alias l='colorls -lA --sd'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then source '~/google-cloud-sdk/path.zsh.inc'; fi
+eval "$(starship init zsh)"
 
-# The next line enables shell command completion for gcloud.
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then source '~/google-cloud-sdk/completion.zsh.inc'; fi

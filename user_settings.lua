@@ -19,17 +19,11 @@ vim.cmd("colorscheme onedark")
 additional_plugins = {
     "joeytwiddle/sexy_scroller.vim",
     "famiu/bufdelete.nvim",
-    { "mfussenegger/nvim-dap", ft = "go" },
     "voldikss/vim-floaterm",
     "tversteeg/registers.nvim",
-    {
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-    },
-    {
-        "blackCauldron7/surround.nvim",
-        cmd = ':lua require("surround").setup { mappings_style = "sandwich", prefix = "S" }'
-    }
+    "blackCauldron7/surround.nvim",
+    "kyazdani42/nvim-web-devicons",
+    "folke/trouble.nvim",
 }
 
 local lsp_opts = { noremap=true, silent=true }
@@ -72,10 +66,10 @@ map("n", "<leader>c", ":CommentToggle<CR>")
 map("v", "<leader>c", ":'<,'>CommentToggle<CR>")
 
 -- Telescop.
-map("n", "<Leader>fw", ":Telescope live_grep<CR>")
-map("n", "<Leader>gt", ":Telescope git_status<CR>")
-map("n", "<Leader>cm", ":Telescope git_commits<CR>")
 map("n", "<Leader>ff", ":Telescope find_files<CR>")
+map("n", "<Leader>fw", ":Telescope live_grep<CR>")
+map("n", "<Leader>fs", ":Telescope git_status<CR>")
+map("n", "<Leader>fc", ":Telescope git_commits<CR>")
 map("n", "<Leader>fp", ":Telescope media_files<CR>")
 map("n", "<Leader>fb", ":Telescope buffers<CR>")
 map("n", "<Leader>fh", ":Telescope help_tags<CR>")
@@ -202,3 +196,4 @@ function prevBuffer()
     end
     vim.cmd("BufferLineCyclePrev")
 end
+

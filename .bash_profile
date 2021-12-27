@@ -11,13 +11,11 @@ export MANPAGER='less -X';
 export HISTCONTROL=ignoreboth
 export STARSHIP_CONFIG=~/.starship.toml
 alias e='nvim .'
+alias nvim='~/work/bins/nvim/bin/nvim'
 alias ls='ls -GFh'
 alias ll='ls -la'
 alias l='exa -abghHliS'
-alias cat='bat'
-alias ick='ack -i --pager="less -R -S -X"'
-alias agg='ag --ignore={doc,docs,README.md} -i --ignore-case'
-bindkey '^ ' autosuggest-accept
+alias cat='batcat'
 alias tm="tmux -2"
 alias gs="git status"
 alias gg="git logg"
@@ -25,28 +23,4 @@ alias ga="git add"
 alias gd="git diff"
 alias gc="git checkout"
 set -o vi
-
-# Go stuff
-export GOPATH=~/work/go
-export PATH=/usr/local/go/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
-
-# Android Stuff
-export ANDROID_HOME=~/Library/Android/sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-
-### Added by the Heroku Toolbelt
-# export PATH="/usr/local/heroku/bin:$PATH"
-
-###export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/mysql/support-files/:/usr/local/mysql-5.6.15-osx10.7-x86_64/bin:$PATH"
-
-# Misc Bins
-export PATH="/usr/local/git/bin:$PATH"
-export PATH="~/Documents/mongodb/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH=/usr/local/share:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/php5/bin:$PATH
-export PATH=$(brew --prefix openssl)/bin:$PATH
-export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
+. "$HOME/.cargo/env"
