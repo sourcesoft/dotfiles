@@ -3,7 +3,7 @@ ulimit -n 2048
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
-export EDITOR='vim';
+export EDITOR='nvim';
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 export LESS_TERMCAP_md="${yellow}";
@@ -22,5 +22,7 @@ alias gg="git logg"
 alias ga="git add"
 alias gd="git diff"
 alias gc="git checkout"
+alias push="git push origin"
+alias pull="git pull origin"
 set -o vi
 . "$HOME/.cargo/env"
