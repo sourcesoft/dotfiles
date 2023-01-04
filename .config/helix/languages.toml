@@ -1,0 +1,24 @@
+# https://github.com/helix-editor/helix/blob/master/languages.toml
+
+[[language]]
+name = "rust"
+auto-format = true
+
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["Gopkg.toml", "go.mod"]
+auto-format = true
+comment-token = "//"
+language-server = { command = "gopls" }
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "graphql"
+scope = "source.graphql"
+injection-regex = "graphql"
+file-types = ["gql", "graphql", "graphqls"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
