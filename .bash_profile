@@ -26,3 +26,5 @@ alias push="git push origin"
 alias pull="git pull origin"
 set -o vi
 . "$HOME/.cargo/env"
+export GOPATH=$HOME/work/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
