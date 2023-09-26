@@ -4,7 +4,7 @@ Since I use two laptops (+ homelab servers) daily and jump between environments 
 - Debian/GNOME (personal laptop)
 - OSX (work laptop).
 
-![neovim](https://user-images.githubusercontent.com/608906/124360869-25f43380-dbfa-11eb-8e49-d11f1aa7bf68.png "neovim")
+![neovim](https://github.com/sourcesoft/dotfiles/assets/608906/165f2fee-bb89-43f8-a547-1673f0bdbcb4)
 
 ## Installation
 
