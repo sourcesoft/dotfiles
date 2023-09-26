@@ -8,15 +8,15 @@ Since I use two laptops (+ homelab servers) daily and jump between environments 
 
 ## Installation
 
-My recommendation is to not use the config as is and just use this to learn and pick up what you like.
+My recommendation is to not use the config as is and just use this to learn and pick up what you like. It is configured to be used for Go, Rust and JavaScript.
 
 #### 1. Install required binaries
-1. Have [Alacritty](https://github.com/alacritty/alacritty), [Starship](https://starship.rs/), (Neo)Vim and Git installed ofcourse
-2. Install `tmux` and the [plugins manager](https://github.com/tmux-plugins/tpm)
-3. Install `zsh`: [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and s[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+1. Have [Alacritty](https://github.com/alacritty/alacritty), [Starship](https://starship.rs/), (Neo)Vim and Git installed of course.
+2. Install `tmux` and the [plugins manager](https://github.com/tmux-plugins/tpm).
+3. Install `zsh`: [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and s[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md).
 4. Install `Inconsolata font`  and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf).
-5. Install some cool binaries like [ripgrep](https://github.com/BurntSushi/ripgrep), [lf](https://github.com/gokcehan/lf), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta)
-6. If you're on OSX install [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
+5. Install some cool binaries like [ripgrep](https://github.com/BurntSushi/ripgrep), [lf](https://github.com/gokcehan/lf), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta).
+6. If you're on OSX install [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard).
 
 #### 2. Backup your old configuration and get new ones
 1. Remove cache (or backup) first:
@@ -36,7 +36,7 @@ mv nvim ~/.config/nvim
 ```
 
 3. Start tmux by running `tmux` and install tmux plugins with `Prefix + I`
-4. Open neovim and let the installer takes its time to install all plugins. You may need to reopen neovim a few times to get everything installed.
+4. Open neovim and let the installer take its time to install all plugins. You may need to reopen neovim a few times to get everything installed.
 5. run `:Mason` and install LSP and formatters you're interested in.
 6. Optionally check out config files in the repository like `.bash_profile`, `.alacritty.yml`, `.gitconfig`, `.tmux.conf`, `.zshrc`, `.eslintrc.js`, `prettierrc`, `.gitignore`, `.prettierignore` and more.
 
