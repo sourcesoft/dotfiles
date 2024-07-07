@@ -72,9 +72,6 @@ vim.opt.scroll = 5
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Save active buffer
-vim.keymap.set('n', '<leader>;', ':w!<CR>', { desc = 'Go to previous [D]iagnostic message' })
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -820,7 +817,7 @@ require('lazy').setup({
 -- vim: ts=2 sts=2 sw=2 et
 
 -- clean empty and unwanted buffers before exiting and saving session
-function cleanEmptyBuffers()
+function CleanEmptyBuffers()
   -- Get a list of all windows
   local windows = vim.api.nvim_list_wins()
 
@@ -842,8 +839,8 @@ function cleanEmptyBuffers()
     end
   end
 end
-vim.api.nvim_create_user_command('CleanEmptyBuffers', cleanEmptyBuffers, {})
+vim.api.nvim_create_user_command('CleanEmptyBuffers', CleanEmptyBuffers, {})
 vim.api.nvim_create_autocmd('User', {
   pattern = 'PersistenceSavePre',
-  callback = cleanEmptyBuffers,
+  callback = CleanEmptyBuffers,
 })
