@@ -16,6 +16,8 @@ return {
         },
       },
       options = {
+        max_name_length = 14,
+        tab_size = 10,
         show_buffer_icons = false, -- disable filetype icons for buffers
         buffer_close_icon = '',
         close_icon = '',
