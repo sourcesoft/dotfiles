@@ -412,6 +412,7 @@ require('lazy').setup({
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
           vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
+          vim.keymap.set('n', '<leader>K', "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { desc = 'Hover Definition' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -718,20 +719,8 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
+      -- jump2d: Jump to the next/previous words
+      require('mini.jump2d').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -830,6 +819,7 @@ function CleanEmptyBuffers()
 
       -- Get the name of the buffer
       local buf_name = vim.api.nvim_buf_get_name(buf)
+      print(buf_name)
 
       -- Check if the buffer name matches unwanted patterns
       if buf_name:match 'neo%-tree' or buf_name:match 'edgy://' or buf_name:match 'OUTLINE_' then

@@ -1,7 +1,10 @@
 return {
   'akinsho/bufferline.nvim',
   version = '*',
-  dependencies = 'nvim-tree/nvim-web-devicons',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+    'echasnovski/mini.bufremove',
+  },
   opts = {},
   init = function()
     vim.opt.termguicolors = true
