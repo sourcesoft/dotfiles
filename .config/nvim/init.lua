@@ -196,9 +196,6 @@ require('lazy').setup({
       -- Document existing key chains
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       }
@@ -296,7 +293,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>/', builtin.live_grep, { desc = '[/] Grep search all project' })
       vim.keymap.set('n', '<leader>d', builtin.diagnostics, { desc = '[D]iagnostics' })
-      vim.keymap.set('n', '<leader>w', builtin.buffers, { desc = 'Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>sg', function()

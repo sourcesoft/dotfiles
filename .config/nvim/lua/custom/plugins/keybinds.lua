@@ -13,5 +13,14 @@ vim.api.nvim_set_keymap('n', '<C-u>', '5k', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>e', ':Telescope file_browser path=%:p:h select_buffer=true<CR>')
 vim.keymap.set('n', '<leader>g', ':Telescope git_status<CR>')
 vim.keymap.set('n', '<leader><space>', ':Telescope resume<CR>')
+vim.keymap.set('n', '<leader>w', ':Telescope buffers<CR>')
+
+local harpoon = require 'harpoon'
+vim.keymap.set('n', '<leader>a', function()
+  harpoon:list():add()
+end)
+vim.keymap.set('n', '<leader>h', function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
 
 return {}
