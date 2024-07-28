@@ -10,4 +10,8 @@ vim.keymap.set('n', '<leader><Tab>', ':ChatGPT<CR>', { desc = 'Talk to ChatGPT' 
 vim.api.nvim_set_keymap('n', '<C-d>', '5j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-u>', '5k', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>e', ':Telescope file_browser path=%:p:h select_buffer=true<CR>')
+vim.keymap.set('n', '<leader>g', ':Telescope git_status<CR>')
+vim.keymap.set('n', '<leader><space>', ':Telescope resume<CR>')
+
 return {}
