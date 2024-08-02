@@ -1,3 +1,7 @@
+local function hello()
+  return [[Toro is the best]]
+end
+
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -8,10 +12,30 @@ return {
         theme = 'gruvbox_dark',
       },
       extensions = { 'lazy', 'mason', 'toggleterm', 'trouble', 'oil', 'neo-tree' },
-      sections = {
-        lualine_a = { { 'mode', icon = '' } },
+      winbar = {
+        lualine_a = {
+          {
+            'filename',
+            use_mode_color = false,
+            icon = ' ',
+            path = 4,
+          },
+        },
         lualine_b = {
-          'branch',
+          {
+            'diagnostics',
+            use_mode_color = false,
+            color = {
+              bg = 'white',
+              fg = 'black',
+            },
+            fmt = function(str)
+              if str == '' then
+                return ''
+              end
+              return string.format('diagnostics:  %s  ', str)
+            end,
+          },
           {
             'diff',
             diff_color = {
@@ -25,21 +49,58 @@ return {
               removed = ' ',
             },
           },
-          'diagnostics',
+        },
+        lualine_c = {
+          {
+            'navic',
+            color_correction = 'static',
+            navic_opts = {
+              highlight = false,
+              separator = ' ',
+              depth_limit = 4,
+              icons = {
+                File = '',
+                Module = '',
+                Namespace = '',
+                Package = '',
+                Class = '',
+                Method = '',
+                Property = '',
+                Field = '',
+                Constructor = '',
+                Enum = '',
+                Interface = '',
+                Function = '',
+                Variable = '',
+                Constant = '',
+                String = '',
+                Number = '',
+                Boolean = '',
+                Array = '',
+                Object = '',
+                Key = '',
+                Null = '',
+                EnumMember = '',
+                Struct = '',
+                Event = '',
+                Operator = '',
+                TypeParameter = '',
+              },
+            },
+          },
+        },
+        lualine_z = { hello },
+      },
+      sections = {
+        lualine_a = { { 'mode', icon = '' } },
+        lualine_b = {
+          'branch',
         },
         lualine_c = {
           {
             'filename',
-            icon = '',
+            icon = ' ',
             path = 3,
-          },
-        },
-        lualine_x = {
-          {
-            'filetype',
-          },
-          {
-            'encoding',
           },
         },
         lualine_y = {
