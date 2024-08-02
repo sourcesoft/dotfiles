@@ -15,6 +15,14 @@ vim.keymap.set('n', '<leader>g', ':Telescope git_status<CR>')
 vim.keymap.set('n', '<leader><space>', ':Telescope resume<CR>')
 vim.keymap.set('n', '<leader>w', ':Telescope buffers<CR>')
 
+vim.keymap.set('n', '<leader>v', ':OverseerRun<CR>')
+vim.keymap.set('n', '<leader>V', ':OverseerToggle<CR>')
+
+vim.keymap.set('n', 'K', ':m .-2<CR>==', { desc = 'Move line up' })
+vim.keymap.set('n', 'J', ':m .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+
 local harpoon = require 'harpoon'
 vim.keymap.set('n', '<leader>a', function()
   harpoon:list():add()
