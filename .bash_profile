@@ -11,11 +11,9 @@ export MANPAGER='less -X';
 export HISTCONTROL=ignoreboth
 export STARSHIP_CONFIG=~/.starship.toml
 alias e='nvim .'
-alias nvim='~/work/bins/nvim/bin/nvim'
 alias ls='ls -GFh'
 alias ll='ls -la'
 alias l='exa -abghHliS'
-alias cat='batcat'
 alias tm="tmux -2"
 alias gs="git status"
 alias gg="git logg"
@@ -25,6 +23,14 @@ alias gc="git checkout"
 alias push="git push origin"
 alias pull="git pull origin"
 set -o vi
-. "$HOME/.cargo/env"
+export GOPRIVATE=github.com/nylas
 export GOPATH=$HOME/work/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=~/.npm-global/bin:$PATH
+
+alias minikube-context="kubectl config use-context minikube"
+alias tsh-login="tsh login --proxy=nylas.teleport.sh:443 --user=pouya.s@nylas.com --auth=google"
+alias dev='cd /Users/pouya.s@nylas.com/work/app/dev && make'
+export OPENAI_API_KEY="{{openaiapikey}}"
+. "/Users/pouya.s@nylas.com/.deno/env"
+. "$HOME/.local/bin/env"

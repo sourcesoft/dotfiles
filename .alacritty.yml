@@ -46,11 +46,11 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-     x: 10
-     y: 10
+     x: 5
+     y: 5
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -72,7 +72,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Fullscreen
+  startup_mode: SimpleFullscreen
 
   # Window title
   #title: Alacritty
@@ -111,10 +111,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: JetBrainsMono Nerd Font
+    family: Knack
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: NerdFontComplete
 
   # Bold font face
   #bold:
@@ -156,7 +156,7 @@ font:
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
-    x: 0
+  #  x: 0
     y: 5
 
   # Glyph offset determines the locations of the glyphs within their cells with
@@ -429,9 +429,6 @@ live_config_reload: true
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 #working_directory: None
-
-# Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: true
 
 #mouse:
   # Click settings
@@ -720,23 +717,21 @@ alt_send_esc: true
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - { key: I,              mods: Alt, chars: "\x1bi" }
-  - { key: O,              mods: Alt, chars: "\x1bo" }
-  - { key: J,              mods: Alt, chars: "\x2C\x73\x6A" }
-  - { key: K,              mods: Alt, chars: "\x2C\x73\x6B" }
+  # - { key: J,              mods: Alt, chars: "\x2C\x73\x6A" }
+  # - { key: K,              mods: Alt, chars: "\x2C\x73\x6B" }
   # Linux (Super Key)
-  - { key: I,              mods: Super, chars: "\x01\x28"     }
-  - { key: O,              mods: Super, chars: "\x01\x29"     }
-  - { key: N,              mods: Super, chars: "\x2C\x6E"     }
-  - { key: M,              mods: Super, chars: "\x2C\x6D"     }
-  - { key: S,              mods: Super, chars: "\x2C\x73\x73" }
-  - { key: P,              mods: Super, chars: "\x2C\x70"     }
-  - { key: R,              mods: Super, chars: "\x2C\x72"     }
-  - { key: U,              mods: Super, chars: "\x01\x62"     }
-  - { key: F,              mods: Super, chars: "\x2C\x66"     }
-  - { key: B,              mods: Super, chars: "\x2C\x71"     }
-  - { key: A,              mods: Super, chars: "\x2C\x61"     }
-  - { key: Semicolon,      mods: Super, chars: "\x2C\x3B"     }
+  # - { key: I,              mods: Super, chars: "\x01\x28"     }
+  # - { key: O,              mods: Super, chars: "\x01\x29"     }
+  # - { key: N,              mods: Super, chars: "\x2C\x6E"     }
+  # - { key: M,              mods: Super, chars: "\x2C\x6D"     }
+  # - { key: S,              mods: Super, chars: "\x2C\x73\x73" }
+  # - { key: P,              mods: Super, chars: "\x2C\x70"     }
+  # - { key: R,              mods: Super, chars: "\x2C\x72"     }
+  # - { key: U,              mods: Super, chars: "\x01\x62"     }
+  # - { key: F,              mods: Super, chars: "\x2C\x66"     }
+  # - { key: B,              mods: Super, chars: "\x2C\x71"     }
+  # - { key: A,              mods: Super, chars: "\x2C\x61"     }
+  # - { key: Semicolon,      mods: Super, chars: "\x2C\x3B"     }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
@@ -847,10 +842,16 @@ key_bindings:
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
+  - { key: I,              mods: Alt, chars: "\x1bi" }
+  - { key: O,              mods: Alt, chars: "\x1bo" }
+  - { key: J,              mods: Alt, chars: "\x2C\x73\x6A" }
+  - { key: K,              mods: Alt, chars: "\x2C\x73\x6B" }
   - { key: J,              mods: Command, chars: "\x2C\x73\x6A" }
   - { key: K,              mods: Command, chars: "\x2C\x73\x6B" }
-  - { key: I,              mods: Command, chars: "\x01\x28"     }
-  - { key: O,              mods: Command, chars: "\x01\x29"     }
+  - { key: I,              mods: Command, chars: "\x01\x70"     }
+  - { key: O,              mods: Command, chars: "\x01\x6e"     }
+  #- { key: I,              mods: Command, chars: "\x01\x28"     }
+  #- { key: O,              mods: Command, chars: "\x01\x29"     }
   - { key: N,              mods: Command, chars: "\x2C\x6E"     }
   - { key: M,              mods: Command, chars: "\x2C\x6D"     }
   - { key: S,              mods: Command, chars: "\x2C\x73\x73" }
@@ -861,7 +862,9 @@ key_bindings:
   - { key: B,              mods: Command, chars: "\x2C\x71"     }
   - { key: A,              mods: Command, chars: "\x2C\x61"     }
   - { key: Semicolon,      mods: Command, chars: "\x2C\x3B"     }
-  - { key: Q,              mods: Control, action: Hide          }
+  - { key: Space,              mods: Control, action: Hide          }
+  - { key: C,              mods: Control|Command, action: Hide          }
+  - { key: V,              mods: Control|Command, action: Hide          }
 
 #debug:
   # Display the time it takes to redraw each frame.

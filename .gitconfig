@@ -1,33 +1,5 @@
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 [user]
-	name = ***
-	email = ***
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
-[core]
-	excludesfile = /Users/Pooya/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
-[push]
-	default = simple
-[alias]
-[alias]
-  st = status --short --branch
-  grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
-  glog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
-  logg = log --graph  --decorate --oneline --abbrev-commit --all
-  ls = log --pretty=format:\"%C(yellow)%h %C(green)%s %Creset(%ad)\" --date=relative
-  root = rev-parse --show-toplevel
-  s = status
-  aa = 'add --all'
-  m = 'commit -am'
-  c = 'checkout'
-  up = 'push'
+	email = pooya.source@gmail.com
+	name = Pouya Sanooei

@@ -1,0 +1,19 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+nvim = { target = "~/.config/nvim", type = "symbolic" }
+"karabiner.json" = "~/.config/karabiner/karabiner.json"
+".alacritty.yml" = "~/.alacritty.yml"
+".starship.toml" = "~/.starship.toml"
+".tmux.conf" = "~/.tmux.conf"
+".zshrc" = "~/.zshrc"
+".gitconfig" = "~/.gitconfig"
+".bash_profile" = "~/.bash_profile"
+
+[default.variables]
+
+[settings]
+default_target_type = "automatic"
