@@ -14,9 +14,7 @@ Uses [dotter](https://github.com/SuperCuber/dotter). Install it first.
 
 4. Install some cool binaries like [ripgrep](https://github.com/BurntSushi/ripgrep), [lf](https://github.com/gokcehan/lf), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta).
 
-5. If you're on OSX install [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard).
-
-6. Clone the repo and copy the nvim config.
+5. Clone the repo and apply the configurations:
 
 ```
 git clone git@github.com:sourcesoft/dotfiles.git
@@ -25,6 +23,7 @@ dotter deploy
 ```
 
 7. Open neovim and let the installer take its time to install all plugins. You may need to reopen neovim a few times to get everything installed.
+
 8. run `:Mason` and install LSP and formatters you're interested in.
 
 ## Mappings and Environment
