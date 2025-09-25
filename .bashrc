@@ -31,6 +31,11 @@ export PATH=~/.npm-global/bin:$PATH
 alias minikube-context="kubectl config use-context minikube"
 alias tsh-login="tsh login --proxy=nylas.teleport.sh:443 --user=pouya.s@nylas.com --auth=google"
 alias dev='cd /Users/pouya.s@nylas.com/work/app/dev && make'
-export OPENAI_API_KEY="{{openaiapikey}}"
+
+export OPENAI_API_KEY="{{OPENAI_API_KEY}}"
+export GOOGLE_CLIENT_SECRET = "{{GOOGLE_CLIENT_SECRET}}"
+export GOOGLE_AI_API_KEY = "{{GOOGLE_AI_API_KEY}}"
+export XAI_API_KEY = "{{XAI_API_KEY}}"
+
 . "/Users/pouya.s@nylas.com/.deno/env"
 . "$HOME/.local/bin/env"

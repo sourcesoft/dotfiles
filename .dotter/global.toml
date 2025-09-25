@@ -12,7 +12,7 @@ zed = { target = "~/.config/zed", type = "symbolic" }
 ".tmux.conf" = "~/.tmux.conf"
 ".zshrc" = "~/.zshrc"
 ".gitconfig" = "~/.gitconfig"
-".bash_profile" = "~/.bash_profile"
+".bashrc" = "~/.bashrc"
 
 [default.variables]
 
