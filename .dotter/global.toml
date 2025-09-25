@@ -13,6 +13,7 @@ zed = { target = "~/.config/zed", type = "symbolic" }
 ".zshrc" = "~/.zshrc"
 ".gitconfig" = "~/.gitconfig"
 ".bashrc" = "~/.bashrc"
+"ghostty" = "~/.config/ghostty/config"
 
 [default.variables]
 
