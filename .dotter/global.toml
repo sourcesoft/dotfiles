@@ -5,6 +5,7 @@ depends = []
 
 [default.files]
 nvim = { target = "~/.config/nvim", type = "symbolic" }
+zed = { target = "~/.config/zed", type = "symbolic" }
 "karabiner.json" = "~/.config/karabiner/karabiner.json"
 ".alacritty.yml" = "~/.alacritty.yml"
 ".starship.toml" = "~/.starship.toml"

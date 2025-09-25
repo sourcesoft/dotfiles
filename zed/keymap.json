@@ -1,0 +1,61 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// from the command palette.
+// To see the default key bindings run `zed: open default keymap`
+[
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-t": "workspace::ToggleBottomDock",
+      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-n": "project_panel::NewFile",
+      "cmd-d": "project_panel::Duplicate",
+      "shift-cmd-n": "project_panel::NewDirectory"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-t": "terminal_panel::ToggleFocus",
+      "cmd-i": "agent::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-s": "outline_panel::ToggleFocus",
+      "space q": "pane::CloseActiveItem",
+      "space /": "pane::DeploySearch",
+      "#": "editor::SelectAllMatches", // Select all occurrences of current word
+      "space ;": "workspace::Save",
+      "space f": "file_finder::Toggle",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "space s": "outline::Toggle",
+      "space S": "project_symbols::Toggle",
+      "g d": "editor::GoToDefinition",
+      "space r": "editor::FindAllReferences",
+      "space i": "editor::GoToImplementation",
+      "space R": "editor::Rename",
+      "space k": "editor::Hover",
+      "space d": "diagnostics::Deploy",
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown"
+    }
+  }
+]
