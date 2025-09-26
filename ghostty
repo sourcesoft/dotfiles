@@ -44,6 +44,8 @@
 #fullscreen = true
 #macos-non-native-fullscreen = true
 quick-terminal-autohide = true
-keybind = global:cmd+1=toggle_quick_terminal
+quick-terminal-position = top
+keybind = global:cmd+d=toggle_quick_terminal
+quick-terminal-size = 90%
 link-url = true
 macos-option-as-alt = true
