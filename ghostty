@@ -43,9 +43,10 @@
 # resize-overlay-duration = 4s 200ms
 #fullscreen = true
 #macos-non-native-fullscreen = true
-quick-terminal-autohide = true
+quick-terminal-autohide = false
 quick-terminal-position = top
 keybind = global:cmd+d=toggle_quick_terminal
 quick-terminal-size = 90%
 link-url = true
 macos-option-as-alt = true
+macos-hidden = "always"

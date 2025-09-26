@@ -129,7 +129,7 @@ git config --global --replace-all url."git@github.com:".insteadOf "https://githu
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "/Users/pouya.s@nylas.com/.deno/env"
+. "~/.deno/env"
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pouya.s@nylas.com/Downloads/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/pouya.s@nylas.com/Downloads/google-cloud-sdk 2/path.zsh.inc'; fi
 
@@ -141,8 +141,6 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 # End Nix
-
-. "$HOME/.local/bin/env"
 
 # pnpm
 export PNPM_HOME="/Users/pouya.s@nylas.com/Library/pnpm"
