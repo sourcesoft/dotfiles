@@ -12,12 +12,12 @@ keybinds clear-defaults=true {
         bind "s" { NewPane "right"; SwitchToMode "normal"; }
         bind "v" { NewPane "down"; SwitchToMode "normal"; }
         //bind "s" { NewPane "stacked"; SwitchToMode "normal"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "normal"; }
-        bind "z" { TogglePaneFrames; SwitchToMode "normal"; }
+        bind "Z" { TogglePaneFrames; SwitchToMode "normal"; }
 
         bind "N" { NewTab; SwitchToMode "normal"; }
-        bind "X" { CloseTab; SwitchToMode "normal"; }
+        bind "U" { CloseTab; SwitchToMode "normal"; }
         bind "R" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
         bind "n" { GoToNextTab; SwitchToMode "normal"; }
@@ -55,7 +55,7 @@ keybinds clear-defaults=true {
         bind "n" { NewTab; SwitchToMode "normal"; }
         bind "s" { ToggleActiveSyncTab; SwitchToMode "normal"; }
         bind "Ctrl t" { SwitchToMode "normal"; }
-        bind "x" { CloseTab; SwitchToMode "normal"; }
+        bind "U" { CloseTab; SwitchToMode "normal"; }
         bind "tab" { ToggleTab; }
     }
     resize {
@@ -175,7 +175,7 @@ keybinds clear-defaults=true {
         bind "esc" { SwitchToMode "normal"; }
     }
     shared_among "pane" "tmux" {
-        bind "x" { CloseFocus; SwitchToMode "normal"; }
+        bind "u" { CloseFocus; SwitchToMode "normal"; }
     }
     shared_among "scroll" "search" {
         bind "PageDown" { PageScrollDown; }
@@ -318,7 +318,7 @@ theme "iceberg-dark"
 //   - true (default, enabled)
 //   - false
 // 
-// pane_frames false
+pane_frames false
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
