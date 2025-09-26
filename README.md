@@ -1,4 +1,4 @@
-![neovim](https://github.com/sourcesoft/dotfiles/assets/608906/165f2fee-bb89-43f8-a547-1673f0bdbcb4)
+<img width="1705" height="1071" alt="image" src="https://github.com/user-attachments/assets/e1bf9be0-8d6d-4aa4-bb3b-6463be82a398" />
 
 ## Installation
 
@@ -6,15 +6,13 @@ Uses [dotter](https://github.com/SuperCuber/dotter). Install it first.
 
 ### Setup
 
-1. Have [Ghostty](https://ghostty.org/), [Zellij](https://github.com/zellij-org/zellij), [Starship](https://starship.rs/), Neovim and Git installed of course.
+1. Have [Ghostty](https://ghostty.org/), [Zellij](https://github.com/zellij-org/zellij),  `zsh`: [Oh My Posh](https://ohmyposh.dev/), [Starship](https://starship.rs/), Neovim and Git installed of course.
 
-2. Install `zsh`: [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh), [pwerlevel10k theme](https://github.com/romkatv/powerlevel10k#oh-my-zsh), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) and s[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md).
+2. Install `Inconsolata font`  from [Nerd Font](https://www.nerdfonts.com/).
 
-3. Install `Inconsolata font`  and [Knack Nerd Font](https://github.com/enricobacis/.dotfiles/blob/master/osx-fonts/Library/Fonts/Knack%20Regular%20Nerd%20Font%20Complete.ttf).
+3. Install some cool binaries like [ripgrep](https://github.com/BurntSushi/ripgrep), [lf](https://github.com/gokcehan/lf), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta).
 
-4. Install some cool binaries like [ripgrep](https://github.com/BurntSushi/ripgrep), [lf](https://github.com/gokcehan/lf), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta).
-
-5. Clone the repo and apply the configurations:
+4. Clone the repo and apply the configurations:
 
 ```
 git clone git@github.com:sourcesoft/dotfiles.git
@@ -22,9 +20,9 @@ cd dotfiles
 dotter deploy
 ```
 
-7. Open neovim and let the installer take its time to install all plugins. You may need to reopen neovim a few times to get everything installed.
+5. Open neovim and let the installer take its time to install all plugins. You may need to reopen neovim a few times to get everything installed.
 
-8. run `:Mason` and install LSP and formatters you're interested in.
+6. run `:Mason` and install LSP and formatters you're interested in.
 
 ## Mappings and Environment
 
