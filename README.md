@@ -8,7 +8,7 @@ Uses [dotter](https://github.com/SuperCuber/dotter). Install it first.
 
 1. Have [Ghostty](https://ghostty.org/), [Zellij](https://github.com/zellij-org/zellij),  `zsh`: [Oh My Posh](https://ohmyposh.dev/), [Starship](https://starship.rs/), Neovim and Git installed of course.
 
-2. Install `Inconsolata font`  from [Nerd Font](https://www.nerdfonts.com/).
+2. Install `Inconsolata font`  from [Nerd Font](https://www.nerdfonts.com/) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions).
 
 3. Install some cool binaries like [ripgrep](https://github.com/BurntSushi/ripgrep), [lf](https://github.com/gokcehan/lf), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [exa](https://github.com/ogham/exa) and [delta](https://github.com/dandavison/delta).
 

@@ -23,10 +23,10 @@ alias gc="git checkout"
 alias push="git push origin"
 alias pull="git pull origin"
 set -o vi
-export GOPRIVATE=github.com/nylas
 export GOPATH=$HOME/work/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=~/.npm-global/bin:$PATH
+export GOPRIVATE=github.com/nylas
 
 alias minikube-context="kubectl config use-context minikube"
 alias tsh-login="tsh login --proxy=nylas.teleport.sh:443 --user=pouya.s@nylas.com --auth=google"
