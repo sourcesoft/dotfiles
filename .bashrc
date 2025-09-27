@@ -22,6 +22,10 @@ alias gd="git diff"
 alias gc="git checkout"
 alias push="git push origin"
 alias pull="git pull origin"
+alias k="kubectl"
+alias kgp="kubectl get pods"
+alias kgs="kubectl get services"
+alias kgi="kubectl get ingress"
 set -o vi
 export GOPATH=$HOME/work/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
