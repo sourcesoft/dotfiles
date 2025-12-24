@@ -32,9 +32,8 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=~/.npm-global/bin:$PATH
 export GOPRIVATE=github.com/nylas
 
-alias minikube-context="kubectl config use-context minikube"
+alias minikube-context="kubectl config use-context docker-desktop"
 alias tsh-login="tsh login --proxy=nylas.teleport.sh:443 --user=pouya.s@nylas.com --auth=google"
-alias dev='cd /Users/pouya.s@nylas.com/work/app/dev && make'
 
 export OPENAI_API_KEY="{{OPENAI_API_KEY}}"
 export GOOGLE_CLIENT_SECRET="{{GOOGLE_CLIENT_SECRET}}"

@@ -1,5 +1,5 @@
-// Zed settings
 //
+// Zed settings
 // For information on how to configure Zed, see the Zed
 // documentation: https://zed.dev/docs/configuring-zed
 //
@@ -7,13 +7,32 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent_servers": {
+    "claude": {
+      "default_mode": "bypassPermissions",
+    },
+  },
+  "features": {
+    "edit_prediction_provider": "zed",
+  },
+  "icon_theme": "Catppuccin Frappé",
+  "context_servers": {
+    "mcp-server-context7": {
+      "enabled": true,
+      "settings": {
+        "context7_api_key": "{{CONTEXT7_API_KEY}}",
+      },
+    },
+  },
   "agent": {
-    "default_profile": "ask",
+    "play_sound_when_agent_done": true,
+    "enable_feedback": false,
+    "default_profile": "write",
     "single_file_review": true,
     "always_allow_tool_actions": true,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-thinking-latest"
+      "provider": "google",
+      "model": "gemini-3-pro-preview",
     },
     "dock": "right",
     "default_width": 640,
@@ -22,7 +41,7 @@
   "theme": "Monokai Night Soft",
   "telemetry": {
     "metrics": false,
-    "diagnostics": false
+    "diagnostics": false,
   },
   "buffer_font_family": "Dank Mono",
   "vim_mode": true,
@@ -30,21 +49,21 @@
   "buffer_font_size": 16,
   "terminal": {
     "default_height": 500,
-    "copy_on_select": false
+    "copy_on_select": false,
   },
   "vim": {
-    "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true,
   },
   "outline_panel": {
     // Default width of the outline panel.
     "default_width": 240,
     // Where to dock the outline panel. Can be 'left' or 'right'.
-    "dock": "right"
+    "dock": "right",
   },
   "project_panel": {
     // Default width of the project panel.
     "default_width": 240,
     // Where to dock the project panel. Can be 'left' or 'right'.
-    "dock": "left"
-  }
+    "dock": "left",
+  },
 }

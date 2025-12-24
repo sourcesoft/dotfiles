@@ -1,0 +1,101 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "c06bb92d-9f10-45e2-bb54-c13947b12e59",
+        "type": "custom-text",
+        "customText": "Used",
+        "merge": true
+      },
+      {
+        "id": "41a5ba0d-c9f3-4346-88ff-6b472366ddd5",
+        "type": "context-percentage-usable",
+        "color": "ansi256:16",
+        "backgroundColor": "ansi256:73",
+        "rawValue": true,
+        "metadata": {
+          "inverse": "false"
+        }
+      },
+      {
+        "id": "25589bbf-7c27-4ea5-bba8-e5f196759985",
+        "type": "tokens-input",
+        "color": "ansi256:16",
+        "backgroundColor": "ansi256:73"
+      },
+      {
+        "id": "264d08a2-a04b-495f-a5ad-dcf090f55a90",
+        "type": "tokens-output",
+        "color": "ansi256:254",
+        "backgroundColor": "ansi256:239"
+      },
+      {
+        "id": "853afae0-e3a2-4916-900f-b170fe15ec73",
+        "type": "context-length",
+        "color": "ansi256:231",
+        "backgroundColor": "ansi256:25"
+      }
+    ],
+    [
+      {
+        "id": "c06bb92d-9f10-45e2-bb54-c13947b12e29",
+        "type": "custom-text",
+        "customText": "Session",
+        "merge": true
+      },
+      {
+        "id": "deb3be90-c44e-4c02-8896-83710646821b",
+        "type": "block-timer",
+        "backgroundColor": "bgBlue",
+        "rawValue": true
+      },
+      {
+        "id": "ccusage-widget",
+        "type": "custom-command",
+        "commandPath": "~/.claude/stats.sh"
+      }
+    ],
+    [
+      {
+        "id": "c06bb92d-9f10-45e2-bb54-c13947c12e29",
+        "type": "custom-text",
+        "customText": "Changes",
+        "merge": true
+      },
+      {
+        "id": "ed21ef29-d514-4c5e-8bde-29edc4453732",
+        "type": "git-changes",
+        "backgroundColor": "bgBrightGreen"
+      },
+      {
+        "id": "d65946c8-6503-4b79-9224-a7893c46beef",
+        "type": "git-branch",
+        "backgroundColor": "bgBrightBlack"
+      }
+    ]
+  ],
+  "flexMode": "full",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "defaultPadding": " ",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "powerline": {
+    "enabled": true,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [
+      ""
+    ],
+    "endCaps": [
+      ""
+    ],
+    "theme": "nord-aurora",
+    "autoAlign": false
+  }
+}

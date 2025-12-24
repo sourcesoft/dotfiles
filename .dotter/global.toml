@@ -15,6 +15,9 @@ zed = { target = "~/.config/zed", type = "symbolic" }
 ".bashrc" = "~/.bashrc"
 ".bash_profile" = "~/.bash_profile"
 "ghostty" = "~/.config/ghostty/config"
+"claude-stats.sh" = "~/.claude/stats.sh"
+"claude-settings.json" = "~/.claude/settings.json"
+"claude-ccstatusline.json" = "~/.config/ccstatusline/settings.json"
 
 [default.variables]
 
