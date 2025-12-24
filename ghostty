@@ -50,3 +50,4 @@ quick-terminal-size = 90%
 link-url = true
 macos-option-as-alt = true
 macos-hidden = "always"
+keybind = shift+enter=text:\x1b\r

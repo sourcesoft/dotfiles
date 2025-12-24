@@ -7,19 +7,26 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent_servers": {
+    "claude": {
+      "default_mode": "bypassPermissions"
+    }
+  },
   "agent": {
-    "default_profile": "ask",
+    "play_sound_when_agent_done": true,
+    "enable_feedback": false,
+    "default_profile": "write",
     "single_file_review": true,
     "always_allow_tool_actions": true,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-thinking-latest"
+      "provider": "google",
+      "model": "gemini-3-pro-preview"
     },
     "dock": "right",
     "default_width": 640,
   },
   "base_keymap": "VSCode",
-  "theme": "Monokai Night Soft",
+  "theme": "One Dark",
   "telemetry": {
     "metrics": false,
     "diagnostics": false
