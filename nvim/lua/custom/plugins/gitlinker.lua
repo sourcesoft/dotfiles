@@ -1,6 +1,5 @@
 return {
   'linrongbin16/gitlinker.nvim',
-  cmd = 'GitLink',
   opts = {},
   keys = {
     { '<leader>cy', '<cmd>GitLink<cr>', mode = { 'n', 'v' }, desc = 'Yank git-line link' },

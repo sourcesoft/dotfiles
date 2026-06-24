@@ -1,7 +1,5 @@
 return {
-  'nvimdev/dashboard-nvim',
-  event = 'VimEnter',
-  dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+  'folke/snacks.nvim',
   opts = function()
     local logo = [[
 BEST DOG IN THE WORLD (good boy):
@@ -20,34 +18,63 @@ BEST DOG IN THE WORLD (good boy):
        I know that I know nothing. - Socrates
   ]]
 
-    logo = string.rep('\n', 8) .. logo .. '\n\n'
+    local function plugin_count()
+      local plugins = vim.pack.get()
+      local active = 0
+      for _, plugin in ipairs(plugins) do
+        if plugin.active then
+          active = active + 1
+        end
+      end
 
-    local opts = {
-      theme = 'hyper',
-      config = {
-        packages = { enable = false },
-        header = vim.split(logo, '\n'),
-        shortcut = {
-          { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
-          { action = 'lua require("telescope.builtin").find_files()', desc = ' Find File', icon = ' ', key = 'f' },
-          { action = 'lua require("persistence").load()', desc = ' Restore Session', icon = ' ', key = 'r' },
-          {
-            action = function()
-              vim.api.nvim_input '<cmd>qa<cr>'
-            end,
-            desc = ' Quit',
-            icon = ' ',
-            key = 'q',
+      return ('⚡ Neovim loaded %d/%d vim.pack plugins'):format(active, #plugins)
+    end
+
+    return {
+      dashboard = {
+        enabled = true,
+        preset = {
+          header = logo,
+          keys = {
+            { desc = 'Update', icon = '󰊳 ', key = 'u', action = ':lua vim.pack.update()' },
+            {
+              desc = 'Find File',
+              icon = ' ',
+              key = 'f',
+              action = function()
+                require('telescope.builtin').find_files()
+              end,
+            },
+            {
+              desc = 'Restore Session',
+              icon = ' ',
+              key = 'r',
+              action = function()
+                require('persistence').load()
+              end,
+            },
+            { desc = 'Quit', icon = ' ', key = 'q', action = ':qa' },
           },
         },
-        footer = function()
-          local stats = require('lazy').stats()
-          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          return { '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms' }
-        end,
+        sections = {
+          { section = 'header' },
+          { section = 'keys', gap = 1, padding = 1 },
+          function()
+            return { align = 'center', footer = plugin_count(), padding = 1 }
+          end,
+        },
       },
+      explorer = {
+        enabled = true,
+        replace_netrw = false,
+      },
+      bigfile = { enabled = true },
+      quickfile = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
+      words = { enabled = true },
+      lazygit = { enabled = true },
+      scroll = { enabled = true },
     }
-
-    return opts
   end,
 }

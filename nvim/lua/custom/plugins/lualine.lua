@@ -11,7 +11,7 @@ return {
         icons_enabled = true,
         theme = 'gruvbox_dark',
       },
-      extensions = { 'lazy', 'mason', 'toggleterm', 'trouble', 'oil', 'neo-tree' },
+      extensions = { 'mason', 'trouble', 'oil' },
       winbar = {
         lualine_a = {
           {

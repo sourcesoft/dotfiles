@@ -1,11 +1,27 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(bun run check:*)",
+      "Bash(bun run format)",
+      "Bash(bun run check)",
+      "Bash(bun run db:generate)",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run format:*)"
+    ],
+    "deny": [],
+    "ask": [],
     "defaultMode": "acceptEdits"
   },
-  "alwaysThinkingEnabled": true,
   "statusLine": {
     "type": "command",
-    "command": "bunx -y ccstatusline@latest",
-    "padding": 0
-  }
+    "command": "bash \"$HOME/.claude/statusline.sh\""
+  },
+  "enabledPlugins": {
+    "claude-hud@claude-hud": true
+  },
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "high"
 }

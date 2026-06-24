@@ -1,7 +1,12 @@
 return {
   'ramilito/kubectl.nvim',
   init = function()
-    vim.keymap.set('n', '<leader>m', '<cmd>lua require("kubectl").open()<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>m', function()
+      require('kubectl').open()
+    end, { desc = 'Open kubectl', silent = true })
+    vim.keymap.set('n', '<leader>M', function()
+      require('kubectl').close()
+    end, { desc = 'Close kubectl', silent = true })
   end,
   config = function()
     require('kubectl').setup {
@@ -10,11 +15,6 @@ return {
         interval = 3000, -- milliseconds
       },
       namespace = 'All',
-      notifications = {
-        enabled = true,
-        verbose = false,
-        blend = 100,
-      },
       hints = true,
       context = true,
       float_size = {
@@ -31,9 +31,6 @@ return {
         row = 5,
       },
       obj_fresh = 0, -- highlight if creation newer than number (in minutes)
-      mappings = {
-        exit = '<leader>m',
-      },
     }
   end,
 }
