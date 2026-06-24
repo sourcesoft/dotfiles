@@ -8,6 +8,17 @@ vim.keymap.set('n', '<leader>;', ':w!<CR>', { desc = 'Save current buffer' })
 vim.api.nvim_set_keymap('n', '<C-d>', '5j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-u>', '5k', { noremap = true, silent = true })
 
+vim.api.nvim_create_user_command('Plugins', function()
+  vim.pack.update(nil, { offline = true })
+end, { desc = 'List plugins' })
+
+vim.api.nvim_create_user_command('PluginUpdate', function()
+  vim.pack.update()
+end, { desc = 'Update plugins' })
+
+vim.keymap.set('n', '<leader>pl', '<cmd>Plugins<CR>', { desc = '[P]lugins [l]ist' })
+vim.keymap.set('n', '<leader>pu', '<cmd>PluginUpdate<CR>', { desc = '[P]lugins [u]pdate' })
+
 vim.keymap.set('n', '<leader>e', ':Telescope file_browser path=%:p:h select_buffer=true<CR>')
 vim.keymap.set('n', '<leader>E', function()
   Snacks.explorer()

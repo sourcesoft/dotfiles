@@ -200,6 +200,7 @@ require('which-key').setup {
   icons = { mappings = vim.g.have_nerd_font },
   spec = {
     { '<leader>c', group = '[C]ode' },
+    { '<leader>p', group = '[P]lugins' },
     { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
     { '<leader>t', group = '[T]oggle' },
     { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
