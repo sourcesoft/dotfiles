@@ -19,6 +19,18 @@
       "default_mode": "bypassPermissions"
     }
   },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "icon_theme": "Catppuccin Frappé",
+  "context_servers": {
+    "mcp-server-context7": {
+      "enabled": true,
+      "settings": {
+        "context7_api_key": "{{CONTEXT7_API_KEY}}"
+      }
+    }
+  },
   "agent": {
     "play_sound_when_agent_done": true,
     "enable_feedback": false,
