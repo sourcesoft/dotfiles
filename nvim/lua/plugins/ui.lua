@@ -192,6 +192,81 @@ local function hello()
   return [[Toro is the best]]
 end
 
+local lualine_filetype_map = {
+  lazy = { name = 'lazy.nvim', icon = '󰒲' },
+  mason = { name = 'mason', icon = '󰏖' },
+  minifiles = { name = 'minifiles', icon = '󰉋' },
+  oil = { name = 'oil', icon = '󰏇' },
+  snacks_picker_input = { name = 'picker', icon = '' },
+  snacks_terminal = { name = 'terminal', icon = '' },
+  trouble = { name = 'trouble', icon = '󰙅' },
+}
+
+local function lualine_hl_color(group, attr)
+  attr = attr or 'fg'
+  if not group then
+    return nil
+  end
+
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
+  if not ok or not hl or not hl[attr] then
+    return nil
+  end
+
+  return { [attr] = ('#%06x'):format(hl[attr]) }
+end
+
+local function lualine_file_icon()
+  local ft = vim.bo.filetype
+  if lualine_filetype_map[ft] then
+    return ' ' .. lualine_filetype_map[ft].icon .. ' '
+  end
+
+  local devicons = require 'nvim-web-devicons'
+  local filename = vim.fn.expand '%:t'
+  local icon = devicons.get_icon(filename)
+  if icon == nil then
+    icon = devicons.get_icon_by_filetype(ft)
+  end
+
+  return (icon or '󰈤') .. ' '
+end
+
+local function lualine_file_icon_color()
+  if lualine_filetype_map[vim.bo.filetype] then
+    return lualine_hl_color 'Special'
+  end
+
+  local devicons = require 'nvim-web-devicons'
+  local filename = vim.fn.expand '%:t'
+  local _, hl = devicons.get_icon(filename)
+  if hl == nil then
+    _, hl = devicons.get_icon_by_filetype(vim.bo.filetype)
+  end
+
+  return lualine_hl_color(hl) or lualine_hl_color 'Normal'
+end
+
+local function lualine_filename(name)
+  local mapped = lualine_filetype_map[vim.bo.filetype]
+  if mapped then
+    return mapped.name
+  end
+
+  return name
+end
+
+local function lualine_listed_buffer_count()
+  local count = 0
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted then
+      count = count + 1
+    end
+  end
+
+  return count
+end
+
 local function yank_gitbrowse_url(opts)
   opts = vim.tbl_deep_extend('force', {
     what = 'permalink',
@@ -307,6 +382,25 @@ return {
     end,
   },
 
+  { 'scottmckendry/cyberdream.nvim' },
+  { 'catppuccin/nvim', name = 'catppuccin' },
+  { 'rebelot/kanagawa.nvim' },
+
+  {
+    'rachartier/tiny-cmdline.nvim',
+    init = function()
+      vim.o.cmdheight = 0
+      -- Work around Neovim 0.12.3 UI2 msg_ruler errors during LSP detach/buffer close.
+      vim.o.ruler = false
+      require('vim._core.ui2').enable {}
+    end,
+    config = function()
+      require('tiny-cmdline').setup {
+        on_reposition = require('tiny-cmdline').adapters.blink,
+      }
+    end,
+  },
+
   {
     'folke/snacks.nvim',
     keys = {
@@ -397,7 +491,11 @@ return {
       require('lualine').setup {
         options = {
           icons_enabled = true,
-          theme = 'gruvbox_dark',
+          theme = 'auto',
+          component_separators = { left = ' ', right = ' ' },
+          section_separators = { left = ' ', right = ' ' },
+          globalstatus = true,
+          disabled_filetypes = { statusline = { 'alpha', 'dashboard', 'snacks_dashboard' } },
         },
         extensions = { 'mason', 'trouble', 'oil' },
         winbar = {
@@ -480,42 +578,94 @@ return {
           lualine_z = { hello },
         },
         sections = {
-          lualine_a = { { 'mode', icon = '' } },
-          lualine_b = { 'branch' },
+          lualine_a = {
+            {
+              'mode',
+              icon = '',
+              fmt = function(mode)
+                return mode:lower()
+              end,
+            },
+          },
+          lualine_b = { { 'branch', icon = '' } },
           lualine_c = {
             {
+              'diagnostics',
+              symbols = {
+                error = ' ',
+                warn = ' ',
+                info = ' ',
+                hint = '󰝶 ',
+              },
+            },
+            {
+              lualine_file_icon,
+              color = lualine_file_icon_color,
+              separator = '',
+              padding = { left = 0, right = 0 },
+            },
+            {
               'filename',
-              icon = ' ',
               path = 3,
+              padding = { left = 0, right = 0 },
+              fmt = lualine_filename,
+            },
+            {
+              function()
+                return '+' .. (lualine_listed_buffer_count() - 1) .. ' '
+              end,
+              cond = function()
+                return lualine_listed_buffer_count() > 1
+              end,
+              color = function()
+                return lualine_hl_color 'Operator'
+              end,
+              padding = { left = 0, right = 1 },
+            },
+            {
+              function()
+                return vim.fn.tabpagenr() .. ' of ' .. vim.fn.tabpagenr '$'
+              end,
+              cond = function()
+                return vim.fn.tabpagenr '$' > 1
+              end,
+              icon = '󰓩',
+              color = function()
+                return lualine_hl_color 'Special'
+              end,
+            },
+          },
+          lualine_x = {
+            {
+              'diff',
+              diff_color = {
+                added = { fg = '#9ece6a' },
+                modified = { fg = '#7aa2f7' },
+                removed = { fg = '#f7768e' },
+              },
+              symbols = {
+                added = ' ',
+                modified = ' ',
+                removed = ' ',
+              },
             },
           },
           lualine_y = {
             {
               'progress',
-              icon = '󰠞',
-              color = {
-                bg = '#f38ba8',
-                fg = '#1e1e2e',
-              },
             },
             {
               'location',
               icon = '',
-              color = {
-                bg = '#89b4fa',
-                fg = '#1e1e2e',
-              },
+              color = function()
+                return lualine_hl_color 'Boolean'
+              end,
             },
           },
           lualine_z = {
             {
-              function()
-                return os.date '%R'
-              end,
-              color = {
-                bg = '#9ece6a',
-              },
-              icon = ' ',
+              'datetime',
+              style = ' %R',
             },
           },
         },
