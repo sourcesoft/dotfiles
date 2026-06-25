@@ -109,6 +109,41 @@ nvim --headless '+checkhealth dotfiles' +qa
 
 You can also open Neovim and run `:checkhealth dotfiles`.
 
+### Local Secrets And Machine Overrides
+
+Do not put API keys, tokens, or machine-specific paths in tracked dotfiles or in
+`.dotter/local.toml`. Shell startup loads local secrets from:
+
+```sh
+~/.config/shell/env.private
+```
+
+Create it with regular shell exports:
+
+```sh
+mkdir -p ~/.config/shell
+chmod 700 ~/.config/shell
+touch ~/.config/shell/env.private
+chmod 600 ~/.config/shell/env.private
+```
+
+Example format:
+
+```sh
+export OPENAI_API_KEY="..."
+export GOOGLE_AI_API_KEY="..."
+```
+
+For machine-specific shell setup, use local-only hooks:
+
+```sh
+~/.bashrc.local
+~/.zshrc.local
+```
+
+Use those files for work-only aliases, per-machine `PATH` entries, company
+settings such as `GOPRIVATE`, and tools installed in nonstandard locations.
+
 ## Mappings and Environment
 
 It's much easier to use right CMD or Alt instead of reaching out to escape.

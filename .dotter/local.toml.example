@@ -4,7 +4,3 @@ packages = ["default"]
 [files]
 
 [variables]
-OPENAI_API_KEY = ""
-GOOGLE_CLIENT_SECRET = ""
-GOOGLE_AI_API_KEY = ""
-XAI_API_KEY = ""

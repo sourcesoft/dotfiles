@@ -1,6 +1,9 @@
 .dotter/local.toml
 .dotter/cache.toml
 .dotter/cache
+.bashrc.local
+.zshrc.local
+.config/shell/env.private
 github-copilot/
 
 # Node

@@ -39,12 +39,17 @@ set -o vi
 export GOPATH=$HOME/work/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=~/.npm-global/bin:$PATH
-export GOPRIVATE=github.com/nylas
 
 alias minikube-context="kubectl config use-context minikube"
-alias tsh-login="tsh login --proxy=nylas.teleport.sh:443 --user=pouya.s@nylas.com --auth=google"
-alias dev='cd /Users/pouya.s@nylas.com/work/app/dev && make'
 
-export OPENAI_API_KEY="{{OPENAI_API_KEY}}"
-export GOOGLE_AI_API_KEY="{{GOOGLE_AI_API_KEY}}"
-export XAI_API_KEY="{{XAI_API_KEY}}"
+if [ -f "$HOME/.config/shell/env.private" ]; then
+  . "$HOME/.config/shell/env.private"
+fi
+
+claude-mem() {
+  "$HOME/.bun/bin/bun" "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs" "$@"
+}
+
+if [ -f "$HOME/.bashrc.local" ]; then
+  . "$HOME/.bashrc.local"
+fi

@@ -12,8 +12,9 @@ zed = { target = "~/.config/zed", type = "symbolic" }
 ".starship.toml" = "~/.starship.toml"
 ".tmux.conf" = "~/.tmux.conf"
 ".gitconfig" = "~/.gitconfig"
-".bashrc" = "~/.bashrc"
-".bash_profile" = "~/.bash_profile"
+".bashrc" = { target = "~/.bashrc", type = "symbolic" }
+".bash_profile" = { target = "~/.bash_profile", type = "symbolic" }
+".zshrc" = { target = "~/.zshrc", type = "symbolic" }
 "ghostty" = "~/.config/ghostty/config"
 "claude-settings.json" = "~/.claude/settings.json"
 
