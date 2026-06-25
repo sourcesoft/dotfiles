@@ -14,10 +14,6 @@
     "ask": [],
     "defaultMode": "acceptEdits"
   },
-  "statusLine": {
-    "type": "command",
-    "command": "bash \"$HOME/.claude/statusline.sh\""
-  },
   "enabledPlugins": {
     "claude-hud@claude-hud": true
   },
