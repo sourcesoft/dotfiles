@@ -12,4 +12,12 @@ return {
       },
     },
   },
+
+  {
+    'Maxteabag/sqlit.nvim',
+    opts = {
+      keymap = '<leader>S',
+      desc = 'Database (sqlit)',
+    },
+  },
 }

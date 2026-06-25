@@ -22,6 +22,7 @@ Install the baseline tools first:
 - `unzip`
 - Node.js and `npm`
 - Go
+- `pipx`
 - `ripgrep`
 - `fd`
 - `bat`
@@ -29,6 +30,7 @@ Install the baseline tools first:
 - `delta`
 - `lf`
 - `lazygit`
+- [sqlit](https://github.com/Maxteabag/sqlit)
 - GitHub CLI, `gh`
 
 On macOS with Homebrew:
@@ -36,8 +38,22 @@ On macOS with Homebrew:
 ```sh
 xcode-select --install
 brew install dotter zellij starship neovim git unzip node go ripgrep fd bat \
-  exa git-delta lazygit gh
+  exa git-delta lazygit gh pipx
 brew install --cask ghostty
+```
+
+Install sqlit for the Neovim `<leader>S` database UI:
+
+```sh
+pipx install sqlit-tui
+pipx ensurepath
+```
+
+If sqlit needs an extra database driver, install it into the pipx app. For
+example, PostgreSQL support uses:
+
+```sh
+pipx inject sqlit-tui psycopg2-binary
 ```
 
 Install `lf` with Go:

@@ -147,6 +147,10 @@
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
     },
+    "sqlit.nvim": {
+      "rev": "ecac5bea884379f50ef40c1bde93025ccfb21d58",
+      "src": "https://github.com/Maxteabag/sqlit.nvim"
+    },
     "tiny-cmdline.nvim": {
       "rev": "e247d9ee4c980734f8f8bf616d31e0ab7c27485d",
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
