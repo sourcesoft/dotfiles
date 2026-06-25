@@ -1,10 +1,8 @@
 local M = {}
 
 local main_overrides = {
-  ['akinsho/bufferline.nvim'] = 'bufferline',
   ['catgoose/nvim-colorizer.lua'] = 'colorizer',
   ['chrisgrieser/nvim-early-retirement'] = 'early-retirement',
-  ['folke/persistence.nvim'] = 'persistence',
   ['folke/trouble.nvim'] = 'trouble',
   ['gbprod/cutlass.nvim'] = 'cutlass',
   ['hedyhli/outline.nvim'] = 'outline',
@@ -17,12 +15,52 @@ local main_overrides = {
   ['stevearc/overseer.nvim'] = 'overseer',
 }
 
+local function gh(repo)
+  return 'https://github.com/' .. repo
+end
+
 local function is_uri(source)
   return source:match '^https?://' or source:match '^git@' or source:match '^ssh://'
 end
 
+local function run_build(name, cmd, cwd)
+  local result = vim.system(cmd, { cwd = cwd }):wait()
+  if result.code ~= 0 then
+    local output = result.stderr ~= '' and result.stderr or result.stdout
+    if output == '' then
+      output = 'No output from build command.'
+    end
+    vim.notify(('Build failed for %s:\n%s'):format(name, output), vim.log.levels.ERROR)
+  end
+end
+
+vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('dotfiles-pack-changed', { clear = true }),
+  callback = function(ev)
+    local data = ev.data or {}
+    local spec = data.spec or {}
+    local name = spec.name
+    local kind = data.kind
+    if kind ~= 'install' and kind ~= 'update' then
+      return
+    end
+
+    if name == 'blink.cmp' and vim.fn.executable 'cargo' == 1 then
+      run_build(name, { 'cargo', 'build', '--release' }, data.path)
+      return
+    end
+
+    if name == 'nvim-treesitter' then
+      if not data.active then
+        vim.cmd.packadd 'nvim-treesitter'
+      end
+      vim.cmd 'TSUpdate'
+    end
+  end,
+})
+
 function M.gh(repo)
-  return 'https://github.com/' .. repo
+  return gh(repo)
 end
 
 local function is_spec(value)
@@ -84,7 +122,7 @@ local function normalize_spec(spec)
   end
 
   local normalized = {
-    src = is_uri(source) and source or M.gh(source),
+    src = is_uri(source) and source or gh(source),
   }
 
   if spec.name then
@@ -131,7 +169,6 @@ local function spec_list(value)
   for _, item in ipairs(value) do
     vim.list_extend(specs, spec_list(item))
   end
-
   return specs
 end
 
@@ -175,6 +212,10 @@ local function apply_keys(spec)
   end
 end
 
+local function opts_for(spec)
+  return type(spec.opts) == 'function' and spec.opts(spec, {}) or spec.opts
+end
+
 local function setup_from_opts(spec)
   if spec.config ~= nil or spec.opts == nil then
     return
@@ -185,18 +226,13 @@ local function setup_from_opts(spec)
     return
   end
 
-  local opts = type(spec.opts) == 'function' and spec.opts() or spec.opts
   local ok, plugin = pcall(require, main)
   if ok and type(plugin.setup) == 'function' then
-    plugin.setup(opts or {})
+    plugin.setup(opts_for(spec) or {})
   end
 end
 
 local function run_config(spec)
-  if type(spec.setup) == 'function' then
-    spec.setup()
-  end
-
   if type(spec.config) == 'function' then
     spec.config()
     return
@@ -205,10 +241,9 @@ local function run_config(spec)
   if spec.config == true then
     local main = infer_main(spec)
     if main then
-      local opts = type(spec.opts) == 'function' and spec.opts() or spec.opts
       local ok, plugin = pcall(require, main)
       if ok and type(plugin.setup) == 'function' then
-        plugin.setup(opts or {})
+        plugin.setup(opts_for(spec) or {})
       end
     end
   end
@@ -218,14 +253,17 @@ function M.use(value)
   for _, spec in ipairs(spec_list(value)) do
     if type(spec) == 'string' then
       add_one(spec)
-    elseif type(spec) == 'table' then
-      M.use(spec.dependencies)
-      add_one(spec)
-
+    elseif type(spec) == 'table' and spec.enabled ~= false then
       if type(spec.init) == 'function' then
         spec.init()
       end
 
+      if type(spec.setup) == 'function' then
+        spec.setup()
+      end
+
+      M.use(spec.dependencies)
+      add_one(spec)
       apply_keys(spec)
       setup_from_opts(spec)
       run_config(spec)

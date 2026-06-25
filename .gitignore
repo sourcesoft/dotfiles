@@ -1,6 +1,7 @@
 .dotter/local.toml
 .dotter/cache.toml
 .dotter/cache
+github-copilot/
 
 # Node
 npm-debug.log
