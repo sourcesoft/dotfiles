@@ -172,12 +172,57 @@ BEST DOG IN THE WORLD (good boy):
     notifier = { enabled = true },
     words = { enabled = true },
     lazygit = { enabled = true },
+    gitbrowse = {},
     scroll = { enabled = true },
+    indent = {
+      enabled = true,
+      indent = {
+        char = '▎',
+      },
+      scope = {
+        char = '▎',
+      },
+    },
+    toggle = { enabled = true },
+    zen = { enabled = true },
   }
 end
 
 local function hello()
   return [[Toro is the best]]
+end
+
+local function yank_gitbrowse_url(opts)
+  opts = vim.tbl_deep_extend('force', {
+    what = 'permalink',
+    notify = false,
+    open = function(url)
+      vim.fn.setreg('"', url)
+      if vim.fn.has 'clipboard' == 1 then
+        vim.fn.setreg('+', url)
+      end
+      Snacks.notify('Copied git link to clipboard', { title = 'Git Browse' })
+    end,
+  }, opts or {})
+
+  Snacks.gitbrowse(opts)
+end
+
+local function gitbrowse_blame()
+  Snacks.gitbrowse {
+    what = 'permalink',
+    url_patterns = {
+      ['github%.com'] = {
+        permalink = '/blame/{commit}/{file}?plain=1#L{line_start}-L{line_end}',
+      },
+      ['gitlab%.com'] = {
+        permalink = '/-/blame/{commit}/{file}#L{line_start}-{line_end}',
+      },
+      ['bitbucket%.org'] = {
+        permalink = '/annotate/{commit}/{file}#lines-{line_start}:{line_end}',
+      },
+    },
+  }
 end
 
 return {
@@ -278,6 +323,36 @@ return {
           Snacks.lazygit()
         end,
         desc = 'LazyGit',
+      },
+      {
+        '<leader>cy',
+        function()
+          yank_gitbrowse_url()
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Yank git-line link',
+      },
+      {
+        '<leader>cg',
+        function()
+          Snacks.gitbrowse { what = 'permalink' }
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Open git-line permanent link',
+      },
+      {
+        '<leader>cb',
+        gitbrowse_blame,
+        mode = { 'n', 'v' },
+        desc = 'Open git-line blame',
+      },
+      {
+        '<leader>cc',
+        function()
+          Snacks.gitbrowse { what = 'file' }
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Open git-line branch link',
       },
     },
     opts = dashboard_opts,
@@ -485,18 +560,6 @@ return {
           Cursor = {
             text = '•',
           },
-        },
-      }
-    end,
-  },
-
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    config = function()
-      require('ibl').setup {
-        indent = {
-          tab_char = '▎',
         },
       }
     end,

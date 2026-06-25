@@ -10,7 +10,6 @@ return {
           topdelete = { text = '‾' },
           changedelete = { text = '~' },
         },
-        current_line_blame = true,
         on_attach = function(bufnr)
           local gitsigns = require 'gitsigns'
 
@@ -49,7 +48,9 @@ return {
           map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
           map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
           map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'git preview hunk [i]nline' })
-          map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
+          map('n', '<leader>hb', function()
+            Snacks.git.blame_line()
+          end, { desc = 'git [b]lame line' })
           map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
           map('n', '<leader>hD', function()
             gitsigns.diffthis '@'
@@ -58,23 +59,14 @@ return {
             gitsigns.setqflist 'all'
           end, { desc = 'git hunk [Q]uickfix list (all files in repo)' })
           map('n', '<leader>hq', gitsigns.setqflist, { desc = 'git hunk [q]uickfix list (all changes in this file)' })
-          map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
+          map('n', '<leader>tb', function()
+            Snacks.git.blame_line()
+          end, { desc = '[T]oggle git [b]lame line' })
           map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
           map('n', '<leader>tw', gitsigns.toggle_word_diff, { desc = '[T]oggle git intra-line [w]ord diff' })
           map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
         end,
       }
     end,
-  },
-
-  {
-    'linrongbin16/gitlinker.nvim',
-    opts = {},
-    keys = {
-      { '<leader>cy', '<cmd>GitLink<cr>', mode = { 'n', 'v' }, desc = 'Yank git-line link' },
-      { '<leader>cg', '<cmd>GitLink!<cr>', mode = { 'n', 'v' }, desc = 'Open git-line permanent link' },
-      { '<leader>cb', '<cmd>GitLink! blame<cr>', mode = { 'n', 'v' }, desc = 'Open git-line blame' },
-      { '<leader>cc', '<cmd>GitLink! current_branch<cr>', mode = { 'n', 'v' }, desc = 'Open git-line branch link' },
-    },
   },
 }
