@@ -161,4 +161,13 @@ map('n', '<leader>s/', function()
 end, { desc = '[S]earch [/] in Open Files' })
 map('n', '<leader>sn', neovim_files, { desc = '[S]earch [N]eovim files' })
 
-return {}
+return {
+  {
+    'MagicDuck/grug-far.nvim',
+    opts = {},
+    keys = {
+      { '<leader>sR', '<cmd>GrugFar<CR>', desc = '[S]earch and [R]eplace' },
+      { '<leader>sR', ':GrugFarWithin<CR>', mode = 'v', desc = '[S]earch and [R]eplace selection' },
+    },
+  },
+}

@@ -34,6 +34,10 @@
       "rev": "d2d6923c9b9e0e43f0b9b566f261a8b1ae016540",
       "src": "https://github.com/rmagatti/goto-preview"
     },
+    "grug-far.nvim": {
+      "rev": "c69859c1d5427ab5fc7ed12380ab521b4e336691",
+      "src": "https://github.com/MagicDuck/grug-far.nvim"
+    },
     "lualine.nvim": {
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
