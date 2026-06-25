@@ -10,6 +10,15 @@ export LESS_TERMCAP_md="${yellow}";
 export MANPAGER='less -X';
 export HISTCONTROL=ignoreboth
 export STARSHIP_CONFIG=~/.starship.toml
+if [ -n "$ZSH_VERSION" ]; then
+  HISTFILE="${HISTFILE:-${ZDOTDIR:-$HOME}/.zsh_history}"
+  HISTSIZE=50000
+  SAVEHIST=50000
+  setopt APPEND_HISTORY
+  setopt EXTENDED_HISTORY
+  setopt HIST_FCNTL_LOCK
+  setopt SHARE_HISTORY
+fi
 alias e='nvim .'
 alias ls='ls -GFh'
 alias ll='ls -la'
