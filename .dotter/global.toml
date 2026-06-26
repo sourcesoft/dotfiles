@@ -17,6 +17,7 @@ zed = { target = "~/.config/zed", type = "symbolic" }
 ".zshrc" = { target = "~/.zshrc", type = "symbolic" }
 "ghostty" = "~/.config/ghostty/config"
 "claude-settings.json" = "~/.claude/settings.json"
+"moxide/settings.toml" = "~/.config/moxide/settings.toml"
 
 [default.variables]
 

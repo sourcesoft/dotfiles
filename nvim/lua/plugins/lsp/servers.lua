@@ -1,5 +1,17 @@
 local M = {}
 
+local function markdown_oxide_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+  return vim.tbl_deep_extend('force', capabilities, {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
+    },
+  })
+end
+
 ---@type table<string, vim.lsp.Config>
 local servers = {
   autotools_ls = {},
@@ -10,6 +22,9 @@ local servers = {
   helm_ls = {},
   html = {},
   jsonls = {},
+  markdown_oxide = {
+    capabilities = markdown_oxide_capabilities(),
+  },
   rust_analyzer = {},
   sqls = {
     root_markers = { '.sqls.yml', 'sqls.yml', 'config.yml', '.git' },
@@ -55,6 +70,7 @@ local servers = {
 function M.setup()
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
+    'doctoc',
     'gofumpt',
     'goimports',
     'stylua',

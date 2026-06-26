@@ -110,12 +110,14 @@ The Neovim config manages these tools through Mason:
 - `autotools-language-server`
 - `clangd`
 - `css-lsp`
+- `doctoc`
 - `docker-language-server`
 - `gopls`
 - `helm-ls`
 - `html-lsp`
 - `json-lsp`
 - `lua-language-server`
+- `markdown-oxide`
 - `rust-analyzer`
 - `sqls`
 - `terraform-ls`
@@ -126,6 +128,64 @@ The Neovim config manages these tools through Mason:
 - `goimports`
 - `stylua`
 - `sql-formatter`
+
+Markdown-Oxide also reads the dotter-managed global config at
+`~/.config/moxide/settings.toml`. For one project only, add `.moxide.toml` at
+that project root.
+
+### Markdown Files
+
+Open `.md` files in Neovim to use Markdown-Oxide. It provides Markdown link,
+wikilink, heading, tag, reference, rename, diagnostics, hover, inlay hint, and
+code action support through normal LSP mappings:
+
+```txt
+gd           go to linked note, heading, or block
+grr          show references/backlinks
+<leader>ca   run code actions, such as creating an unresolved linked file
+<leader>R    rename the current note, heading, or symbol
+<leader>k    show hover
+<leader>lh   toggle inlay hints
+<leader>ll   run code lens actions in Markdown files
+:Daily       open today's daily note
+:Daily next  open the next daily note
+:Daily -3    open the daily note from three days ago
+:TOC         add or update a DocToc table of contents
+```
+
+Use `:TOC` in Neovim to add or update a GitHub-compatible table of contents in
+the current Markdown buffer. It runs Mason-managed `doctoc` with these defaults:
+
+```txt
+--github --toc-location before --title '**Table of Contents**'
+```
+
+In Neovim, `:TOC` expands to `:Toc`, which runs `doctoc` on the current
+`.md`, `.markdown`, or `.mdx` buffer. Extra arguments are passed through before
+the current file, so `:TOC --maxlevel 3` works.
+
+Raw `doctoc` also works from the shell:
+
+```sh
+doctoc --github --toc-location before --title '**Table of Contents**' README.md
+doctoc --github --toc-location before --title '**Table of Contents**' docs/
+doctoc --github --toc-location before --title '**Table of Contents**' --update-only README.md
+doctoc --github --toc-location before --title '**Table of Contents**' --dryrun README.md
+```
+
+`:Daily` asks Markdown-Oxide to open a daily note and create the file if it does
+not exist. With the default config, daily notes are named `YYYY-MM-DD.md` in the
+workspace root. Set `daily_notes_folder = "notes/daily"` in `.moxide.toml` or
+`~/.config/moxide/settings.toml` to put them somewhere else.
+
+```vim
+:Daily
+:Daily tomorrow
+:Daily next monday
+:Daily prev
+:Daily +7
+:Daily -3
+```
 
 ### Verify
 

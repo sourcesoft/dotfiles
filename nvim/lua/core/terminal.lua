@@ -4,8 +4,8 @@ local float_opts = {
   win = {
     position = 'float',
     border = 'rounded',
-    width = 0.8,
-    height = 0.8,
+    width = 0.9,
+    height = 0.9,
   },
 }
 

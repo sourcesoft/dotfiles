@@ -1,5 +1,24 @@
 local M = {}
 
+local function configure_markdown_oxide(event, client)
+  if not client or client.name ~= 'markdown_oxide' then
+    return
+  end
+
+  vim.api.nvim_buf_create_user_command(event.buf, 'Daily', function(args)
+    local command = { command = 'jump' }
+    if args.args ~= '' then
+      command.arguments = { args.args }
+    end
+    client:exec_cmd(command, { bufnr = event.buf })
+  end, { desc = 'Open Markdown Oxide daily note', nargs = '*' })
+
+  if client:supports_method('textDocument/codeLens', event.buf) then
+    vim.keymap.set('n', '<leader>ll', vim.lsp.codelens.run, { buffer = event.buf, desc = 'LSP: Run Code Lens' })
+    vim.lsp.codelens.enable(true, { bufnr = event.buf })
+  end
+end
+
 function M.on_attach(event)
   local map = function(keys, func, desc, mode)
     mode = mode or 'n'
@@ -66,6 +85,8 @@ function M.on_attach(event)
   end, { buffer = event.buf, desc = 'Hover Definition' })
 
   local client = vim.lsp.get_client_by_id(event.data.client_id)
+  configure_markdown_oxide(event, client)
+
   if client and client:supports_method('textDocument/inlayHint', event.buf) then
     map('<leader>lh', function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })

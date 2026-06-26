@@ -1,0 +1,14 @@
+# Global Markdown-Oxide defaults. Project-specific vaults can override these
+# with a .moxide.toml file at the project root.
+dailynote = "%Y-%m-%d"
+heading_slug = true
+include_md_extension_md_link = true
+include_md_extension_wikilink = false
+excluded_folders = [
+  ".git",
+  "node_modules",
+  ".venv",
+  "vendor",
+  "dist",
+  "build",
+]
