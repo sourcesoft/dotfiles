@@ -2,7 +2,22 @@ local M = {}
 
 ---@type table<string, vim.lsp.Config>
 local servers = {
+  autotools_ls = {},
+  clangd = {},
+  cssls = {},
+  docker_language_server = {},
   gopls = {},
+  helm_ls = {},
+  html = {},
+  jsonls = {},
+  rust_analyzer = {},
+  sqls = {
+    root_markers = { '.sqls.yml', 'sqls.yml', 'config.yml', '.git' },
+  },
+  terraformls = {},
+  tflint = {},
+  ts_ls = {},
+  yamlls = {},
   lua_ls = {
     on_init = function(client)
       client.server_capabilities.documentFormattingProvider = false

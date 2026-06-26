@@ -107,8 +107,21 @@ For zsh completions and suggestions, install
 
 The Neovim config manages these tools through Mason:
 
+- `autotools-language-server`
+- `clangd`
+- `css-lsp`
+- `docker-language-server`
 - `gopls`
+- `helm-ls`
+- `html-lsp`
+- `json-lsp`
 - `lua-language-server`
+- `rust-analyzer`
+- `sqls`
+- `terraform-ls`
+- `tflint`
+- `typescript-language-server`
+- `yaml-language-server`
 - `gofumpt`
 - `goimports`
 - `stylua`
