@@ -59,7 +59,6 @@ function M.setup()
     'goimports',
     'stylua',
     'sql-formatter',
-    'markdownlint',
   })
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

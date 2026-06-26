@@ -126,7 +126,6 @@ The Neovim config manages these tools through Mason:
 - `goimports`
 - `stylua`
 - `sql-formatter`
-- `markdownlint`
 
 ### Verify
 
