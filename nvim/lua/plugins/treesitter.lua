@@ -17,6 +17,37 @@ local parsers = {
   'yaml',
 }
 
+local treesitter_cli = require 'dotfiles.treesitter'
+local warned_missing_cli = false
+
+local function warn_missing_tree_sitter_cli()
+  if warned_missing_cli or #vim.api.nvim_list_uis() == 0 then
+    return
+  end
+
+  warned_missing_cli = true
+
+  vim.schedule(function()
+    local status = treesitter_cli.cli_status()
+    local reason = 'not usable'
+    if status.reason == 'missing' then
+      reason = 'not found'
+    elseif status.reason == 'old_version' then
+      reason = ('version %s is older than %s'):format(
+        treesitter_cli.format_version(status.version) or 'unknown',
+        treesitter_cli.min_cli_version
+      )
+    end
+
+    local message = (
+      'tree-sitter CLI %s; install tree-sitter %s or newer '
+      .. 'with your system package manager to install parsers.'
+    ):format(reason, treesitter_cli.min_cli_version)
+
+    vim.notify(message, vim.log.levels.WARN)
+  end)
+end
+
 ---@param buf integer
 ---@param language string
 local function treesitter_try_attach(buf, language)
@@ -37,7 +68,11 @@ return {
     version = 'main',
     config = function()
       local treesitter = require 'nvim-treesitter'
-      treesitter.install(parsers)
+      if treesitter_cli.can_install() then
+        treesitter.install(parsers)
+      else
+        warn_missing_tree_sitter_cli()
+      end
 
       local available_parsers = treesitter.get_available()
       vim.api.nvim_create_autocmd('FileType', {
@@ -51,11 +86,14 @@ return {
           local installed_parsers = treesitter.get_installed 'parsers'
           if vim.tbl_contains(installed_parsers, language) then
             treesitter_try_attach(args.buf, language)
-          elseif vim.tbl_contains(available_parsers, language) then
+          elseif vim.tbl_contains(available_parsers, language) and treesitter_cli.can_install() then
             treesitter.install(language):await(function()
               treesitter_try_attach(args.buf, language)
             end)
           else
+            if vim.tbl_contains(available_parsers, language) then
+              warn_missing_tree_sitter_cli()
+            end
             treesitter_try_attach(args.buf, language)
           end
         end,

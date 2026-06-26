@@ -19,14 +19,19 @@ Install the baseline tools first:
 - Neovim 0.12 or newer
 - Git
 - `make`
+- A C compiler
+- `curl`
+- `tar`
 - `unzip`
+- Tree-sitter CLI 0.26.1 or newer, installed through your system package
+  manager rather than `npm`
 - Node.js and `npm`
 - Go
 - `pipx`
 - `ripgrep`
 - `fd`
 - `bat`
-- `exa`
+- `eza`
 - `delta`
 - `lf`
 - `lazygit`
@@ -37,8 +42,8 @@ On macOS with Homebrew:
 
 ```sh
 xcode-select --install
-brew install dotter zellij starship neovim git unzip node go ripgrep fd bat \
-  exa git-delta lazygit gh pipx
+brew install dotter zellij starship neovim git unzip tree-sitter node go \
+  ripgrep fd bat eza git-delta lazygit gh pipx
 brew install --cask ghostty
 ```
 

@@ -22,7 +22,7 @@ fi
 alias e='nvim .'
 alias ls='ls -GFh'
 alias ll='ls -la'
-alias l='exa -abghHliS'
+alias l='eza -abghHliS'
 alias tm="tmux -2"
 alias gs="git status"
 alias gg="git logg"
