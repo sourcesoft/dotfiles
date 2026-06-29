@@ -13,6 +13,7 @@ Install the baseline tools first:
 
 - [dotter](https://github.com/SuperCuber/dotter)
 - [Ghostty](https://ghostty.org/)
+- [AeroSpace](https://github.com/nikitabobko/AeroSpace)
 - [Zellij](https://github.com/zellij-org/zellij)
 - `zsh`
 - [Starship](https://starship.rs/)
@@ -45,6 +46,7 @@ xcode-select --install
 brew install dotter zellij starship neovim git unzip tree-sitter node go \
   ripgrep fd bat eza git-delta lazygit gh pipx
 brew install --cask ghostty
+brew install --cask nikitabobko/tap/aerospace
 ```
 
 Install sqlit for the Neovim `<leader>S` database UI:
