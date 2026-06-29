@@ -106,3 +106,6 @@ claude-mem() {
 if [ -f "$HOME/.zshrc.local" ]; then
   source "$HOME/.zshrc.local"
 fi
+
+# Added by atrium
+export PATH="$HOME/.atrium/bin:$PATH"

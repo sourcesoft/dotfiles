@@ -9,6 +9,7 @@ zed = { target = "~/.config/zed", type = "symbolic" }
 "zellij.kdl" = { target = "~/.config/zellij/config.kdl", type = "symbolic" }
 "karabiner.json" = "~/.config/karabiner/karabiner.json"
 ".alacritty.yml" = "~/.alacritty.yml"
+".aerospace.toml" = { target = "~/.aerospace.toml", type = "symbolic" }
 ".starship.toml" = "~/.starship.toml"
 ".tmux.conf" = "~/.tmux.conf"
 ".gitconfig" = "~/.gitconfig"
