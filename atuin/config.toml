@@ -1,0 +1,4 @@
+# Keep Atuin local-only. It records shell history in this SQLite database and
+# key bindings are loaded from .zshrc via `atuin init zsh`.
+db_path = "~/.local/share/atuin/history.db"
+auto_sync = false

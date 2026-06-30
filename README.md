@@ -18,6 +18,7 @@ Install the baseline tools first:
 - [Zellij](https://github.com/zellij-org/zellij)
 - `zsh`
 - [Starship](https://starship.rs/)
+- [Atuin](https://atuin.sh/)
 - Neovim 0.12 or newer
 - Git
 - `make`
@@ -45,7 +46,7 @@ On macOS with Homebrew:
 ```sh
 xcode-select --install
 brew install dotter zellij starship neovim git unzip tree-sitter node go \
-  ripgrep fd bat eza git-delta lazygit gh pipx
+  ripgrep fd bat eza git-delta lazygit gh pipx atuin
 brew install --cask ghostty
 brew install --cask nikitabobko/tap/aerospace
 brew tap FelixKratz/formulae
@@ -108,6 +109,15 @@ For zsh completions and suggestions, install
    ```sh
    dotter deploy
    ```
+
+   Atuin stores new shell history in a local SQLite database. To import existing
+   zsh history without enabling sync, run:
+
+   ```sh
+   atuin import zsh
+   ```
+
+   The zsh config binds Atuin to `Ctrl-R` and up-arrow history search.
 
 4. Start AeroSpace and SketchyBar.
 

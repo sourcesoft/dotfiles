@@ -81,6 +81,9 @@ compinit
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 path_prepend /usr/local/opt/libpq/bin
 path_prepend /opt/homebrew/opt/libpq/bin
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi

@@ -17,6 +17,7 @@ sketchybar = { target = "~/.config/sketchybar", type = "symbolic" }
 ".bashrc" = { target = "~/.bashrc", type = "symbolic" }
 ".bash_profile" = { target = "~/.bash_profile", type = "symbolic" }
 ".zshrc" = { target = "~/.zshrc", type = "symbolic" }
+"atuin/config.toml" = "~/.config/atuin/config.toml"
 "ghostty" = "~/.config/ghostty/config"
 "claude-settings.json" = "~/.claude/settings.json"
 "moxide/settings.toml" = "~/.config/moxide/settings.toml"
