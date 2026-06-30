@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-AEROSPACE_WORKSPACES="D F W E S T X A Q R"
+AEROSPACE_WORKSPACES="A S D F Q W E R T X"
 AEROSPACE_WORKSPACE_ITEMS=""
 WORKSPACE_MONITORS="$(aerospace list-workspaces --all --format '%{workspace}|%{monitor-id}' 2>/dev/null)"
 MONITORS="$(aerospace list-monitors --format '%{monitor-id}' 2>/dev/null | sort -n)"
