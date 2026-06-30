@@ -115,8 +115,8 @@ on-mode-changed = []
     # '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    alt-slash = 'layout tiles horizontal vertical'
-    alt-comma = 'layout accordion horizontal vertical'
+    alt-slash = ['layout tiles horizontal vertical', 'exec-and-forget sketchybar --trigger aerospace_layout_change']
+    alt-comma = ['layout accordion horizontal vertical', 'exec-and-forget sketchybar --trigger aerospace_layout_change']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     alt-h = 'focus left'
@@ -134,8 +134,8 @@ on-mode-changed = []
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
 
-    alt-c = 'fullscreen' # fullscreen
-    alt-v = 'layout floating tiling' # detach / float
+    alt-c = ['fullscreen', 'exec-and-forget sketchybar --trigger aerospace_layout_change'] # fullscreen
+    alt-v = ['layout floating tiling', 'exec-and-forget sketchybar --trigger aerospace_layout_change'] # detach / float
 
     alt-d = 'workspace D' # Terminal Multiplexer (ghostty)
     alt-f = 'workspace F' # browser
@@ -184,7 +184,7 @@ on-mode-changed = []
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
-    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    f = ['layout floating tiling', 'exec-and-forget sketchybar --trigger aerospace_layout_change', 'mode main'] # Toggle between floating and tiling layout
     backspace = ['close-all-windows-but-current', 'mode main']
 
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2

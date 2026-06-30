@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+CONFIG_ROOT="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+[ -r "$CONFIG_ROOT/colors.sh" ] && . "$CONFIG_ROOT/colors.sh"
+
+: "${ITEM_BG:=0xff0d4f2a}"
+: "${ALERT_BG:=0xffb63b3b}"
+
 STATE_DIR="${TMPDIR:-/tmp}/sketchybar"
 STATE_FILE="$STATE_DIR/network-${NAME:-network}"
 
@@ -73,4 +79,9 @@ if [ "$UP" -lt 0 ]; then
   UP=0
 fi
 
-sketchybar --set "$NAME" label="↓$(format_rate "$DOWN") ↑$(format_rate "$UP")"
+BACKGROUND="$ITEM_BG"
+if [ "$DOWN" -eq 0 ] && [ "$UP" -eq 0 ]; then
+  BACKGROUND="$ALERT_BG"
+fi
+
+sketchybar --set "$NAME" label="↓$(format_rate "$DOWN") ↑$(format_rate "$UP")" background.color="$BACKGROUND"
