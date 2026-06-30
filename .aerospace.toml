@@ -218,6 +218,10 @@ if.app-id="com.tinyspeck.slackmacgap"
 run = "move-node-to-workspace S"
 
 [[on-window-detected]]
+if.app-id="com.anthropic.claudefordesktop"
+run = "move-node-to-workspace Q"
+
+[[on-window-detected]]
 if.app-id="com.openai.codex"
 run = "move-node-to-workspace W"
 
