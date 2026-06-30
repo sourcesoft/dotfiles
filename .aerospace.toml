@@ -204,6 +204,10 @@ if.app-id="com.brave.Browser"
 run = "move-node-to-workspace F"
 
 [[on-window-detected]]
+if.app-id="com.google.Chrome"
+run = "move-node-to-workspace F"
+
+[[on-window-detected]]
 if.app-id="com.apple.mail"
 run = "move-node-to-workspace X"
 
@@ -222,6 +226,22 @@ run = "move-node-to-workspace E"
 [[on-window-detected]]
 if.app-id="com.tdesktop.Telegram"
 run = "move-node-to-workspace T"
+
+[[on-window-detected]]
+if.app-id="com.microsoft.teams2"
+run = "move-node-to-workspace R"
+
+[[on-window-detected]]
+if.app-id="us.zoom.xos"
+run = "move-node-to-workspace R"
+
+[[on-window-detected]]
+if.app-id="com.brave.Browser.app.kjgfgldnnfoeklkmfkjfagphfepbbdan"
+run = "move-node-to-workspace R"
+
+[[on-window-detected]]
+if.app-id="com.google.Chrome.app.kjgfgldnnfoeklkmfkjfagphfepbbdan"
+run = "move-node-to-workspace R"
 
 [[on-window-detected]]
 run = ["move-node-to-workspace A", "layout floating"]
