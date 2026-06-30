@@ -14,6 +14,7 @@ Install the baseline tools first:
 - [dotter](https://github.com/SuperCuber/dotter)
 - [Ghostty](https://ghostty.org/)
 - [AeroSpace](https://github.com/nikitabobko/AeroSpace)
+- [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - [Zellij](https://github.com/zellij-org/zellij)
 - `zsh`
 - [Starship](https://starship.rs/)
@@ -47,6 +48,9 @@ brew install dotter zellij starship neovim git unzip tree-sitter node go \
   ripgrep fd bat eza git-delta lazygit gh pipx
 brew install --cask ghostty
 brew install --cask nikitabobko/tap/aerospace
+brew tap FelixKratz/formulae
+brew install sketchybar
+brew install --cask font-symbols-only-nerd-font
 ```
 
 Install sqlit for the Neovim `<leader>S` database UI:
@@ -72,7 +76,8 @@ go install github.com/gokcehan/lf@latest
 Install a Nerd Font so Neovim icons render correctly. These configs reference
 `Knack` in Alacritty and `Dank Mono` in Zed; install those if you want the
 checked-in app configs to match exactly. Otherwise, install any Nerd Font and
-adjust the relevant app font setting.
+adjust the relevant app font setting. The SketchyBar config specifically uses
+`Symbols Nerd Font`, provided by the `font-symbols-only-nerd-font` cask above.
 
 For zsh completions and suggestions, install
 [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions).
@@ -104,9 +109,37 @@ For zsh completions and suggestions, install
    dotter deploy
    ```
 
-4. Start Neovim once to let `vim.pack` install plugins.
+4. Start AeroSpace and SketchyBar.
 
-5. Install the configured Mason tools:
+   The AeroSpace config starts SketchyBar with the dotter-managed config at
+   `~/.config/sketchybar/sketchybarrc`. Do not copy SketchyBar's example
+   config over it after `dotter deploy`.
+
+   ```sh
+   open -a AeroSpace
+   aerospace reload-config
+   ```
+
+   On first launch, grant AeroSpace the macOS permissions it asks for in
+   System Settings, especially Accessibility. If SketchyBar was already running
+   from a previous Homebrew service setup, stop that service and restart
+   AeroSpace so the checked-in config is the one that starts it:
+
+   ```sh
+   brew services stop felixkratz/formulae/sketchybar 2>/dev/null || true
+   pkill sketchybar 2>/dev/null || true
+   open -a AeroSpace
+   ```
+
+   To reload only the bar after editing its config:
+
+   ```sh
+   sketchybar --reload ~/.config/sketchybar/sketchybarrc
+   ```
+
+5. Start Neovim once to let `vim.pack` install plugins.
+
+6. Install the configured Mason tools:
 
    ```sh
    nvim --headless '+MasonToolsInstallSync' +qa

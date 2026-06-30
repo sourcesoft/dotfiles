@@ -1,0 +1,86 @@
+#!/usr/bin/env sh
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+GREEN=0xff1f7a3a
+DARK_GREEN=0xff0d4f2a
+TEXT=0xffffffff
+
+sketchybar --bar \
+  position=top \
+  topmost=off \
+  height=30 \
+  color="$GREEN" \
+  corner_radius=9 \
+  margin=30 \
+  y_offset=0 \
+  padding_left=12 \
+  padding_right=12 \
+  blur_radius=0
+
+sketchybar --default \
+  padding_left=3 \
+  padding_right=3 \
+  icon.font="Symbols Nerd Font:Regular:13.0" \
+  label.font="SF Pro:Semibold:12.0" \
+  icon.color="$TEXT" \
+  label.color="$TEXT" \
+  icon.padding_left=6 \
+  icon.padding_right=3 \
+  label.padding_left=3 \
+  label.padding_right=6 \
+  background.drawing=on \
+  background.color="$DARK_GREEN" \
+  background.corner_radius=6 \
+  background.height=19 \
+  background.padding_left=2 \
+  background.padding_right=2
+
+sketchybar --add item apple.logo left \
+           --set apple.logo icon="" \
+                            icon.font="Apple Symbols:Regular:15.0" \
+                            label.drawing=off \
+                            padding_right=8 \
+                            width=28 \
+           --add item front_app left \
+           --set front_app icon.drawing=off \
+                            padding_left=8 \
+                            script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+sketchybar --add item battery right \
+           --set battery update_freq=120 \
+                         script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change \
+           --add item volume right \
+           --set volume script="$PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change \
+           --add item clock right \
+           --set clock update_freq=10 \
+                       icon="" \
+                       script="$PLUGIN_DIR/clock.sh" \
+           --add item input right \
+           --set input update_freq=5 \
+                       icon="󰌌" \
+                       script="$PLUGIN_DIR/input.sh" \
+           --add item memory right \
+           --set memory update_freq=5 \
+                         icon="MEM" \
+                         icon.font="SF Pro:Semibold:11.0" \
+                         script="$PLUGIN_DIR/memory.sh" \
+           --add item cpu right \
+           --set cpu update_freq=5 \
+                     icon="CPU" \
+                     icon.font="SF Pro:Semibold:11.0" \
+                     script="$PLUGIN_DIR/cpu.sh" \
+           --add item network right \
+           --set network update_freq=3 \
+                          icon="NET" \
+                          icon.font="SF Pro:Semibold:11.0" \
+                          script="$PLUGIN_DIR/network.sh"
+
+sketchybar --reorder apple.logo front_app battery volume clock input memory cpu network
+
+sketchybar --update
+
+sketchybar --add event aerospace_workspace_change

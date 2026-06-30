@@ -7,7 +7,13 @@ config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+# Run SketchyBar together with AeroSpace using the dotter-managed config.
+after-startup-command = ['exec-and-forget sketchybar --config "$HOME/.config/sketchybar/sketchybarrc"']
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 # Start AeroSpace at login
 start-at-login = false
@@ -214,5 +220,8 @@ if.app-id="com.skybot.atrium"
 run = "move-node-to-workspace E"
 
 [[on-window-detected]]
-run = ["move-node-to-workspace A", "layout floating"]
+if.app-id="com.tdesktop.Telegram"
+run = "move-node-to-workspace T"
 
+[[on-window-detected]]
+run = ["move-node-to-workspace A", "layout floating"]
