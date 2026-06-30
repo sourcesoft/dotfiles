@@ -21,16 +21,16 @@ sketchybar --add item battery right \
                        script="$PLUGIN_DIR/input.sh" \
            --add item memory right \
            --set memory update_freq=5 \
-                         icon="MEM" \
+                         icon="M" \
                          icon.font="SF Pro:Semibold:11.0" \
                          script="$PLUGIN_DIR/memory.sh" \
            --add item cpu right \
            --set cpu update_freq=5 \
-                     icon="CPU" \
+                     icon="C" \
                      icon.font="SF Pro:Semibold:11.0" \
                      script="$PLUGIN_DIR/cpu.sh" \
            --add item network right \
            --set network update_freq=3 \
-                          icon="NET" \
+                          icon.drawing=off \
                           icon.font="SF Pro:Semibold:11.0" \
                           script="$PLUGIN_DIR/network.sh"

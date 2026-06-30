@@ -22,4 +22,6 @@ SOURCE="$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSel
   }
 ')"
 
-sketchybar --set "$NAME" label="${SOURCE:-Input}"
+ABBR="$(printf '%s' "${SOURCE:-Input}" | tr '[:lower:]' '[:upper:]' | sed 's/[^A-Z]//g' | cut -c 1-3)"
+
+sketchybar --set "$NAME" label="${ABBR:-INP}"
