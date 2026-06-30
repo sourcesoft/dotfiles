@@ -146,9 +146,9 @@ on-mode-changed = []
     alt-x = 'workspace X' # email
 
     alt-e = 'workspace E' # Agent Terminal Multiplexer
-    alt-w = 'workspace W' # first agent (codex app)
-    alt-q = 'workspace Q' # second agent (claude app)
-    alt-r = 'workspace R' # third agent (gemini app)
+    alt-q = 'workspace Q' # first agent (claude app)
+    alt-w = 'workspace W' # second agent (codex app)
+    alt-r = 'workspace R' # meetings
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-d = 'move-node-to-workspace D'
@@ -178,6 +178,8 @@ on-mode-changed = []
     A = 'main'
     S = 'main'
     T = 'main'
+    R = 'main'
+    Q = 'main'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
