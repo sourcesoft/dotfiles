@@ -45,6 +45,6 @@ sketchybar --add event aerospace_workspace_change \
 . "$ITEM_DIR/workspaces.sh"
 . "$ITEM_DIR/right.sh"
 
-sketchybar --reorder $AEROSPACE_WORKSPACE_ITEMS aerospace.layout front_app battery volume clock calendar input memory cpu network
+sketchybar --reorder $AEROSPACE_WORKSPACE_ITEMS aerospace.layout front_app battery caffeinate volume clock calendar input memory cpu network
 
 sketchybar --update

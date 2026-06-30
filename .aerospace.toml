@@ -230,6 +230,10 @@ if.app-id="com.skybot.atrium"
 run = "move-node-to-workspace E"
 
 [[on-window-detected]]
+if.app-id="app.supabit.supacode"
+run = "move-node-to-workspace E"
+
+[[on-window-detected]]
 if.app-id="com.tdesktop.Telegram"
 run = "move-node-to-workspace T"
 
