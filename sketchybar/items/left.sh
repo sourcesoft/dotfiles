@@ -6,6 +6,8 @@ sketchybar --add item aerospace.layout left \
                                   padding_left=8 \
                                   padding_right=0 \
                                   background.corner_radius=0 \
+                                  background.border_width=1 \
+                                  background.border_color="$TEXT" \
                                   script="$PLUGIN_DIR/aerospace_layout.sh" \
            --subscribe aerospace.layout aerospace_workspace_change aerospace_layout_change \
            --add item front_app left \

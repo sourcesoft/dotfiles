@@ -33,6 +33,24 @@ add_monitor_gap() {
                             width=8
 }
 
+add_workspace_group_border() {
+  bracket="aerospace.workspace.group.$GROUP_COUNT"
+
+  sketchybar --add bracket "$bracket" $1 \
+             --set "$bracket" icon.drawing=off \
+                               label.drawing=off \
+                               padding_left=0 \
+                               padding_right=0 \
+                               background.drawing=on \
+                               background.color=0x00000000 \
+                               background.corner_radius=0 \
+                               background.height=21 \
+                               background.padding_left=0 \
+                               background.padding_right=0 \
+                               background.border_width=1 \
+                               background.border_color="$TEXT"
+}
+
 add_workspace_item() {
   workspace="$1"
   item="aerospace.workspace.$workspace"
@@ -49,17 +67,21 @@ add_workspace_item() {
                             padding_left=1 \
                             padding_right=1 \
                             background.corner_radius=0 \
-                            background.border_width=1 \
-                            background.border_color="$TEXT" \
+                            background.border_width=0 \
                             script="$PLUGIN_DIR/aerospace_workspace.sh" \
                             click_script="aerospace workspace $workspace" \
              --subscribe "$item" aerospace_workspace_change
 }
 
 if [ -z "$WORKSPACE_MONITORS" ] || [ -z "$MONITORS" ]; then
+  GROUP_ITEMS=""
+
   for workspace in $AEROSPACE_WORKSPACES; do
     add_workspace_item "$workspace"
+    GROUP_ITEMS="$GROUP_ITEMS aerospace.workspace.$workspace"
   done
+
+  add_workspace_group_border "$GROUP_ITEMS"
 else
   for monitor in $MONITORS; do
     HAS_GROUP=0
@@ -76,12 +98,16 @@ else
         add_monitor_gap
       fi
 
+      GROUP_ITEMS=""
+
       for workspace in $AEROSPACE_WORKSPACES; do
         if [ "$(workspace_monitor "$workspace")" = "$monitor" ]; then
           add_workspace_item "$workspace"
+          GROUP_ITEMS="$GROUP_ITEMS aerospace.workspace.$workspace"
         fi
       done
 
+      add_workspace_group_border "$GROUP_ITEMS"
       GROUP_COUNT=$((GROUP_COUNT + 1))
     fi
   done
@@ -100,12 +126,17 @@ else
       add_monitor_gap
     fi
 
+    GROUP_ITEMS=""
+
     for workspace in $AEROSPACE_WORKSPACES; do
       monitor="$(workspace_monitor "$workspace")"
       if [ -z "$monitor" ] || ! monitor_exists "$monitor"; then
         add_workspace_item "$workspace"
+        GROUP_ITEMS="$GROUP_ITEMS aerospace.workspace.$workspace"
       fi
     done
+
+    add_workspace_group_border "$GROUP_ITEMS"
   fi
 fi
 
