@@ -6,16 +6,18 @@ ITEM_DIR="$CONFIG_DIR/items"
 
 . "$CONFIG_DIR/colors.sh"
 
+BAR_HEIGHT=30
+
 sketchybar --bar \
   position=top \
   topmost=off \
-  height=30 \
+  height="$BAR_HEIGHT" \
   color="$BAR_BG" \
-  corner_radius=9 \
+  corner_radius=0 \
   margin=30 \
   y_offset=0 \
-  padding_left=12 \
-  padding_right=12 \
+  padding_left=2 \
+  padding_right=2 \
   blur_radius=0
 
 sketchybar --default \
@@ -31,8 +33,8 @@ sketchybar --default \
   label.padding_right=6 \
   background.drawing=on \
   background.color="$ITEM_BG" \
-  background.corner_radius=6 \
-  background.height=19 \
+  background.corner_radius=0 \
+  background.height="$BAR_HEIGHT" \
   background.padding_left=2 \
   background.padding_right=2
 
