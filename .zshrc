@@ -82,7 +82,8 @@ compinit
 path_prepend /usr/local/opt/libpq/bin
 path_prepend /opt/homebrew/opt/libpq/bin
 if command -v atuin >/dev/null 2>&1; then
-  eval "$(atuin init zsh)"
+  eval "$(atuin init zsh --disable-up-arrow --disable-ai)"
+  bindkey -M vicmd '/' vi-history-search-backward
 fi
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"

@@ -119,7 +119,8 @@ For zsh completions and suggestions, install
    atuin import zsh
    ```
 
-   The zsh config binds Atuin to `Ctrl-R` and up-arrow history search.
+   The zsh config binds Atuin history only to `Ctrl-R`; up-arrow and vi-mode
+   `/` use normal shell history.
 
 4. Start AeroSpace and SketchyBar.
 
