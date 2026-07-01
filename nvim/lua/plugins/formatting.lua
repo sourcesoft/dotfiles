@@ -8,7 +8,7 @@ return {
           lsp_format = 'fallback',
         },
         format_on_save = function(bufnr)
-          local disable_filetypes = { c = true, cpp = true }
+          local disable_filetypes = { c = true, cpp = true, markdown = true }
           if disable_filetypes[vim.bo[bufnr].filetype] then
             return nil
           end
@@ -21,6 +21,7 @@ return {
         formatters_by_ft = {
           go = { 'goimports', 'gofumpt' },
           lua = { 'stylua' },
+          markdown = { 'mdformat' },
           sql = { 'sql_formatter' },
         },
       }

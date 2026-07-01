@@ -73,6 +73,7 @@ function M.setup()
     'doctoc',
     'gofumpt',
     'goimports',
+    'mdformat',
     'stylua',
     'sql-formatter',
   })

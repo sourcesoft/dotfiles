@@ -7,13 +7,17 @@ local parsers = {
   'gosum',
   'gowork',
   'html',
+  'javascript',
   'lua',
   'luadoc',
   'markdown',
   'markdown_inline',
   'query',
+  'tsx',
+  'typescript',
   'vim',
   'vimdoc',
+  'xml',
   'yaml',
 }
 
@@ -98,6 +102,19 @@ return {
           end
         end,
       })
+    end,
+  },
+
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup {
+        opts = {
+          enable_close = true,
+          enable_rename = true,
+          enable_close_on_slash = false,
+        },
+      }
     end,
   },
 

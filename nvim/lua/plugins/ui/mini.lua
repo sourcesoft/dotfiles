@@ -17,6 +17,9 @@ return {
         n_lines = 500,
       }
       require('mini.surround').setup()
+      require('mini.comment').setup()
+      require('mini.splitjoin').setup()
+      require('mini.trailspace').setup()
       require('mini.jump2d').setup()
       require('mini.hipatterns').setup {
         highlighters = {
@@ -26,6 +29,10 @@ return {
           note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
         },
       }
+
+      vim.keymap.set('n', '<leader>cw', function()
+        MiniTrailspace.trim()
+      end, { desc = '[C]ode trim trailing [w]hitespace' })
 
       vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize' }
       require('mini.sessions').setup {

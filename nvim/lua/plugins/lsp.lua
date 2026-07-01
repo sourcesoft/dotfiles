@@ -1,3 +1,16 @@
+local function restart_lsp()
+  local clients = vim.lsp.get_clients()
+
+  for _, client in ipairs(clients) do
+    client:stop(true)
+  end
+
+  vim.defer_fn(function()
+    require('plugins.lsp.servers').setup()
+    vim.notify(('Restarted %d LSP client%s'):format(#clients, #clients == 1 and '' or 's'), vim.log.levels.INFO)
+  end, 300)
+end
+
 local function configure_lsp()
   require('fidget').setup {}
   require('mason').setup {}
@@ -20,6 +33,10 @@ local function configure_lsp()
   })
 
   require('plugins.lsp.servers').setup()
+
+  vim.api.nvim_create_user_command('LspRestart', restart_lsp, {
+    desc = 'Restart active LSP clients',
+  })
 end
 
 return {

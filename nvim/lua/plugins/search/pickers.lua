@@ -16,12 +16,7 @@ local function current_buffer_dir()
 end
 
 local function files_in_current_folder()
-  local cwd = current_buffer_dir()
-
-  Snacks.picker.files {
-    cwd = cwd,
-    title = 'Search in ' .. cwd,
-  }
+  require('fff').find_files_in_dir(current_buffer_dir())
 end
 
 local function explorer_in_current_folder()
@@ -33,15 +28,14 @@ local function explorer_in_current_folder()
 end
 
 local function neovim_files()
-  Snacks.picker.files {
-    cwd = vim.fn.stdpath 'config',
-    follow = true,
-  }
+  require('fff').find_files_in_dir(vim.fn.stdpath 'config')
 end
 
-map('n', '<leader>f', function()
-  Snacks.picker.files()
-end, { desc = '[S]earch [F]iles' })
+local function project_files()
+  require('fff').find_files()
+end
+
+map('n', '<leader>f', project_files, { desc = '[S]earch [F]iles' })
 map('n', '<leader>/', function()
   Snacks.picker.grep()
 end, { desc = '[/] Grep search all project' })
@@ -56,9 +50,7 @@ end, { desc = '[S]earch [H]elp' })
 map('n', '<leader>sk', function()
   Snacks.picker.keymaps()
 end, { desc = '[S]earch [K]eymaps' })
-map('n', '<leader>sf', function()
-  Snacks.picker.files()
-end, { desc = '[S]earch [F]iles' })
+map('n', '<leader>sf', project_files, { desc = '[S]earch [F]iles' })
 map('n', '<leader>ss', function()
   Snacks.picker.lsp_symbols()
 end, { desc = '[S]earch document [S]ymbols' })

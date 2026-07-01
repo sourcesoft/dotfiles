@@ -48,6 +48,17 @@ vim.api.nvim_create_autocmd('PackChanged', {
       return
     end
 
+    if name == 'fff.nvim' then
+      if not data.active then
+        vim.cmd.packadd 'fff.nvim'
+      end
+      local ok, download = pcall(require, 'fff.download')
+      if ok then
+        download.download_or_build_binary()
+      end
+      return
+    end
+
     if name == 'nvim-treesitter' then
       if not data.active then
         vim.cmd.packadd 'nvim-treesitter'
@@ -161,6 +172,10 @@ local function spec_list(value)
 
   if type(value) == 'string' or is_spec(value) then
     return { value }
+  end
+
+  if type(value) ~= 'table' then
+    return {}
   end
 
   local specs = {}

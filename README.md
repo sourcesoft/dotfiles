@@ -85,7 +85,9 @@ For zsh completions and suggestions, install
 
 ### Optional Tools
 
-- Rust/Cargo lets `blink.cmp` build its Rust fuzzy matcher from source.
+- Rust/Cargo lets `blink.cmp` build its Rust fuzzy matcher from source and
+  lets `fff.nvim` build its native search backend if its prebuilt binary cannot
+  be downloaded.
 - Authenticate `gh` with `gh auth login` if you want the Neovim GitHub PR,
   issue, action, and diff pickers to work.
 
@@ -168,6 +170,7 @@ The Neovim config manages these tools through Mason:
 - `json-lsp`
 - `lua-language-server`
 - `markdown-oxide`
+- `mdformat`
 - `rust-analyzer`
 - `sqls`
 - `terraform-ls`

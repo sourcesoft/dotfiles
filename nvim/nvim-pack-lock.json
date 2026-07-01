@@ -30,6 +30,10 @@
       "rev": "c0e998d3bfba3d7c01a3711a1d7e699d7d92bd22",
       "src": "https://github.com/scottmckendry/cyberdream.nvim"
     },
+    "fff.nvim": {
+      "rev": "e0a9e08a3a6467ebb8d4b2889f1c21c3b36ba3e6",
+      "src": "https://github.com/dmtrKovalenko/fff.nvim"
+    },
     "fidget.nvim": {
       "rev": "6f793b2bcd2d35e201c09520f698bb763220908a",
       "src": "https://github.com/j-hui/fidget.nvim"
@@ -109,6 +113,10 @@
     "nvim-treesitter-context": {
       "rev": "b311b30818951d01f7b4bf650521b868b3fece16",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
+    },
+    "nvim-ts-autotag": {
+      "rev": "88c1453db4ba7dd24131086fe51fdf74e587d275",
+      "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "nvim-web-devicons": {
       "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
