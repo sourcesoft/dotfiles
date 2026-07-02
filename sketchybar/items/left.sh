@@ -8,7 +8,7 @@ sketchybar --add item aerospace.layout left \
                                   background.corner_radius=0 \
                                   background.border_width=0 \
                                   script="$PLUGIN_DIR/aerospace_layout.sh" \
-           --subscribe aerospace.layout aerospace_workspace_change aerospace_layout_change \
+           --subscribe aerospace.layout aerospace_workspace_change aerospace_layout_change aerospace_mode_change \
            --add item front_app left \
            --set front_app icon.drawing=off \
                             padding_left=0 \
@@ -19,4 +19,13 @@ sketchybar --add item aerospace.layout left \
                             background.corner_radius=0 \
                             background.border_width=0 \
                             script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
+           --subscribe front_app front_app_switched \
+           --add item aerospace.window_state left \
+           --set aerospace.window_state update_freq=5 \
+                                         icon.drawing=off \
+                                         padding_left=0 \
+                                         padding_right=0 \
+                                         background.corner_radius=0 \
+                                         background.border_width=0 \
+                                         script="$PLUGIN_DIR/aerospace_layout.sh" \
+           --subscribe aerospace.window_state aerospace_workspace_change aerospace_layout_change aerospace_mode_change front_app_switched

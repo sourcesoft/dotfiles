@@ -10,6 +10,7 @@ BAR_HEIGHT=30
 
 sketchybar --bar \
   position=top \
+  display=all \
   topmost=off \
   height="$BAR_HEIGHT" \
   color="$BAR_BG" \
@@ -39,12 +40,13 @@ sketchybar --default \
   background.padding_right=2
 
 sketchybar --add event aerospace_workspace_change \
-           --add event aerospace_layout_change
+           --add event aerospace_layout_change \
+           --add event aerospace_mode_change
 
 . "$ITEM_DIR/left.sh"
 . "$ITEM_DIR/workspaces.sh"
 . "$ITEM_DIR/right.sh"
 
-sketchybar --reorder $AEROSPACE_WORKSPACE_ITEMS aerospace.layout front_app battery caffeinate volume clock calendar input memory cpu network
+sketchybar --reorder $AEROSPACE_WORKSPACE_ITEMS aerospace.layout front_app aerospace.window_state battery caffeinate volume clock calendar input memory cpu network
 
 sketchybar --update
